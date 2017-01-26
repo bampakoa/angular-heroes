@@ -1,0 +1,6 @@
+<md-grid-list *ngIf="!showSpinner" cols="1" rowHeight="300">
+  <md-grid-tile *ngFor="let comic of comics; trackBy:trackByComics">
+    <app-comic-detail [comic]="comic"></app-comic-detail>
+  </md-grid-tile>
+</md-grid-list>
+<md-spinner *ngIf="showSpinner"></md-spinner>

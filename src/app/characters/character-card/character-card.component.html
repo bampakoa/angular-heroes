@@ -1,0 +1,10 @@
+<img [src]="getCharacterImage(character.thumbnail)" alt="photo of {{character.name}}">
+<md-grid-tile-footer>
+    <h3 md-line>{{character.name}}</h3>
+    <a md-icon-button target="_blank" [href]="getCharacterLink(character)">
+        <md-icon>link</md-icon>
+    </a>
+    <button md-icon-button (click)="showCharacter(character)">
+        <md-icon>info</md-icon>
+    </button>
+</md-grid-tile-footer>

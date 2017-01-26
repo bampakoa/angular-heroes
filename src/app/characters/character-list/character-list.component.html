@@ -1,0 +1,12 @@
+<div class="content">
+    <div class="search">
+        <md-input-container>
+            <input md-input placeholder="Search for characters..." #searchBox (keyup)="search(searchBox.value)">
+        </md-input-container>
+    </div>
+    <md-grid-list cols="4" rowHeight="250">
+        <md-grid-tile *ngFor="let character of characters | async; trackBy:trackByCharacters">
+            <app-character-card [character]="character"></app-character-card>
+        </md-grid-tile>
+    </md-grid-list>
+</div>

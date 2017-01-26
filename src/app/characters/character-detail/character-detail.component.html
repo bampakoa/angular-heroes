@@ -1,0 +1,15 @@
+<md-card *ngIf="character">
+  <md-card-header>
+    <img md-card-avatar [src]="getAvatar(character.thumbnail)">
+    <md-card-title>{{character.name}}</md-card-title>
+    <md-card-subtitle>{{character.id}}</md-card-subtitle>
+  </md-card-header>
+  <img md-card-image [src]="getCharacterImage(character.thumbnail)">
+  <md-card-content>
+    <p>{{character.description}}</p>
+  </md-card-content>
+  <md-card-actions>
+      <a *ngFor="let url of character.urls" md-button [href]="url.url" target="_blank">{{url.type | uppercase}}</a>
+      <a *ngIf="character.urls === undefined" md-button [href]="getCharacterLink(character)" target="_blank">DETAILS</a>
+  </md-card-actions>
+</md-card>

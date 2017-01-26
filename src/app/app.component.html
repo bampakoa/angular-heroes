@@ -1,0 +1,22 @@
+<md-toolbar color="primary">
+    Marvel Directory
+    <span class="spacer"></span>
+    <small>Data provided by Marvel. © 2014 Marvel</small>
+    <button *ngIf="sidenav.opened" md-icon-button (click)="sidenav.close()">
+        <md-icon>close</md-icon>
+    </button>
+</md-toolbar>
+<md-progress-bar *ngIf="showProgress" color="primary" mode="indeterminate"></md-progress-bar>
+<md-sidenav-container>
+    <md-sidenav align="end" mode="side" #sidenav>
+        <md-tab-group #tabgroup>
+            <md-tab label="Details">
+                <app-character-detail [character]="selectedCharacter"></app-character-detail>
+            </md-tab>
+            <md-tab label="Comics">
+                <app-comic-list *ngIf="selectedCharacter" [characterId]="selectedCharacter.id"></app-comic-list>
+            </md-tab>
+        </md-tab-group>
+    </md-sidenav>
+    <app-characters></app-characters>
+</md-sidenav-container>

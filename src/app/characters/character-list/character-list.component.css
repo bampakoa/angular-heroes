@@ -1,0 +1,25 @@
+md-grid-list {
+    margin: 16px;
+}
+
+md-grid-tile {
+    border: 10px solid black;
+}
+
+md-input-container {
+    margin: 55px 25px 25px 65px;
+    width: 200px;
+}
+
+.search {
+    background-image: url('assets/search.png');
+    background-repeat: no-repeat;
+    background-size: 320px 100px;
+    background-position-x: 18px;
+    background-position-y: 35px;
+}
+
+.content {
+    background-image: url('assets/background.png');
+    min-height: 100%;
+}

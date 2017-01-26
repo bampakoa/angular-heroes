@@ -1,0 +1,11 @@
+md-sidenav-container {
+    height: 100vh;
+}
+
+md-sidenav {
+    width: 320px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
