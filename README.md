@@ -1,31 +1,27 @@
-# Angular2App
+# Angular Heroes
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.26.
+This is an Angular web application that interacts with the Marvel Comics API and provides a basic search engine over the Marvel characters database.
+It allows to search for a given character and view information such as basic details as well as digital editions of comics that participates.
 
-## Development server
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Demo
+You can test a fully functional working live demo at [http://angular2-marvel.herokuapp.com](http://angular2-marvel.herokuapp.com)
 
-## Code scaffolding
+## Setup
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
+Install the Angular CLI by following the instructions [here](https://github.com/angular/angular-cli#installation). 
 
-## Build
+Clone this repo to your desktop and run `npm install` to install all the dependencies.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+## Usage
 
-## Running unit tests
+Before you can start, you must acquire a developer key from [Marvel Developer Portal](http://developer.marvel.com/). After you get one, 
+replace `apiKey` variable in `app.config.ts` with the newly acquired **public** key.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```
+export const appConfig: AppConfig = {
+  apiEndpoint: '//gateway.marvel.com/v1/public/',
+  apiKey: '<Your public key here>'
+};
+```
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Deploying to GitHub Pages
-
-Run `ng github-pages:deploy` to deploy to GitHub Pages.
-
-## Further help
-
-To get more help on the `angular-cli` use `ng help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Run `ng serve` to start the application. You will then be able to access it at http://localhost:4200
