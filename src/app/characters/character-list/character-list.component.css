@@ -12,11 +12,11 @@ md-input-container {
 }
 
 .search {
-    background-image: url('assets/search.png');
+    background-image: url('assets/search-bar.png');
     background-repeat: no-repeat;
-    background-size: 320px 100px;
-    background-position-x: 18px;
-    background-position-y: 35px;
+    background-size: 320px 50px;
+    background-position-x: 20px;
+    background-position-y: 45px;
 }
 
 .content {
