@@ -17,7 +17,7 @@ import { CoreModule } from './core/core.module';
     CharactersModule,
     ComicsModule,
     CoreModule,
-    MaterialModule.forRoot()
+    MaterialModule
   ],
   bootstrap: [AppComponent],
   providers: [{ provide: appSettings, useValue: appConfig }]

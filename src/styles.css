@@ -20,3 +20,10 @@ p {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/*https://github.com/angular/material2/pull/3134*/
+[md-card-avatar] {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}

@@ -12,7 +12,7 @@ md-input-container {
 }
 
 .search {
-    background-image: url('assets/search-bar.png');
+    background-image: url('/assets/search-bar.png');
     background-repeat: no-repeat;
     background-size: 320px 50px;
     background-position-x: 20px;
@@ -20,6 +20,6 @@ md-input-container {
 }
 
 .content {
-    background-image: url('assets/background.png');
+    background-image: url('/assets/background.png');
     min-height: 100%;
 }
