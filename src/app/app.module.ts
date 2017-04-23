@@ -1,7 +1,11 @@
 import { NgModule } from '@angular/core';
-import { MaterialModule } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/toPromise';
 
+import { AppMaterialModule } from './app-material.module';
 import { AppComponent } from './app.component';
 import { appConfig, appSettings } from './app.config';
 import { CharactersModule } from './characters/characters.module';
@@ -13,11 +17,12 @@ import { CoreModule } from './core/core.module';
     AppComponent,
   ],
   imports: [
+    AppMaterialModule,
+    BrowserAnimationsModule,
     BrowserModule,
     CharactersModule,
     ComicsModule,
     CoreModule,
-    MaterialModule
   ],
   bootstrap: [AppComponent],
   providers: [{ provide: appSettings, useValue: appConfig }]

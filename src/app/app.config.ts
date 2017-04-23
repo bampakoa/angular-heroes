@@ -1,6 +1,6 @@
-import { OpaqueToken } from '@angular/core';
+import { InjectionToken } from '@angular/core';
 
-export let appSettings = new OpaqueToken('app.config');
+export let appSettings = new InjectionToken<AppConfig>('app.config');
 
 export class AppConfig {
   apiEndpoint: string;

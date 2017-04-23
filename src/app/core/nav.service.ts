@@ -13,7 +13,7 @@ export class NavService {
     this.navSubject.next(character);
   }
 
-  hide(){
+  hide() {
     this.navSubject.next();
   }
 

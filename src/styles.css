@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import '~https://fonts.googleapis.com/icon?family=Material+Icons';
-@import '~@angular/material/core/theming/prebuilt/deeppurple-amber.css';
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 body {
   margin: 0;
@@ -19,11 +19,4 @@ p {
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-/*https://github.com/angular/material2/pull/3134*/
-[md-card-avatar] {
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
 }

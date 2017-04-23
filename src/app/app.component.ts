@@ -22,14 +22,13 @@ export class AppComponent implements OnInit {
     this.navService.navSubject.subscribe(character => {
       this.selectedCharacter = character;
 
-      if(this.selectedCharacter){
-        if(!this.sidenav.opened){
+      if (this.selectedCharacter) {
+        if (!this.sidenav.opened) {
           this.sidenav.open();
         }
 
         this.tabgroup.selectedIndex = 0;
-      }
-      else{
+      } else {
         this.sidenav.close();
       }
     });
