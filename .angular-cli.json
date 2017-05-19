@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "angular2-app"
+    "name": "angular-heroes"
   },
   "apps": [
     {
