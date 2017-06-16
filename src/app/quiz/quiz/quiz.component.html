@@ -1,0 +1,9 @@
+<div *ngIf="!hero">
+  <md-list>
+    <h3 md-subheader>Answer the following questions to find with which hero you match:</h3>
+    <app-question *ngFor="let question of questions" [question]=question></app-question>
+  </md-list>
+  <button md-button routerLink="/">Cancel</button>
+  <button md-raised-button color="primary" (click)="submit()">Submit</button>
+</div>
+<p *ngIf="hero">Your are <b>{{hero}}</b></p>

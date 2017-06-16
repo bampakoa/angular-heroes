@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { MdButtonModule, MdCardModule, MdGridListModule, MdIconModule,
-         MdInputModule, MdProgressBarModule, MdProgressSpinnerModule,
-         MdSidenavModule, MdTabsModule, MdToolbarModule } from '@angular/material';
+         MdInputModule, MdListModule, MdProgressBarModule, MdProgressSpinnerModule,
+         MdRadioModule, MdSidenavModule, MdTabsModule, MdToolbarModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -10,8 +10,10 @@ import { MdButtonModule, MdCardModule, MdGridListModule, MdIconModule,
     MdGridListModule,
     MdIconModule,
     MdInputModule,
+    MdListModule,
     MdProgressBarModule,
     MdProgressSpinnerModule,
+    MdRadioModule,
     MdSidenavModule,
     MdTabsModule,
     MdToolbarModule
@@ -22,8 +24,10 @@ import { MdButtonModule, MdCardModule, MdGridListModule, MdIconModule,
     MdGridListModule,
     MdIconModule,
     MdInputModule,
+    MdListModule,
     MdProgressBarModule,
     MdProgressSpinnerModule,
+    MdRadioModule,
     MdSidenavModule,
     MdTabsModule,
     MdToolbarModule

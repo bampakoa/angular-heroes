@@ -1,0 +1,13 @@
+<md-list-item>
+  <h4 md-line>
+    <b>{{question.no}}. {{question.description}} ?</b>
+  </h4>
+  <span md-line>
+    <p>
+      <md-radio-group (change)="setAnswer($event)" color="primary">
+        <md-radio-button value="yes">Yes</md-radio-button>
+        <md-radio-button value="no">No</md-radio-button>
+      </md-radio-group>
+    </p>
+  </span>
+</md-list-item>

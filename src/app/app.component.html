@@ -1,7 +1,9 @@
 <md-toolbar color="primary">
     Angular Heroes
     <span class="spacer"></span>
-    <small>Data provided by Marvel. © 2014 Marvel</small>
+    <button md-icon-button routerLink="/quiz">
+        <md-icon>assignment</md-icon>
+    </button>
     <button *ngIf="sidenav.opened" md-icon-button (click)="sidenav.close()">
         <md-icon>close</md-icon>
     </button>
@@ -18,5 +20,5 @@
             </md-tab>
         </md-tab-group>
     </md-sidenav>
-    <app-characters></app-characters>
+    <router-outlet></router-outlet>
 </md-sidenav-container>
