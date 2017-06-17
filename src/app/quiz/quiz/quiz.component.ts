@@ -19,8 +19,16 @@ export class QuizComponent implements OnInit {
     this.questions = this.quizService.getQuestions();
   }
 
+  resetQuiz() {
+    this.hero = undefined;
+  }
+
   submit() {
-    this.quizService.getHero().then((hero: Character) => this.hero = hero);
+    if (this.questions.find(question => !question.answer) !== undefined) {
+      alert('You sneaky...A true hero must answer all the questions!');
+    } else {
+      this.quizService.getHero().then((hero: Character) => this.hero = hero);
+    }
   }
 
 }

@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import 'rxjs/add/operator/debounceTime';
@@ -24,6 +25,7 @@ import { SharedModule } from './shared/shared.module';
     CharactersModule,
     ComicsModule,
     CoreModule,
+    HttpModule,
     SharedModule
   ],
   bootstrap: [AppComponent],
