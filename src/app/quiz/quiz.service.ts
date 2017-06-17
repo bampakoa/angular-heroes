@@ -1,9 +1,15 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
+import { Http, Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 
 import { Question } from './question.model';
+import { AppConfig, appSettings } from '../app.config';
+import { Character } from '../characters/character.model';
+import { LoadingService } from '../core/loading.service';
 
 @Injectable()
 export class QuizService {
+  private charactersUrl: string;
   private questions: Question[] = [
       {
         no: 1,
@@ -79,16 +85,27 @@ export class QuizService {
       }
   ];
 
-  constructor() { }
+  constructor(private http: Http, @Inject(appSettings) private config: AppConfig, private loadingService: LoadingService) {
+    this.charactersUrl = `${this.config.apiEndpoint}characters`;
+  }
 
-  getHero() {
+  getHero(): Promise<Character> {
+    this.loadingService.show();
+
     const ranking = {};
 
     this.questions.forEach((question: Question) => {
       this.match((question.answer === 'yes') ? question.positive : question.negative, ranking);
     });
 
-    return Object.keys(ranking).reduce((a, b) => ranking[a] > ranking[b] ? a : b);
+    const heroId = Object.keys(ranking).reduce((a, b) => ranking[a] > ranking[b] ? a : b);
+
+    return this.http.get(`${this.charactersUrl}/${heroId}`, { params: { apikey: this.config.apiKey } })
+                .toPromise()
+                .then((r: Response) => {
+                  this.loadingService.hide();
+                  return r.json().data.results[0];
+                });
   }
 
   getQuestions(): Question[] {

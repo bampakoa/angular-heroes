@@ -1,17 +1,17 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
-import { AppMaterialModule } from '../app-material.module';
 import { QuestionComponent } from './question/question.component';
 import { QuizRoutingModule } from './quiz-routing.module';
 import { QuizService } from './quiz.service';
 import { QuizComponent } from './quiz/quiz.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
-    AppMaterialModule,
-    CommonModule,
-    QuizRoutingModule
+    FlexLayoutModule,
+    QuizRoutingModule,
+    SharedModule
   ],
   declarations: [
     QuestionComponent,

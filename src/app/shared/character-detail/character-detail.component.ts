@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { Character } from '../character.model';
-import { CharactersService } from '../characters.service';
+import { Character } from '../../characters/character.model';
+import { CharactersService } from '../../characters/characters.service';
 import { ImageService } from '../../core/image.service';
 
 @Component({
