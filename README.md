@@ -1,7 +1,8 @@
 # Angular Heroes
 
-This is an Angular web application that interacts with the Marvel Comics API and provides a basic search engine over the Marvel characters database.
-It allows to search for a given character and view information such as basic details as well as digital editions of comics that participates.
+This is an Angular application that interacts with the [Marvel Comics API](http://developer.marvel.com/) and provides a basic search engine over the characters and comics database.
+It allows to find a character and view information such as basic details as well as digital editions of comics that participates. It also
+features a [questionnaire](https://angular2-marvel.herokuapp.com/quiz) that the user can complete in order to find the hero that fits to his character.
 
 ## Demo
 You can test a fully functional working live demo at [http://angular2-marvel.herokuapp.com](http://angular2-marvel.herokuapp.com)
@@ -14,11 +15,12 @@ Clone this repo to your desktop and run `npm install` to install all the depende
 
 ## Usage
 
-Before you can start, you must acquire a developer key from [Marvel Developer Portal](http://developer.marvel.com/). After you get one, 
-replace `apiKey` variable in `app.config.ts` with the newly acquired **public** key.
+Before you start, you must acquire a developer key from [Marvel Developer Portal](http://developer.marvel.com/). After you get one, 
+replace `apiKey` variable in `src/environments` files with the newly acquired **public** key.
 
 ```
-export const appConfig: AppConfig = {
+export const environment = {
+  ...
   apiEndpoint: '//gateway.marvel.com/v1/public/',
   apiKey: '<Your public key here>'
 };

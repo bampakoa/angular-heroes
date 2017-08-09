@@ -3,9 +3,9 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 import { Question } from './question.model';
-import { AppConfig, appSettings } from '../app.config';
 import { Character } from '../characters/character.model';
 import { LoadingService } from '../core/loading.service';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class QuizService {
@@ -85,8 +85,8 @@ export class QuizService {
       }
   ];
 
-  constructor(private http: Http, @Inject(appSettings) private config: AppConfig, private loadingService: LoadingService) {
-    this.charactersUrl = `${this.config.apiEndpoint}characters`;
+  constructor(private http: Http, private loadingService: LoadingService) {
+    this.charactersUrl = `${environment.apiEndpoint}characters`;
   }
 
   getHero(): Promise<Character> {
@@ -100,7 +100,7 @@ export class QuizService {
 
     const heroId = Object.keys(ranking).reduce((a, b) => ranking[a] > ranking[b] ? a : b);
 
-    return this.http.get(`${this.charactersUrl}/${heroId}`, { params: { apikey: this.config.apiKey } })
+    return this.http.get(`${this.charactersUrl}/${heroId}`, { params: { apikey: environment.apiKey } })
                 .toPromise()
                 .then((r: Response) => {
                   this.loadingService.hide();

@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  apiEndpoint: '//gateway.marvel.com/v1/public/',
+  apiKey: '<Your public key here>'
 };
