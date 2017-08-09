@@ -1,7 +1,7 @@
 # Angular Heroes
 
 This is an Angular application that interacts with the [Marvel Comics API](http://developer.marvel.com/) and provides a basic search engine over the characters and comics database.
-It allows to find a character and view information such as basic details as well as digital editions of comics that participates. It also
+It allows to find a character and view information such as basic details and digital editions of comics that participates. It also
 features a [questionnaire](https://angular2-marvel.herokuapp.com/quiz) that the user can complete in order to find the hero that fits to his character.
 
 ## Demo
