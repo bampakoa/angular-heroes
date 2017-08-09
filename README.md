@@ -2,7 +2,7 @@
 
 This is an Angular application that interacts with the [Marvel Comics API](http://developer.marvel.com/) and provides a basic search engine over the characters and comics database.
 It allows to find a character and view information such as basic details and digital editions of comics that participates. It also
-features a [questionnaire](https://angular2-marvel.herokuapp.com/quiz) that the user can complete in order to find the hero that fits to his character.
+features a questionnaire that the user can complete in order to find the hero that fits to his character.
 
 ## Demo
 You can test a fully functional working live demo at [http://angular2-marvel.herokuapp.com](http://angular2-marvel.herokuapp.com)
