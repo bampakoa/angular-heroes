@@ -29,4 +29,4 @@ export const environment = {
 Run `ng serve` to start the application. You will then be able to access it at http://localhost:4200
 
 ## Thanks
-[@FUSIONHACK](https://twitter.com/FUSIONHACK) for the nice background image and the search box!
+[@BarryQuinn](https://twitter.com/Legion945) for the nice images on the background and the search box!

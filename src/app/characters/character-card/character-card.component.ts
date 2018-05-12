@@ -1,9 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { Character } from '../character.model';
-import { CharactersService } from '../characters.service';
-import { ImageService } from '../../core/image.service';
-import { NavService } from '../../core/nav.service';
+import { Character } from '../../core/character.model';
+import { ContextService } from '../../core/core.service';
 
 @Component({
   selector: 'app-character-card',
@@ -11,18 +9,19 @@ import { NavService } from '../../core/nav.service';
 })
 export class CharacterCardComponent {
   @Input() character: Character;
+  @Output() select = new EventEmitter<Character>();
 
-  constructor(private imageService: ImageService, private navService: NavService, private charactersService: CharactersService) {}
+  constructor(private contextService: ContextService) {}
 
-  getCharacterImage(thumbnail) {
-    return this.imageService.getImage('landscape_incredible', thumbnail);
+  getCharacterImage(): string {
+    return this.contextService.getImage('landscape_incredible', this.character.thumbnail);
   }
 
-  showCharacter(character: Character) {
-    this.navService.show(character);
+  getCharacterLink(): string {
+    return this.contextService.getCharacterDetailsUrl(this.character);
   }
 
-  getCharacterLink(character: Character) {
-    return this.charactersService.getCharacterDetailsUrl(character);
+  showCharacter() {
+    this.select.emit(this.character);
   }
 }

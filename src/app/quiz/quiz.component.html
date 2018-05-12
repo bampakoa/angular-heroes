@@ -1,0 +1,21 @@
+<div *ngIf="!hero" fxLayout="column">
+  <mat-list>
+    <h3 mat-subheader>Answer the following questions to find with which hero you match:</h3>
+    <app-question *ngFor="let question of questions" [question]="question"></app-question>
+  </mat-list>
+  <span fxLayout="row" fxLayoutGap="10px" fxFlexAlign="center">
+    <a mat-button routerLink="/">Cancel</a>
+    <button mat-raised-button color="primary" (click)="submit()">Submit</button>
+  </span>
+</div>
+<div *ngIf="hero" fxLayout="column">
+  <h2 fxFlexAlign="center">You are</h2>
+  <div fxLayout="row">
+    <span fxFlex></span>
+      <app-character-detail [character]="hero"></app-character-detail>
+    <span fxFlex></span>
+  </div>
+  <span fxFlexAlign="center">
+    <button mat-raised-button color="accent" (click)="resetQuiz()">No I am not!</button>
+  </span>
+</div>

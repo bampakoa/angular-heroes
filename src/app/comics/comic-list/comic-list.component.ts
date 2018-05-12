@@ -1,41 +1,32 @@
 import { Component, Input, OnChanges } from '@angular/core';
 
 import { Comic } from '../comic.model';
-import { ComicsService } from '../comics.service';
+import { ComicService } from '../comics.service';
+import { Character } from '../../core/character.model';
 
 @Component({
   selector: 'app-comic-list',
   templateUrl: './comic-list.component.html',
-  styles: [`
-    md-spinner {
-      margin: 105px;
-    }
-  `]
 })
 export class ComicListComponent implements OnChanges {
-  @Input() characterId;
-  comics: Comic[];
-  showSpinner = false;
+  comics: Comic[] = [];
+  showProgress = false;
 
-  constructor(private comicsService: ComicsService) { }
+  @Input() character: Character;
 
-  getComics() {
-    this.showSpinner = true;
-
-    this.comicsService.getComics(this.characterId).then(comics => {
-      this.showSpinner = false;
-      this.comics = comics.filter(c => c.digitalId > 0);
-    });
-  }
-
-  isReadable(comic: Comic) {
-    return comic.digitalId !== 0;
-  }
+  constructor(private comicService: ComicService) {}
 
   ngOnChanges() {
-    this.getComics();
+    this.comics = [];
+    this.showProgress = true;
+    this.comicService.getComics(this.character.id).then(this.comicsGetComplete, () => this.showProgress = false);
   }
 
   trackByComics(index: number, comic: Comic) { return comic.id; }
 
+  private comicsGetComplete = (comics: Comic[]) => {
+    this.showProgress = false;
+    this.comics = comics.filter(c => c.digitalId > 0);
+    return this.comics;
+  }
 }

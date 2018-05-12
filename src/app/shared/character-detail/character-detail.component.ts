@@ -1,8 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
-import { Character } from '../../characters/character.model';
-import { CharactersService } from '../../characters/characters.service';
-import { ImageService } from '../../core/image.service';
+import { Character } from '../../core/character.model';
+import { ContextService } from '../../core/core.service';
 
 @Component({
   selector: 'app-character-detail',
@@ -11,17 +10,17 @@ import { ImageService } from '../../core/image.service';
 export class CharacterDetailComponent {
   @Input() character: Character;
 
-  constructor(private imageService: ImageService, private charactersService: CharactersService) {}
+  constructor(private contextService: ContextService) {}
 
-  getAvatar(thumbnail) {
-    return this.imageService.getImage('standard_medium', thumbnail);
+  getAvatar(): string {
+    return this.contextService.getImage('standard_medium', this.character.thumbnail);
   }
 
-  getCharacterImage(thumbnail) {
-    return this.imageService.getImage('portrait_uncanny', thumbnail);
+  getCharacterImage(): string {
+    return this.contextService.getImage('portrait_uncanny', this.character.thumbnail);
   }
 
-  getCharacterLink(character: Character) {
-    return this.charactersService.getCharacterDetailsUrl(character);
+  getCharacterLink(): string {
+    return this.contextService.getCharacterDetailsUrl(this.character);
   }
 }

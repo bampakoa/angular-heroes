@@ -1,5 +1,7 @@
-export class Comic {
-    id: number;
-    digitalId: number;
-    thumbnail: string;
+import { Thumbnail } from '../core/thumbnail.model';
+
+export interface Comic {
+  id: number;
+  digitalId: number;
+  thumbnail: Thumbnail;
 }

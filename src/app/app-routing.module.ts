@@ -1,24 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { CharactersComponent } from './characters/characters.component';
-import { CustomPreloadingStrategy } from './custom-preloading-strategy';
+import { CharacterListComponent } from './characters/character-list/character-list.component';
 
 const routes: Routes = [
-    {
-        path: '',
-        component: CharactersComponent
-    },
-    {
-        path: 'quiz',
-        loadChildren: 'app/quiz/quiz.module#QuizModule',
-        data: { preload: false }
-    }
+  {
+    path: '',
+    component: CharacterListComponent
+  },
+  {
+    path: 'quiz',
+    loadChildren: 'app/quiz/quiz.module#QuizModule'
+  }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { preloadingStrategy: CustomPreloadingStrategy })],
-  exports: [RouterModule],
-  providers: [CustomPreloadingStrategy]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }

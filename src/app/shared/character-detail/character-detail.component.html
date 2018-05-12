@@ -1,15 +1,15 @@
-<md-card *ngIf="character">
-  <md-card-header>
-    <img md-card-avatar [src]="getAvatar(character.thumbnail)">
-    <md-card-title>{{character.name}}</md-card-title>
-    <md-card-subtitle>{{character.id}}</md-card-subtitle>
-  </md-card-header>
-  <img md-card-image [src]="getCharacterImage(character.thumbnail)">
-  <md-card-content>
-    <p>{{character.description}}</p>
-  </md-card-content>
-  <md-card-actions>
-      <a *ngFor="let url of character.urls" md-button [href]="url.url" target="_blank">{{url.type | uppercase}}</a>
-      <a *ngIf="character.urls === undefined" md-button [href]="getCharacterLink(character)" target="_blank">DETAILS</a>
-  </md-card-actions>
-</md-card>
+<mat-card *ngIf="character">
+    <mat-card-header>
+        <img mat-card-avatar [src]="getAvatar()">
+        <mat-card-title>{{character.name}}</mat-card-title>
+        <mat-card-subtitle>{{character.id}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [src]="getCharacterImage()">
+    <mat-card-content>
+      <p>{{character.description}}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <a mat-button *ngFor="let url of character.urls" target="_blank" [href]="url.url">{{url.type | uppercase}}</a>
+      <a mat-button *ngIf="character.urls === undefined" target="_blank" [href]="getCharacterLink()">DETAILS</a>
+    </mat-card-actions>
+</mat-card>

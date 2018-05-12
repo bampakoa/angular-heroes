@@ -1,14 +1,12 @@
 import { NgModule } from '@angular/core';
 
-import { ImageService } from './image.service';
-import { LoadingService } from './loading.service';
-import { NavService } from './nav.service';
+import { ContextService } from './core.service';
+import { Logger } from './logger.service';
 
 @NgModule({
   providers: [
-    ImageService,
-    LoadingService,
-    NavService
+    ContextService,
+    Logger
   ]
 })
-export class CoreModule { }
+export class CoreModule {}

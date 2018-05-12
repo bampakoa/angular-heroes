@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { MdRadioChange } from '@angular/material';
 
-import { Question } from '../question.model';
+import { QuestionModel } from '../question.model';
 import { QuizService } from '../quiz.service';
 
 @Component({
@@ -10,12 +9,12 @@ import { QuizService } from '../quiz.service';
   styleUrls: ['./question.component.css']
 })
 export class QuestionComponent {
-  @Input() question: Question;
+  answer: 'yes' | 'no';
+  @Input() question: QuestionModel;
 
   constructor(private quizService: QuizService) {}
 
-  setAnswer(change: MdRadioChange) {
-    this.quizService.setAnswer(this.question, change.value);
+  setAnswer() {
+    this.quizService.setAnswer(this.question, this.answer);
   }
-
 }

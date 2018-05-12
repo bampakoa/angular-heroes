@@ -1,25 +1,30 @@
-md-grid-list {
-    margin: 16px;
+mat-grid-list {
+  margin: 40px;
 }
 
-md-grid-tile {
-    border: 10px solid black;
+mat-grid-tile {
+  border: 10px solid black;
 }
 
-md-input-container {
-    margin: 55px 25px 25px 65px;
-    width: 200px;
+mat-form-field {
+  margin: 55px 25px 25px 65px;
+  width: 200px;
+}
+
+mat-drawer {
+  position: fixed;
+  z-index: 9;
+  width: 320px;
 }
 
 .search {
-    background-image: url('/assets/search-bar.png');
-    background-repeat: no-repeat;
-    background-size: 320px 50px;
-    background-position-x: 20px;
-    background-position-y: 45px;
+  background-image: url('/assets/search-bar.png');
+  background-repeat: no-repeat;
+  background-size: 320px 57px;
+  background-position-x: 20px;
+  background-position-y: 45px;
 }
 
-.content {
-    background-image: url('/assets/background.png');
-    min-height: 100%;
+.mat-drawer-container {
+  background: transparent;
 }

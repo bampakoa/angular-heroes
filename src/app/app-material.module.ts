@@ -1,36 +1,38 @@
 import { NgModule } from '@angular/core';
-import { MdButtonModule, MdCardModule, MdGridListModule, MdIconModule,
-         MdInputModule, MdListModule, MdProgressBarModule, MdProgressSpinnerModule,
-         MdRadioModule, MdSidenavModule, MdTabsModule, MdToolbarModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatFormFieldModule, MatGridListModule, MatIconModule, MatInputModule, MatListModule,
+          MatProgressBarModule, MatProgressSpinnerModule, MatRadioModule, MatSidenavModule, MatTabsModule,
+          MatToolbarModule} from '@angular/material';
 
 @NgModule({
   imports: [
-    MdButtonModule,
-    MdCardModule,
-    MdGridListModule,
-    MdIconModule,
-    MdInputModule,
-    MdListModule,
-    MdProgressBarModule,
-    MdProgressSpinnerModule,
-    MdRadioModule,
-    MdSidenavModule,
-    MdTabsModule,
-    MdToolbarModule
+    MatButtonModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatSidenavModule,
+    MatTabsModule,
+    MatToolbarModule
   ],
   exports: [
-    MdButtonModule,
-    MdCardModule,
-    MdGridListModule,
-    MdIconModule,
-    MdInputModule,
-    MdListModule,
-    MdProgressBarModule,
-    MdProgressSpinnerModule,
-    MdRadioModule,
-    MdSidenavModule,
-    MdTabsModule,
-    MdToolbarModule
+    MatButtonModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatSidenavModule,
+    MatTabsModule,
+    MatToolbarModule
   ]
 })
 export class AppMaterialModule {}

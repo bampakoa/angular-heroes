@@ -1,7 +1,7 @@
-export class Question {
-    no: number;
-    description: string;
-    positive: string[];
-    negative: string[];
-    answer?: string;
+export class QuestionModel {
+  no: number;
+  description: string;
+  positive: string[];
+  negative: string[];
+  answer: 'yes' | 'no' | null;
 }

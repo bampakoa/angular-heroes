@@ -1,6 +1,8 @@
-<md-grid-list *ngIf="!showSpinner" cols="1" rowHeight="300">
-  <md-grid-tile *ngFor="let comic of comics; trackBy:trackByComics">
-    <app-comic-detail [comic]="comic"></app-comic-detail>
-  </md-grid-tile>
-</md-grid-list>
-<md-spinner *ngIf="showSpinner"></md-spinner>
+<mat-grid-list cols="1" rowHeight="300">
+    <mat-grid-tile *ngIf="showProgress">
+        <mat-progress-spinner mode="indeterminate" diameter="96"></mat-progress-spinner>
+    </mat-grid-tile>
+    <mat-grid-tile *ngFor="let comic of comics; trackBy:trackByComics">
+        <app-comic-detail [comic]="comic"></app-comic-detail>
+    </mat-grid-tile>
+</mat-grid-list>

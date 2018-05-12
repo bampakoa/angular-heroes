@@ -1,9 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MdSidenav, MdTabGroup } from '@angular/material';
+import { Component, OnInit } from '@angular/core';
 
-import { Character } from './characters/character.model';
-import { LoadingService } from './core/loading.service';
-import { NavService } from './core/nav.service';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -11,28 +8,11 @@ import { NavService } from './core/nav.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  @ViewChild('sidenav') sidenav: MdSidenav;
-  @ViewChild('tabgroup') tabgroup: MdTabGroup;
-  selectedCharacter: Character;
-  showProgress = false;
-
-  constructor(private navService: NavService, private loadingService: LoadingService) {}
+  title = '';
+  version = '';
 
   ngOnInit() {
-    this.navService.navSubject.subscribe(character => {
-      this.selectedCharacter = character;
-
-      if (this.selectedCharacter) {
-        if (!this.sidenav.opened) {
-          this.sidenav.open();
-        }
-
-        this.tabgroup.selectedIndex = 0;
-      } else {
-        this.sidenav.close();
-      }
-    });
-
-    this.loadingService.loadingSubject.subscribe(show => this.showProgress = show);
+    this.title = environment.settings.appTitle;
+    this.version = environment.settings.version;
   }
 }

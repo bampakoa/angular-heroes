@@ -1,10 +1,10 @@
-<img [src]="getCharacterImage(character.thumbnail)" alt="photo of {{character.name}}">
-<md-grid-tile-footer>
-    <h3 md-line>{{character.name}}</h3>
-    <a md-icon-button target="_blank" [href]="getCharacterLink(character)">
-        <md-icon>link</md-icon>
-    </a>
-    <button md-icon-button (click)="showCharacter(character)">
-        <md-icon>info</md-icon>
-    </button>
-</md-grid-tile-footer>
+<img [src]="getCharacterImage()" alt="photo of {{character.name}}">
+<mat-grid-tile-footer>
+  <h3 mat-line>{{character.name}}</h3>
+  <a mat-icon-button target="_blank" [href]="getCharacterLink()">
+      <mat-icon>link</mat-icon>
+  </a>
+  <button mat-icon-button (click)="showCharacter()">
+      <mat-icon>info</mat-icon>
+  </button>
+</mat-grid-tile-footer>

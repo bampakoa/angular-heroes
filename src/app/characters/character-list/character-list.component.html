@@ -1,16 +1,25 @@
-<div class="content">
-    <div class="search">
-        <md-input-container>
-            <input mdInput placeholder="Search for characters..." #searchBox (keyup)="search(searchBox.value)">
-        </md-input-container>
-    </div>
-    <md-grid-list cols="4" rowHeight="250">
-        <md-grid-tile *ngFor="let character of characters | async; trackBy:trackByCharacters">
-            <app-character-card [character]="character"></app-character-card>
-        </md-grid-tile>
-    </md-grid-list>
-</div>
-<md-toolbar>
-    <span class="spacer"></span>
-    <small>Data provided by Marvel. © 2014 Marvel</small>
-</md-toolbar>
+<mat-drawer-container>
+  <mat-drawer mode="over" position="end">
+    <mat-tab-group>
+      <mat-tab label="Details">
+        <app-character-detail [character]="selectedCharacter"></app-character-detail>
+      </mat-tab>
+      <mat-tab label="Comics">
+        <app-comic-list *ngIf="selectedCharacter" [character]="selectedCharacter"></app-comic-list>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-drawer>
+  <mat-drawer-content>
+      <mat-progress-bar mode="indeterminate" *ngIf="showProgress"></mat-progress-bar>
+      <div class="search">
+          <mat-form-field>
+            <input matInput placeholder="Search for characters..." #searchBox (keyup)="search(searchBox.value)">
+          </mat-form-field>
+      </div>
+      <mat-grid-list cols="4" rowHeight="250">
+          <mat-grid-tile *ngFor="let character of characters | async; trackBy:trackByCharacters">
+              <app-character-card [character]="character" (select)="selectCharacter($event)"></app-character-card>
+          </mat-grid-tile>
+      </mat-grid-list>
+  </mat-drawer-content>
+</mat-drawer-container>
