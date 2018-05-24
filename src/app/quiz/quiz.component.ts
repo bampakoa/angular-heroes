@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import { QuestionModel } from './question.model';
-import { QuizService } from './quiz.service';
 import { Character } from '../core/character.model';
 import { Logger } from '../core/logger.service';
+import { QuestionModel } from './question.model';
+import { QuizService } from './quiz.service';
 
 @Component({
   selector: 'app-quiz',

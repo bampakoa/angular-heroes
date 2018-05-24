@@ -1,7 +1,7 @@
 import { ErrorHandler, Injectable } from '@angular/core';
 
-import { Logger } from './core/logger.service';
 import { environment } from '../environments/environment';
+import { Logger } from './core/logger.service';
 
 @Injectable()
 export class AppErrorHandler implements ErrorHandler {

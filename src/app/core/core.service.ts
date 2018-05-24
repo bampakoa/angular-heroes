@@ -1,15 +1,14 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
+import { throwError } from 'rxjs';
 
+import { environment } from '../../environments/environment';
 import { Character } from './character.model';
 import { Logger } from './logger.service';
 import { Thumbnail } from './thumbnail.model';
-import { environment } from '../../environments/environment';
 
 @Injectable()
 export class ContextService {
-
   constructor(private logger: Logger) {}
 
   getCharacterDetailsUrl(character: Character): string {
@@ -31,7 +30,6 @@ export class ContextService {
       this.logger.error('Something bad happened; please try again later.', error, environment.settings.appErrorPrefix);
     }
     // return an ErrorObservable with a user-facing error message
-    return new ErrorObservable(error);
+    return throwError(error);
   }
-
 }

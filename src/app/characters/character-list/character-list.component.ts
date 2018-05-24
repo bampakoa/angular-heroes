@@ -1,12 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material';
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
+import { Observable, Subject, of } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
-import { Subject } from 'rxjs/Subject';
 
-import { CharacterService } from '../characters.service';
 import { Character } from '../../core/character.model';
+import { CharacterService } from '../characters.service';
 
 @Component({
   selector: 'app-character-list',

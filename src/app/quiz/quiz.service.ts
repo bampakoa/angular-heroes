@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
-import { QuestionModel } from './question.model';
+import { environment } from '../../environments/environment';
 import { Character } from '../core/character.model';
 import { ContextService } from '../core/core.service';
-import { environment } from '../../environments/environment';
+import { QuestionModel } from './question.model';
 
 @Injectable()
 export class QuizService {
