@@ -5,7 +5,7 @@ It allows to find a character and view information such as basic details and dig
 features a questionnaire that the user can complete in order to find the hero that fits to his character.
 
 ## Demo
-You can test a fully functional working live demo at [http://angular2-marvel.herokuapp.com](http://angular2-marvel.herokuapp.com)
+You can test a fully functional working live demo at [https://angular-superheroes.firebaseapp.com/](https://angular-superheroes.firebaseapp.com/).
 
 ## Setup
 
