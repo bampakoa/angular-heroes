@@ -9,8 +9,6 @@ You can test a fully functional working live demo at [https://angular-superheroe
 
 ## Setup
 
-Install the Angular CLI by following the instructions [here](https://github.com/angular/angular-cli#installation). 
-
 Clone this repo to your desktop and run `npm install` to install all the dependencies.
 
 ## Usage
