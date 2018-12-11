@@ -2,10 +2,8 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "../out-tsc/app",
-    "baseUrl": "./",
-    "module": "es2015",
-    "typeRoots": [
-      "../node_modules/@types"
+    "types": [
+      "toastr"
     ]
   },
   "exclude": [

@@ -1,6 +1,7 @@
-mat-list-item {
+.mat-list-item {
   border: #9370DB solid;
   border-radius: 10px;
   margin: 15px;
   padding: 15px;
+  width: auto;
 }

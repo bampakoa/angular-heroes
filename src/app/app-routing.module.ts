@@ -10,7 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'quiz',
-    loadChildren: 'app/quiz/quiz.module#QuizModule'
+    loadChildren: './quiz/quiz.module#QuizModule'
   }
 ];
 
