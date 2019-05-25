@@ -5,7 +5,6 @@ import { ComicsModule } from '../comics/comics.module';
 import { SharedModule } from '../shared/shared.module';
 import { CharacterCardComponent } from './character-card/character-card.component';
 import { CharacterListComponent } from './character-list/character-list.component';
-import { CharacterService } from './characters.service';
 
 @NgModule({
   imports: [
@@ -16,7 +15,6 @@ import { CharacterService } from './characters.service';
   declarations: [
     CharacterCardComponent,
     CharacterListComponent
-  ],
-  providers: [CharacterService]
+  ]
 })
 export class CharacterModule {}

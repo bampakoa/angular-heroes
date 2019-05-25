@@ -10,7 +10,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthInterceptor } from './auth-interceptor.service';
 import { CharacterModule } from './characters/characters.module';
-import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,7 +19,6 @@ import { CoreModule } from './core/core.module';
     BrowserAnimationsModule,
     BrowserModule,
     CharacterModule,
-    CoreModule,
     FlexLayoutModule,
     HttpClientModule
   ],

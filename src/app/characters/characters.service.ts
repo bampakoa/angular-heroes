@@ -7,7 +7,9 @@ import { environment } from '../../environments/environment';
 import { Character } from '../core/character.model';
 import { ContextService } from '../core/core.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class CharacterService {
   constructor(private http: HttpClient, private contextService: ContextService) {}
 

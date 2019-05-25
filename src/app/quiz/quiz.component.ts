@@ -24,6 +24,13 @@ export class QuizComponent implements OnInit {
     this.hero = undefined;
   }
 
+  setAnswer(question: QuestionModel, answer: string) {
+    this.quizService.setAnswer(question, answer);
+    if (question.no === this.questions.length) {
+      this.submit();
+    }
+  }
+
   submit() {
     const notCompleted: QuestionModel = this.questions.find(question => question.answer === null);
     if (notCompleted) {

@@ -7,7 +7,9 @@ import { Character } from './character.model';
 import { Logger } from './logger.service';
 import { Thumbnail } from './thumbnail.model';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ContextService {
   constructor(private logger: Logger) {}
 

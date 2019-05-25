@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class Logger {
   error(message: string, data: any, title?: string) {
     toastr.error(message, title);

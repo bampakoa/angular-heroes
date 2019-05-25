@@ -3,5 +3,5 @@ export class QuestionModel {
   description: string;
   positive: string[];
   negative: string[];
-  answer: 'yes' | 'no' | null;
+  answer: string;
 }

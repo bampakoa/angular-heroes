@@ -124,7 +124,7 @@ export class QuizService {
     return this.questions;
   }
 
-  setAnswer(question: QuestionModel, answer: 'yes' | 'no') {
+  setAnswer(question: QuestionModel, answer: string) {
     this.questions.find(qs => qs.no === question.no).answer = answer;
   }
 

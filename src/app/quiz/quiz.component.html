@@ -1,13 +1,14 @@
-<div *ngIf="!hero" fxLayout="column">
-  <mat-list>
-    <h3 mat-subheader>Answer the following questions to find with which hero you match:</h3>
-    <app-question *ngFor="let question of questions" [question]="question"></app-question>
-  </mat-list>
-  <span fxLayout="row" fxLayoutGap="10px" fxFlexAlign="center">
-    <a mat-button routerLink="/">Cancel</a>
-    <button mat-raised-button color="primary" (click)="submit()">Submit</button>
-  </span>
-</div>
+<mat-vertical-stepper *ngIf="!hero" linear="true">
+  <mat-step *ngFor="let question of questions">
+    <ng-template matStepLabel>{{question.description}}</ng-template>
+    <div>
+      <mat-button-toggle-group>
+        <mat-button-toggle (click)="setAnswer(question, 'yes')">Yes</mat-button-toggle>
+        <mat-button-toggle (click)="setAnswer(question, 'no')">No</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+  </mat-step>
+</mat-vertical-stepper>
 <div *ngIf="hero" fxLayout="column">
   <h2 fxFlexAlign="center">You are</h2>
   <div fxLayout="row">
