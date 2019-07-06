@@ -10,7 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'quiz',
-    loadChildren: './quiz/quiz.module#QuizModule'
+    loadChildren: () => import('./quiz/quiz.module').then(m => m.QuizModule)
   }
 ];
 
