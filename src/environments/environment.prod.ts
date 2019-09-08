@@ -5,7 +5,7 @@ export const environment = {
   settings: {
     appErrorPrefix: '[Angular Heroes Error] ',
     appTitle: 'Angular Heroes',
-    version: '1.0.0'
+    version: '1.1.0'
   }
 };
 
