@@ -11,7 +11,3 @@ img {
   background-image: url('../assets/background.png');
   overflow: auto;
 }
-
-.spacer {
-  flex: 1 1 auto;
-}

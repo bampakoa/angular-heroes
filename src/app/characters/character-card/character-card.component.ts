@@ -9,7 +9,7 @@ import { ContextService } from '../../core/core.service';
 })
 export class CharacterCardComponent {
   @Input() character: Character;
-  @Output() select = new EventEmitter<Character>();
+  @Output() selectedChange = new EventEmitter<Character>();
 
   constructor(private contextService: ContextService) {}
 
@@ -22,6 +22,6 @@ export class CharacterCardComponent {
   }
 
   showCharacter() {
-    this.select.emit(this.character);
+    this.selectedChange.emit(this.character);
   }
 }
