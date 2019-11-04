@@ -25,7 +25,8 @@ export class QuizComponent implements OnInit {
   }
 
   setAnswer(question: QuestionModel, answer: string) {
-    this.questions.find(qs => qs.no === question.no).answer = answer;
+    question.answer = answer;
+
     if (question.no === this.questions.length) {
       this.submit();
     }
