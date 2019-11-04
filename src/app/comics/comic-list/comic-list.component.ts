@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges } from '@angular/core';
+import { finalize, map } from 'rxjs/operators';
 
 import { Character } from '../../core/character.model';
 import { Comic } from '../comic.model';
@@ -19,14 +20,11 @@ export class ComicListComponent implements OnChanges {
   ngOnChanges() {
     this.comics = [];
     this.showProgress = true;
-    this.comicService.getComics(this.character.id).then(this.comicsGetComplete, () => this.showProgress = false);
+    this.comicService.getComics(this.character.id).pipe(
+      map(comics => this.comics = comics.filter(c => c.digitalId > 0)),
+      finalize(() => this.showProgress = false)
+    ).subscribe();
   }
 
   trackByComics(index: number, comic: Comic) { return comic.id; }
-
-  private comicsGetComplete = (comics: Comic[]) => {
-    this.showProgress = false;
-    this.comics = comics.filter(c => c.digitalId > 0);
-    return this.comics;
-  }
 }

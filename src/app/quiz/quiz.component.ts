@@ -17,7 +17,7 @@ export class QuizComponent implements OnInit {
   constructor(private logger: Logger, private quizService: QuizService) {}
 
   ngOnInit() {
-    this.questions = this.quizService.getQuestions();
+    this.getQuestions();
   }
 
   resetQuiz() {
@@ -25,7 +25,7 @@ export class QuizComponent implements OnInit {
   }
 
   setAnswer(question: QuestionModel, answer: string) {
-    this.quizService.setAnswer(question, answer);
+    this.questions.find(qs => qs.no === question.no).answer = answer;
     if (question.no === this.questions.length) {
       this.submit();
     }
@@ -36,12 +36,16 @@ export class QuizComponent implements OnInit {
     if (notCompleted) {
       this.logger.warning('A true hero must be honest..Answer all questions!', null, 'Quiz');
     } else {
-      this.quizService.getHero().then(hero => {
+      this.quizService.getHero(this.questions).subscribe(hero => {
         this.questions.forEach(question => {
           question.answer = null;
         });
         this.hero = hero;
       });
     }
+  }
+
+  private getQuestions() {
+    this.quizService.getQuestions().subscribe(questions => this.questions = questions);
   }
 }

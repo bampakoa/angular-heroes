@@ -1,6 +1,6 @@
 {
   "name": "angular-heroes",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Angular Heroes",
   "authors": [
     "Aristeidis Bampakos"
@@ -14,17 +14,17 @@
     "e2e": "ng e2e"
   },
   "dependencies": {
-    "@angular/animations": "8.2.5",
-    "@angular/cdk": "8.1.4",
-    "@angular/common": "8.2.5",
-    "@angular/compiler": "8.2.5",
-    "@angular/core": "8.2.5",
+    "@angular/animations": "8.2.13",
+    "@angular/cdk": "8.2.3",
+    "@angular/common": "8.2.13",
+    "@angular/compiler": "8.2.13",
+    "@angular/core": "8.2.13",
     "@angular/flex-layout": "8.0.0-beta.27",
-    "@angular/forms": "8.2.5",
-    "@angular/material": "8.1.4",
-    "@angular/platform-browser": "8.2.5",
-    "@angular/platform-browser-dynamic": "8.2.5",
-    "@angular/router": "8.2.5",
+    "@angular/forms": "8.2.13",
+    "@angular/material": "8.2.3",
+    "@angular/platform-browser": "8.2.13",
+    "@angular/platform-browser-dynamic": "8.2.13",
+    "@angular/router": "8.2.13",
     "components-font-awesome": "5.9.0",
     "jquery": "3.4.1",
     "rxjs": "^6.5.3",
@@ -33,10 +33,10 @@
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.803.3",
-    "@angular/cli": "8.3.3",
-    "@angular/compiler-cli": "8.2.5",
-    "@angular/language-service": "8.2.5",
+    "@angular-devkit/build-angular": "~0.803.17",
+    "@angular/cli": "8.3.17",
+    "@angular/compiler-cli": "8.2.13",
+    "@angular/language-service": "8.2.13",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/jquery": "3.3.31",
