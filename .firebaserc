@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "angular-superheroes"
+  },
+  "targets": {
+    "angular-superheroes": {
+      "hosting": {
+        "angular-heroes": [
+          "angular-superheroes"
+        ]
+      }
+    }
   }
 }
