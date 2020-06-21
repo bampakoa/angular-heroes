@@ -17,7 +17,7 @@ export class CharacterListComponent implements OnInit {
   selectedCharacter: Character;
   showProgress = false;
 
-  @ViewChild(MatDrawer, { static: false }) drawer: MatDrawer;
+  @ViewChild(MatDrawer) private drawer: MatDrawer;
 
   private searchTerms = new Subject<string>();
 
