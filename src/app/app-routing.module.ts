@@ -7,10 +7,6 @@ const routes: Routes = [
   {
     path: '',
     component: CharacterListComponent
-  },
-  {
-    path: 'quiz',
-    loadChildren: () => import('./quiz/quiz.module').then(m => m.QuizModule)
   }
 ];
 

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { Observable, Subject, of } from 'rxjs';
-import { catchError, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { catchError, debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs/operators';
 
 import { Character } from '../../core/character.model';
 import { CharacterService } from '../characters.service';
@@ -27,6 +27,7 @@ export class CharacterListComponent implements OnInit {
     const obsNoCharacters = of<Character[]>([]);
 
     this.characters = this.searchTerms.pipe(
+      filter(term => term.length >= 3),
       debounceTime(300),
       distinctUntilChanged(),
       switchMap(term => {
