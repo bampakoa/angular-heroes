@@ -17,9 +17,6 @@ export class CharacterCardComponent {
     return this.contextService.getImage('landscape_incredible', this.character.thumbnail);
   }
 
-  getCharacterLink(): string {
-    return this.contextService.getCharacterDetailsUrl(this.character);
-  }
 
   showCharacter() {
     this.selectedChange.emit(this.character);

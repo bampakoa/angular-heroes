@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
 
 import { environment } from '../../environments/environment';
-import { Character } from './character.model';
 import { Logger } from './logger.service';
 import { Thumbnail } from './thumbnail.model';
 
@@ -12,11 +11,6 @@ import { Thumbnail } from './thumbnail.model';
 })
 export class ContextService {
   constructor(private logger: Logger) {}
-
-  getCharacterDetailsUrl(character: Character): string {
-    const detail = character.urls.find(url => url.type === 'detail');
-    return detail ? detail.url : 'http://marvel.com';
-  }
 
   getImage(variant: string, thumbnail: Thumbnail): string {
     return `${thumbnail.path}/${variant}.${thumbnail.extension}`;

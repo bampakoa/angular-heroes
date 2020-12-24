@@ -21,6 +21,7 @@ export class CharacterDetailComponent {
   }
 
   getCharacterLink(): string {
-    return this.contextService.getCharacterDetailsUrl(this.character);
+    const detail = this.character.urls.find(url => url.type === 'detail');
+    return detail ? detail.url : 'http://marvel.com';
   }
 }
