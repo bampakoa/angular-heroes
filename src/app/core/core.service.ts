@@ -1,16 +1,17 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { throwError } from 'rxjs';
 
 import { environment } from '../../environments/environment';
-import { Logger } from './logger.service';
 import { Thumbnail } from './thumbnail.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContextService {
-  constructor(private logger: Logger) {}
+
+  constructor(private snackbar: MatSnackBar) {}
 
   getImage(variant: string, thumbnail: Thumbnail): string {
     return `${thumbnail.path}/${variant}.${thumbnail.extension}`;
@@ -23,9 +24,10 @@ export class ContextService {
     } else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong,
-      this.logger.error('Something bad happened; please try again later.', error, environment.settings.appErrorPrefix);
+      this.snackbar.open(environment.settings.appErrorPrefix + 'Something bad happened; please try again later.');
     }
     // return an ErrorObservable with a user-facing error message
     return throwError(error);
   }
+
 }

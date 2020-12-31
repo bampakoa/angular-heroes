@@ -24,15 +24,11 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/toastr/toastr.scss",
               "src/styles.css",
               "node_modules/components-font-awesome/css/brands.css",
               "node_modules/components-font-awesome/css/fontawesome.css"
             ],
-            "scripts": [
-              "node_modules/jquery/dist/jquery.js",
-              "node_modules/toastr/toastr.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {

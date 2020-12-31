@@ -1,15 +1,16 @@
-import { ErrorHandler, Injectable } from '@angular/core';
+import { ErrorHandler, Injectable, Injector } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { environment } from '../environments/environment';
-import { Logger } from './core/logger.service';
 
 @Injectable()
 export class AppErrorHandler implements ErrorHandler {
 
-  constructor(private logger: Logger) {}
+  constructor(private injector: Injector) {}
 
   handleError(error: Error) {
-    this.logger.error(error.message, error, environment.settings.appErrorPrefix);
+    this.injector.get(MatSnackBar).open(environment.settings.appErrorPrefix + error.message);
+    console.log(error);
   }
 
 }

@@ -8,5 +8,3 @@ export const environment = {
     version: '1.2.0'
   }
 };
-
-toastr.options.timeOut = 1500;
