@@ -1,6 +1,6 @@
 img {
-  width: 24px;
-  height: 24px;
+  width: 48px;
+  height: 48px;
 }
 
 .fab {
@@ -10,4 +10,9 @@ img {
 .content {
   background-image: url('../assets/background.png');
   overflow: auto;
+}
+
+.logo {
+  margin-right: 20px;
+  margin-bottom: 5px;
 }
