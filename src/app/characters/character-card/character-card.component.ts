@@ -8,6 +8,7 @@ import { ContextService } from '../../core/core.service';
   templateUrl: './character-card.component.html'
 })
 export class CharacterCardComponent {
+
   @Input() character: Character;
   @Output() selectedChange = new EventEmitter<Character>();
 
@@ -17,8 +18,8 @@ export class CharacterCardComponent {
     return this.contextService.getImage('landscape_incredible', this.character.thumbnail);
   }
 
-
   showCharacter() {
     this.selectedChange.emit(this.character);
   }
+
 }

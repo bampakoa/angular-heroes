@@ -5,9 +5,14 @@ import { Comic } from '../comic.model';
 
 @Component({
   selector: 'app-comic-detail',
-  templateUrl: './comic-detail.component.html',
+  template: `
+    <a href="http://read.marvel.com/#/book/{{comic.digitalId}}" target="_blank">
+      <img [src]="getComicImage()">
+    </a>
+  `
 })
 export class ComicDetailComponent {
+
   @Input() comic: Comic;
 
   constructor(private contextService: ContextService) {}
@@ -15,4 +20,5 @@ export class ComicDetailComponent {
   getComicImage(): string {
     return this.contextService.getImage('portrait_fantastic', this.comic.thumbnail);
   }
+
 }

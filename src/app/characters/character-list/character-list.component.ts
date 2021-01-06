@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
-import { Observable, Subject, of } from 'rxjs';
+import { EMPTY, Observable, of, Subject } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs/operators';
 
 import { Character } from '../../core/character.model';
@@ -12,31 +12,25 @@ import { CharacterService } from '../characters.service';
   styleUrls: ['./character-list.component.css']
 })
 export class CharacterListComponent implements OnInit {
+
   characters: Observable<Character[]>;
   isVisible = false;
   selectedCharacter: Character;
   showProgress = false;
 
   @ViewChild(MatDrawer) private drawer: MatDrawer;
-
   private searchTerms = new Subject<string>();
 
   constructor(private characterService: CharacterService) {}
 
   getCharacters() {
-    const obsNoCharacters = of<Character[]>([]);
-
     this.characters = this.searchTerms.pipe(
       filter(term => term.length >= 3),
       debounceTime(300),
       distinctUntilChanged(),
       switchMap(term => {
-        if (term) {
-          this.showProgress = true;
-          return this.characterService.getCharacters(term);
-        } else {
-          return obsNoCharacters;
-        }
+        this.showProgress = true;
+        return this.characterService.getCharacters(term);
       }),
       switchMap(heroes => {
         this.showProgress = false;
@@ -44,7 +38,7 @@ export class CharacterListComponent implements OnInit {
       }),
       catchError(() => {
         this.showProgress = false;
-        return obsNoCharacters;
+        return EMPTY;
       })
     );
   }
@@ -63,4 +57,5 @@ export class CharacterListComponent implements OnInit {
   }
 
   trackByCharacters(index: number, character: Character) { return character.id; }
+
 }

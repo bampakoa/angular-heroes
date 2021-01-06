@@ -8,6 +8,7 @@ import { ContextService } from '../../core/core.service';
   templateUrl: './character-detail.component.html'
 })
 export class CharacterDetailComponent {
+
   @Input() character: Character;
 
   constructor(private contextService: ContextService) {}
@@ -24,4 +25,5 @@ export class CharacterDetailComponent {
     const detail = this.character.urls.find(url => url.type === 'detail');
     return detail ? detail.url : 'http://marvel.com';
   }
+
 }

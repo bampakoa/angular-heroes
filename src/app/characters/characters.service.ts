@@ -11,15 +11,16 @@ import { ContextService } from '../core/core.service';
   providedIn: 'root'
 })
 export class CharacterService {
+
   constructor(private http: HttpClient, private contextService: ContextService) {}
 
   getCharacters(term: string): Observable<Character[]> {
     const options = new HttpParams().set('nameStartsWith', term);
-    return this.http
-      .get<Character[]>(`${environment.apiUrl}characters`, {params: options})
-      .pipe(
-        map((response: any) => response.data.results),
-        catchError(this.contextService.handleError)
-      );
+
+    return this.http.get<Character[]>(`${environment.apiUrl}characters`, { params: options }).pipe(
+      map((response: any) => response.data.results),
+      catchError(this.contextService.handleError)
+    );
   }
+
 }

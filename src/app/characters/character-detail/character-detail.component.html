@@ -1,15 +1,15 @@
 <mat-card *ngIf="character">
-    <mat-card-header>
-        <img mat-card-avatar [src]="getAvatar()">
-        <mat-card-title>{{character.name}}</mat-card-title>
-        <mat-card-subtitle>{{character.id}}</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image [src]="getCharacterImage()">
-    <mat-card-content>
-      <p>{{character.description}}</p>
-    </mat-card-content>
-    <mat-card-actions>
-      <a mat-button *ngFor="let url of character.urls" target="_blank" [href]="url.url">{{url.type | uppercase}}</a>
-      <a mat-button *ngIf="character.urls === undefined" target="_blank" [href]="getCharacterLink()">DETAILS</a>
-    </mat-card-actions>
+  <mat-card-header>
+    <img mat-card-avatar [src]="getAvatar()">
+    <mat-card-title>{{character.name}}</mat-card-title>
+    <mat-card-subtitle>{{character.id}}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image [src]="getCharacterImage()">
+  <mat-card-content>
+    <p>{{character.description}}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <a mat-button *ngFor="let url of character.urls" target="_blank" [href]="url.url">{{url.type | uppercase}}</a>
+    <a mat-button *ngIf="character.urls === undefined" target="_blank" [href]="getCharacterLink()">DETAILS</a>
+  </mat-card-actions>
 </mat-card>

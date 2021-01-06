@@ -7,24 +7,27 @@ import { ComicService } from '../comics.service';
 
 @Component({
   selector: 'app-comic-list',
-  templateUrl: './comic-list.component.html',
+  templateUrl: './comic-list.component.html'
 })
 export class ComicListComponent implements OnChanges {
-  comics: Comic[] = [];
-  showProgress = false;
 
   @Input() character: Character;
+
+  comics: Comic[] = [];
+  showProgress = false;
 
   constructor(private comicService: ComicService) {}
 
   ngOnChanges() {
     this.comics = [];
     this.showProgress = true;
+
     this.comicService.getComics(this.character.id).pipe(
       map(comics => this.comics = comics.filter(c => c.digitalId > 0)),
       finalize(() => this.showProgress = false)
     ).subscribe();
   }
 
-  trackByComics(index: number, comic: Comic) { return comic.id; }
+  trackByComics(_: number, comic: Comic) { return comic.id; }
+
 }
