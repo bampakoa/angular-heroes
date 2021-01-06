@@ -11,6 +11,8 @@ import { Thumbnail } from './thumbnail.model';
 })
 export class ContextService {
 
+  copyright: string;
+
   constructor(private snackbar: MatSnackBar) {}
 
   getImage(variant: string, thumbnail: Thumbnail): string {

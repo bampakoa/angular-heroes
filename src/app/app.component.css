@@ -1,18 +1,4 @@
-img {
-  width: 48px;
-  height: 48px;
-}
-
-.fab {
-  font-size: 1.8em;
-}
-
 .content {
   background-image: url('../assets/background.png');
   overflow: auto;
-}
-
-.logo {
-  margin-right: 20px;
-  margin-bottom: 5px;
 }

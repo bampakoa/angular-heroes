@@ -7,6 +7,13 @@ import { environment } from '../../environments/environment';
 import { Character } from '../core/character.model';
 import { ContextService } from '../core/core.service';
 
+interface MarvelResponse {
+  attributionText: string;
+  data: {
+    results: Character[]
+  };
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,8 +24,13 @@ export class CharacterService {
   getCharacters(term: string): Observable<Character[]> {
     const options = new HttpParams().set('nameStartsWith', term);
 
-    return this.http.get<Character[]>(`${environment.apiUrl}characters`, { params: options }).pipe(
-      map((response: any) => response.data.results),
+    return this.http.get<MarvelResponse>(`${environment.apiUrl}characters`, { params: options }).pipe(
+      map((response: MarvelResponse) => {
+        if (!this.contextService.copyright) {
+          this.contextService.copyright = response.attributionText;
+        }
+        return response.data.results;
+      }),
       catchError(this.contextService.handleError)
     );
   }
