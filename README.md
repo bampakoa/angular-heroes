@@ -1,6 +1,6 @@
 # Angular Heroes
 
-An Angular application that uses Angular Material and interacts with the [Marvel Comics API](http://developer.marvel.com/). The purpose of the application is to demonstrate how to apply common Angular techniques and use some of the Angular Material components.
+An Angular application that uses Angular Material and interacts with the [Marvel Comics API](https://developer.marvel.com/). The purpose of the application is to demonstrate how to apply common Angular techniques and use some of the Angular Material components.
 
 It provides a basic search engine over the characters and comics Marvel database. It allows to find a hero character and view information such as basic details and comics.
 
@@ -10,7 +10,7 @@ Clone this repo to your desktop and run `npm install` to install all the depende
 
 ## Usage
 
-Before you start, you must acquire a developer key from [Marvel Developer Portal](http://developer.marvel.com/). After you get one, 
+Before you start, you must acquire a developer key from [Marvel Developer Portal](https://developer.marvel.com/). After you get one, 
 replace `apiKey` variable in `src/environments` files with the newly acquired **public** key.
 
 ```

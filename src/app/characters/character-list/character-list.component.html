@@ -13,7 +13,7 @@
     <mat-progress-bar mode="indeterminate" *ngIf="showProgress"></mat-progress-bar>
     <div class="search">
       <mat-form-field>
-        <input matInput placeholder="Search for characters..." #searchBox (keyup)="search(searchBox.value)">
+        <input matInput placeholder="Search by name" #searchBox (keyup)="search(searchBox.value)">
       </mat-form-field>
     </div>
     <mat-grid-list cols="4" rowHeight="250">
