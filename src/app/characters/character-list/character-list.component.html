@@ -17,7 +17,7 @@
       </mat-form-field>
     </div>
     <mat-grid-list cols="4" rowHeight="250">
-      <mat-grid-tile *ngFor="let character of characters | async; trackBy:trackByCharacters">
+      <mat-grid-tile *ngFor="let character of characters$ | async; trackBy:trackByCharacters">
         <app-character-card [character]="character" (selectedChange)="selectCharacter($event)"></app-character-card>
       </mat-grid-tile>
     </mat-grid-list>

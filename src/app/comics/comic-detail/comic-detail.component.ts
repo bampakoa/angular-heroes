@@ -6,7 +6,7 @@ import { Comic } from '../comic.model';
 @Component({
   selector: 'app-comic-detail',
   template: `
-    <a href="http://read.marvel.com/#/book/{{comic.digitalId}}" target="_blank">
+    <a href="https://read.marvel.com/#/book/{{comic.digitalId}}" target="_blank">
       <img [src]="getComicImage()">
     </a>
   `

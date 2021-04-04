@@ -21,9 +21,4 @@ export class CharacterDetailComponent {
     return this.contextService.getImage('portrait_uncanny', this.character.thumbnail);
   }
 
-  getCharacterLink(): string {
-    const detail = this.character.urls.find(url => url.type === 'detail');
-    return detail ? detail.url : 'http://marvel.com';
-  }
-
 }

@@ -10,6 +10,5 @@
   </mat-card-content>
   <mat-card-actions>
     <a mat-button *ngFor="let url of character.urls" target="_blank" [href]="url.url">{{url.type | uppercase}}</a>
-    <a mat-button *ngIf="character.urls === undefined" target="_blank" [href]="getCharacterLink()">DETAILS</a>
   </mat-card-actions>
 </mat-card>

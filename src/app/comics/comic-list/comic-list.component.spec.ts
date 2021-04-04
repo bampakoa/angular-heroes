@@ -1,0 +1,74 @@
+import { Component } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { of } from 'rxjs';
+
+import { AppMaterialModule } from '../../app-material.module';
+import { Character } from '../../core/character.model';
+import { ComicDetailComponent } from '../comic-detail/comic-detail.component';
+import { Comic } from '../comic.model';
+import { ComicService } from '../comics.service';
+import { ComicListComponent } from './comic-list.component';
+
+const fakeComics: Comic[] = [
+  {
+    id: 1,
+    digitalId: 1,
+    thumbnail: {
+      path: 'Fake path',
+      extension: 'fake'
+    }
+  },
+  {
+    id: 2,
+    digitalId: 0,
+    thumbnail: {
+      path: 'Fake path',
+      extension: 'fake'
+    }
+  }
+];
+
+@Component({
+  template: '<app-comic-list [character]="character"></app-comic-list>'
+})
+class TestHostComponent {
+  character = { id: 1 } as Character;
+}
+
+describe(ComicListComponent.name, () => {
+  let component: ComicListComponent;
+  let fixture: ComponentFixture<TestHostComponent>;
+  let comicServiceSpy: jasmine.SpyObj<ComicService>;
+
+  beforeEach(() => {
+    comicServiceSpy = jasmine.createSpyObj('ComicService', ['getComics']);
+    comicServiceSpy.getComics.and.returnValue(of(fakeComics));
+
+    TestBed.configureTestingModule({
+      imports: [AppMaterialModule],
+      declarations: [
+        ComicDetailComponent,
+        ComicListComponent,
+        TestHostComponent
+      ],
+      providers: [
+        { provide: ComicService, useValue: comicServiceSpy }
+      ]
+    });
+    fixture = TestBed.createComponent(TestHostComponent);
+    component = fixture.debugElement.query(By.directive(ComicListComponent)).componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should display comics', () => {
+    const comicDetailDisplay: HTMLElement[] = fixture.nativeElement.querySelectorAll('app-comic-detail');
+    expect(comicDetailDisplay.length).toBe(1);
+  });
+
+  it('should display progress spinner', () => {
+    component.showProgress = true;
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('mat-progress-spinner')).not.toBeNull();
+  });
+});

@@ -13,8 +13,7 @@ import { CharacterService } from '../characters.service';
 })
 export class CharacterListComponent implements OnInit {
 
-  characters: Observable<Character[]>;
-  isVisible = false;
+  characters$: Observable<Character[]>;
   selectedCharacter: Character;
   showProgress = false;
 
@@ -23,8 +22,23 @@ export class CharacterListComponent implements OnInit {
 
   constructor(private characterService: CharacterService) {}
 
-  getCharacters() {
-    this.characters = this.searchTerms.pipe(
+  ngOnInit() {
+    this.getCharacters();
+  }
+
+  search(name: string) {
+    this.searchTerms.next(name);
+  }
+
+  selectCharacter(character: Character) {
+    this.selectedCharacter = character;
+    this.drawer.toggle();
+  }
+
+  trackByCharacters(_: number, character: Character) { return character.id; }
+
+  private getCharacters() {
+    this.characters$ = this.searchTerms.pipe(
       filter(term => term.length >= 3),
       debounceTime(300),
       distinctUntilChanged(),
@@ -42,20 +56,5 @@ export class CharacterListComponent implements OnInit {
       })
     );
   }
-
-  ngOnInit() {
-    this.getCharacters();
-  }
-
-  search(name: string) {
-    this.searchTerms.next(name);
-  }
-
-  selectCharacter(character: Character) {
-    this.selectedCharacter = character;
-    this.drawer.toggle();
-  }
-
-  trackByCharacters(index: number, character: Character) { return character.id; }
 
 }

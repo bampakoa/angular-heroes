@@ -25,7 +25,7 @@ export class CharacterService {
     const options = new HttpParams().set('nameStartsWith', term);
 
     return this.http.get<MarvelResponse>(`${environment.apiUrl}characters`, { params: options }).pipe(
-      map((response: MarvelResponse) => {
+      map(response => {
         if (!this.contextService.copyright) {
           this.contextService.copyright = response.attributionText;
         }
