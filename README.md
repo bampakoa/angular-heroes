@@ -16,7 +16,7 @@ replace `apiKey` variable in `src/environments` files with the newly acquired **
 ```
 export const environment = {
   ...
-  apiEndpoint: '//gateway.marvel.com/v1/public/',
+  apiEndpoint: 'http://gateway.marvel.com/v1/public/',
   apiKey: '<Your public key here>'
 };
 ```
