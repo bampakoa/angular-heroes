@@ -26,16 +26,18 @@ class ComicListStubComponent {
   @Input() character;
 }
 
-const fakeCharacters = [{
-  id: 1,
-  name: 'Fake character',
-  description: 'My fake super hero',
-  thumbnail: {
-    path: 'Fake path',
-    extension: 'fake'
-  },
-  urls: [{ url: 'http://fakeurl/', type: 'fakeType' }]
-}] as Character[];
+const fakeCharacters = [
+  {
+    id: 1,
+    name: 'Fake character',
+    description: 'My fake super hero',
+    thumbnail: {
+      path: 'Fake path',
+      extension: 'fake'
+    },
+    urls: [{ url: 'http://fakeurl/', type: 'fakeType' }]
+  }
+] as Character[];
 
 function search() {
   const searchInput: HTMLInputElement = fixture.nativeElement.querySelector('input');
@@ -49,6 +51,10 @@ function search() {
   searchInput.dispatchEvent(keyupEvent);
 }
 
+function getSearchInputValue(): string {
+  return fixture.nativeElement.querySelector('input').value;
+}
+
 describe(CharacterListComponent.name, () => {
   let component: CharacterListComponent;
   let characterServiceSpy: jasmine.SpyObj<CharacterService>;
@@ -57,19 +63,14 @@ describe(CharacterListComponent.name, () => {
     characterServiceSpy = jasmine.createSpyObj('CharacterService', ['getCharacters']);
 
     TestBed.configureTestingModule({
-      imports: [
-        AppMaterialModule,
-        NoopAnimationsModule
-      ],
+      imports: [AppMaterialModule, NoopAnimationsModule],
       declarations: [
         CharacterCardStubComponent,
         CharacterDetailStubComponent,
         CharacterListComponent,
         ComicListStubComponent
       ],
-      providers: [
-        { provide: CharacterService, useValue: characterServiceSpy }
-      ]
+      providers: [{ provide: CharacterService, useValue: characterServiceSpy }]
     });
     fixture = TestBed.createComponent(CharacterListComponent);
     component = fixture.componentInstance;
@@ -111,4 +112,23 @@ describe(CharacterListComponent.name, () => {
     fixture.detectChanges();
     expect(fixture.nativeElement.querySelector('mat-progress-bar')).not.toBeNull();
   });
+
+  it('should display clear button', fakeAsync(() => {
+    characterServiceSpy.getCharacters.and.returnValue(of(fakeCharacters));
+    search();
+    tick(300);
+    fixture.detectChanges();
+    const clearBtn: HTMLElement = fixture.nativeElement.querySelector('button[aria-label="Clear"]');
+    expect(clearBtn).not.toBeNull();
+  }));
+
+  it('should clear search on btn click', fakeAsync(() => {
+    characterServiceSpy.getCharacters.and.returnValue(of(fakeCharacters));
+    search();
+    tick(300);
+    fixture.detectChanges();
+    const clearBtn: HTMLElement = fixture.nativeElement.querySelector('button[aria-label="Clear"]');
+    clearBtn.click();
+    expect(getSearchInputValue()).toBe('');
+  }));
 });
