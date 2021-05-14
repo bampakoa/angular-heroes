@@ -13,12 +13,25 @@
     <mat-progress-bar mode="indeterminate" *ngIf="showProgress"></mat-progress-bar>
     <div class="search">
       <mat-form-field>
-        <input matInput placeholder="Search by name" #searchBox (keyup)="search(searchBox.value)">
+        <input matInput placeholder="Search by name" #searchBox (keyup)="search(searchBox.value)" />
+        <button
+          *ngIf="searchBox?.value"
+          mat-button
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="searchBox.value = ''"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
       </mat-form-field>
     </div>
     <mat-grid-list cols="4" rowHeight="250">
-      <mat-grid-tile *ngFor="let character of characters$ | async; trackBy:trackByCharacters">
-        <app-character-card [character]="character" (selectedChange)="selectCharacter($event)"></app-character-card>
+      <mat-grid-tile *ngFor="let character of characters$ | async; trackBy: trackByCharacters">
+        <app-character-card
+          [character]="character"
+          (selectedChange)="selectCharacter($event)"
+        ></app-character-card>
       </mat-grid-tile>
     </mat-grid-list>
   </mat-drawer-content>
