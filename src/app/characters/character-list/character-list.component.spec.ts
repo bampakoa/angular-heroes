@@ -26,18 +26,16 @@ class ComicListStubComponent {
   @Input() character;
 }
 
-const fakeCharacters = [
-  {
-    id: 1,
-    name: 'Fake character',
-    description: 'My fake super hero',
-    thumbnail: {
-      path: 'Fake path',
-      extension: 'fake'
-    },
-    urls: [{ url: 'http://fakeurl/', type: 'fakeType' }]
-  }
-] as Character[];
+const fakeCharacters = [{
+  id: 1,
+  name: 'Fake character',
+  description: 'My fake super hero',
+  thumbnail: {
+    path: 'Fake path',
+    extension: 'fake'
+  },
+  urls: [{ url: 'http://fakeurl/', type: 'fakeType' }]
+}] as Character[];
 
 function search() {
   const searchInput: HTMLInputElement = fixture.nativeElement.querySelector('input');
@@ -63,14 +61,19 @@ describe(CharacterListComponent.name, () => {
     characterServiceSpy = jasmine.createSpyObj('CharacterService', ['getCharacters']);
 
     TestBed.configureTestingModule({
-      imports: [AppMaterialModule, NoopAnimationsModule],
+      imports: [
+        AppMaterialModule,
+        NoopAnimationsModule
+      ],
       declarations: [
         CharacterCardStubComponent,
         CharacterDetailStubComponent,
         CharacterListComponent,
         ComicListStubComponent
       ],
-      providers: [{ provide: CharacterService, useValue: characterServiceSpy }]
+      providers: [
+        { provide: CharacterService, useValue: characterServiceSpy }
+      ]
     });
     fixture = TestBed.createComponent(CharacterListComponent);
     component = fixture.componentInstance;
