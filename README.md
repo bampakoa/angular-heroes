@@ -4,6 +4,8 @@ An Angular application that uses Angular Material and interacts with the [Marvel
 
 It provides a basic search engine over the characters and comics Marvel database. It allows to find a hero character and view information such as basic details and comics.
 
+<img src="https://github.com/bampakoa/angular-heroes/blob/master/preview.png?raw=true" alt="Preview" />
+
 ## Setup
 
 Clone this repo to your desktop and run `npm install` to install all the dependencies.
