@@ -14,6 +14,9 @@
     <div class="search">
       <mat-form-field>
         <input matInput placeholder="Search by name" #searchBox (keyup)="search(searchBox.value)">
+        <button *ngIf="searchBox?.value" matSuffix mat-icon-button aria-label="Clear" (click)="searchBox.value = ''">
+          <mat-icon>close</mat-icon>
+        </button>
       </mat-form-field>
     </div>
     <mat-grid-list cols="4" rowHeight="250">
