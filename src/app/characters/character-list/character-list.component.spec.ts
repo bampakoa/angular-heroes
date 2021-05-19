@@ -49,10 +49,6 @@ function search() {
   searchInput.dispatchEvent(keyupEvent);
 }
 
-function getSearchInputValue(): string {
-  return fixture.nativeElement.querySelector('input').value;
-}
-
 describe(CharacterListComponent.name, () => {
   let component: CharacterListComponent;
   let characterServiceSpy: jasmine.SpyObj<CharacterService>;
@@ -115,23 +111,4 @@ describe(CharacterListComponent.name, () => {
     fixture.detectChanges();
     expect(fixture.nativeElement.querySelector('mat-progress-bar')).not.toBeNull();
   });
-
-  it('should display clear button', fakeAsync(() => {
-    characterServiceSpy.getCharacters.and.returnValue(of(fakeCharacters));
-    search();
-    tick(300);
-    fixture.detectChanges();
-    const clearBtn: HTMLElement = fixture.nativeElement.querySelector('button[aria-label="Clear"]');
-    expect(clearBtn).not.toBeNull();
-  }));
-
-  it('should clear search on btn click', fakeAsync(() => {
-    characterServiceSpy.getCharacters.and.returnValue(of(fakeCharacters));
-    search();
-    tick(300);
-    fixture.detectChanges();
-    const clearBtn: HTMLElement = fixture.nativeElement.querySelector('button[aria-label="Clear"]');
-    clearBtn.click();
-    expect(getSearchInputValue()).toBe('');
-  }));
 });
