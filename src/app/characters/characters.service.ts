@@ -7,10 +7,14 @@ import { environment } from '../../environments/environment';
 import { Character } from '../core/character.model';
 import { ContextService } from '../core/core.service';
 
-interface MarvelResponse {
+export interface MarvelResponse {
   attributionText: string;
   data: {
-    results: Character[]
+    results: Character[],
+    count: number,
+    limit: number,
+    offset: number,
+    total: number,
   };
 }
 
@@ -21,15 +25,18 @@ export class CharacterService {
 
   constructor(private http: HttpClient, private contextService: ContextService) {}
 
-  getCharacters(term: string): Observable<Character[]> {
-    const options = new HttpParams().set('nameStartsWith', term);
+  getCharacters(term: string, offset = 0, limit = 20): Observable<MarvelResponse['data']> {
+    const options = new HttpParams()
+      .set('nameStartsWith', term)
+      .set('offset', `${Math.max(offset, 0)}`)
+      .set('limit', `${Math.max(limit, 1)}`);
 
     return this.http.get<MarvelResponse>(`${environment.apiUrl}characters`, { params: options }).pipe(
       map(response => {
         if (!this.contextService.copyright) {
           this.contextService.copyright = response.attributionText;
         }
-        return response.data.results;
+        return response.data;
       }),
       catchError(this.contextService.handleError)
     );
