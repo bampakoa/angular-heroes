@@ -1,28 +1,36 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatDrawer } from '@angular/material/sidenav';
-import { EMPTY, Observable, of, Subject } from 'rxjs';
-import { catchError, debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs/operators';
+import { EMPTY, merge, Observable, Subject } from 'rxjs';
+import { catchError, debounceTime, distinctUntilChanged, filter, map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
 
 import { Character } from '../../core/character.model';
-import { CharacterService } from '../characters.service';
+import { CharacterService, MarvelResponse } from '../characters.service';
 
 @Component({
   selector: 'app-character-list',
   templateUrl: './character-list.component.html',
   styleUrls: ['./character-list.component.css']
 })
-export class CharacterListComponent implements OnInit {
+export class CharacterListComponent implements AfterViewInit {
 
   characters$: Observable<Character[]>;
   selectedCharacter: Character;
   showProgress = false;
+  charactersCounters: Omit<MarvelResponse['data'], 'results'> = {
+    count: null,
+    offset: null,
+    total: null,
+    limit: null
+  };
 
   @ViewChild(MatDrawer) private drawer: MatDrawer;
+  @ViewChild(MatPaginator) private paginator: MatPaginator;
   private searchTerms = new Subject<string>();
 
   constructor(private characterService: CharacterService) {}
 
-  ngOnInit() {
+  ngAfterViewInit() {
     this.getCharacters();
   }
 
@@ -38,19 +46,34 @@ export class CharacterListComponent implements OnInit {
   trackByCharacters(_: number, character: Character) { return character.id; }
 
   private getCharacters() {
-    this.characters$ = this.searchTerms.pipe(
-      filter(term => term.length >= 3),
+    const search$ = this.searchTerms.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap(term => {
+      tap(() => { this.paginator.pageIndex = 0; })
+    );
+
+    this.characters$ = merge(search$, this.paginator.page).pipe(
+      withLatestFrom(this.searchTerms),
+      map(([_, term]) => term),
+      filter((term) => term.length >= 3),
+      switchMap((term) => {
         this.showProgress = true;
-        return this.characterService.getCharacters(term);
+        const limit = this.paginator.pageSize;
+        const offset = limit * this.paginator.pageIndex;
+        return this.characterService.getCharacters(term, offset, limit);
       }),
-      switchMap(heroes => {
+      map(({ results: heroes, ...counters }) => {
+        this.charactersCounters = counters;
         this.showProgress = false;
-        return of(heroes);
+        return heroes;
       }),
       catchError(() => {
+        this.charactersCounters = {
+          count: null,
+          offset: null,
+          total: null,
+          limit: null
+        };
         this.showProgress = false;
         return EMPTY;
       })

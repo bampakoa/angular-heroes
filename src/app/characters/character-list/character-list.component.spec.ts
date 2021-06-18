@@ -6,7 +6,7 @@ import { of, throwError } from 'rxjs';
 
 import { AppMaterialModule } from '../../app-material.module';
 import { Character } from '../../core/character.model';
-import { CharacterService } from '../characters.service';
+import { CharacterService, MarvelResponse } from '../characters.service';
 import { CharacterListComponent } from './character-list.component';
 
 let fixture: ComponentFixture<CharacterListComponent>;
@@ -26,16 +26,22 @@ class ComicListStubComponent {
   @Input() character;
 }
 
-const fakeCharacters = [{
-  id: 1,
-  name: 'Fake character',
-  description: 'My fake super hero',
-  thumbnail: {
-    path: 'Fake path',
-    extension: 'fake'
-  },
-  urls: [{ url: 'http://fakeurl/', type: 'fakeType' }]
-}] as Character[];
+const fakeMarvelResponseData = {
+  results: [{
+    id: 1,
+    name: 'Fake character',
+    description: 'My fake super hero',
+    thumbnail: {
+      path: 'Fake path',
+      extension: 'fake'
+    },
+    urls: [{ url: 'http://fakeurl/', type: 'fakeType' }]
+  }] as Character[],
+  count: 1,
+  offset: 0,
+  limit: 20,
+  total: 1,
+} as MarvelResponse['data'];
 
 function search() {
   const searchInput: HTMLInputElement = fixture.nativeElement.querySelector('input');
@@ -81,7 +87,7 @@ describe(CharacterListComponent.name, () => {
   });
 
   it('should return characters', fakeAsync(() => {
-    characterServiceSpy.getCharacters.and.returnValue(of(fakeCharacters));
+    characterServiceSpy.getCharacters.and.returnValue(of(fakeMarvelResponseData));
     search();
     tick(300);
     fixture.detectChanges();
@@ -99,16 +105,30 @@ describe(CharacterListComponent.name, () => {
   }));
 
   it('should select a character', async () => {
-    component.characters$ = of(fakeCharacters);
+    component.characters$ = of(fakeMarvelResponseData.results);
     fixture.detectChanges();
     const cardDisplay = fixture.debugElement.query(By.css('app-character-card'));
-    cardDisplay.triggerEventHandler('selectedChange', fakeCharacters[0]);
-    expect(component.selectedCharacter).toEqual(fakeCharacters[0]);
+    cardDisplay.triggerEventHandler('selectedChange', fakeMarvelResponseData.results[0]);
+    expect(component.selectedCharacter).toEqual(fakeMarvelResponseData.results[0]);
   });
 
   it('should display progress bar', () => {
     component.showProgress = true;
     fixture.detectChanges();
     expect(fixture.nativeElement.querySelector('mat-progress-bar')).not.toBeNull();
+  });
+
+  it('should hide paginator', () => {
+    component.charactersCounters.count = null;
+    fixture.detectChanges();
+    const paginatorWrapper = fixture.debugElement.query(By.css('.paginator')).nativeElement;
+    expect(paginatorWrapper.hidden).toBeTruthy();
+  });
+
+  it('should display paginator', () => {
+    component.charactersCounters.count = 10;
+    fixture.detectChanges();
+    const paginatorWrapper = fixture.debugElement.query(By.css('.paginator')).nativeElement;
+    expect(paginatorWrapper.hidden).toBeFalsy();
   });
 });

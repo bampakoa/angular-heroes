@@ -24,5 +24,8 @@
         <app-character-card [character]="character" (selectedChange)="selectCharacter($event)"></app-character-card>
       </mat-grid-tile>
     </mat-grid-list>
+    <div [hidden]="charactersCounters.count === null" class="paginator">
+      <mat-paginator [length]="charactersCounters.total" [pageSizeOptions]="[20, 30, 50]"></mat-paginator>
+    </div>
   </mat-drawer-content>
 </mat-drawer-container>
