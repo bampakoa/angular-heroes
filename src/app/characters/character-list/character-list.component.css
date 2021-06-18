@@ -26,6 +26,7 @@ mat-drawer {
 
 .mat-drawer-container {
   background: transparent;
+  height: 100%;
 }
 
 .paginator {
