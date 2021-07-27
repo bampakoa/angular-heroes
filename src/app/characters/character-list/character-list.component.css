@@ -29,6 +29,9 @@ mat-drawer {
   height: 100%;
 }
 
-.paginator {
+.warning-message {
   margin: 0px 20px 40px 40px;
+  background-color: black;
+  color: white;
+  padding: 20px;
 }

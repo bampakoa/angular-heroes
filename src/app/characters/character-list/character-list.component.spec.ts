@@ -118,17 +118,17 @@ describe(CharacterListComponent.name, () => {
     expect(fixture.nativeElement.querySelector('mat-progress-bar')).not.toBeNull();
   });
 
-  it('should hide paginator', () => {
-    component.charactersCounters.count = null;
+  it('should hide warning message', () => {
+    component.totalCharactersCount = component.CHARACTERS_LIMIT - 1;
     fixture.detectChanges();
-    const paginatorWrapper = fixture.debugElement.query(By.css('.paginator')).nativeElement;
-    expect(paginatorWrapper.hidden).toBeTruthy();
+    const warningMessage = fixture.debugElement.query(By.css('.warning-message'));
+    expect(warningMessage).toBeNull();
   });
 
-  it('should display paginator', () => {
-    component.charactersCounters.count = 10;
+  it('should display warning message', () => {
+    component.totalCharactersCount = component.CHARACTERS_LIMIT + 1;
     fixture.detectChanges();
-    const paginatorWrapper = fixture.debugElement.query(By.css('.paginator')).nativeElement;
-    expect(paginatorWrapper.hidden).toBeFalsy();
+    const warningMessage = fixture.debugElement.query(By.css('.warning-message'));
+    expect(warningMessage).not.toBeNull();
   });
 });
