@@ -1,5 +1,7 @@
 # Angular Heroes
 
+[![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/bampakoa/angular-heroes)
+
 An Angular application that uses Angular Material and interacts with the [Marvel Comics API](https://developer.marvel.com/documentation/getting_started). The purpose of the application is to demonstrate how to apply common Angular techniques and use some of the Angular Material components.
 
 It provides a basic search engine over the characters and comics Marvel database. It allows to find a hero character and view information such as basic details and comics.
