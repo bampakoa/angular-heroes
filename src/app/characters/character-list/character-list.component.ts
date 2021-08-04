@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
+import { MatSnackBar, MatSnackBarRef, TextOnlySnackBar } from '@angular/material/snack-bar';
 import { EMPTY, Observable, Subject } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, filter, map, switchMap } from 'rxjs/operators';
 
@@ -17,12 +18,12 @@ export class CharacterListComponent implements OnInit {
   characters$: Observable<Character[]>;
   selectedCharacter: Character;
   showProgress = false;
-  totalCharactersCount = 0;
 
   @ViewChild(MatDrawer) private drawer: MatDrawer;
   private searchTerms = new Subject<string>();
+  private matSnackBarRef: MatSnackBarRef<TextOnlySnackBar>;
 
-  constructor(private characterService: CharacterService) {}
+  constructor(private snackbar: MatSnackBar, private characterService: CharacterService) {}
 
   ngOnInit() {
     this.getCharacters();
@@ -39,6 +40,20 @@ export class CharacterListComponent implements OnInit {
 
   trackByCharacters(_: number, character: Character) { return character.id; }
 
+  private showWarning() {
+    this.matSnackBarRef = this.snackbar.open(
+      'There are more results of your search that are not currently displayed. Please try to refine your search criteria.',
+      'Dismiss',
+      { duration: 20000 },
+    );
+  }
+
+  private dismissWarning() {
+    if (this.matSnackBarRef) {
+      this.matSnackBarRef.dismiss();
+    }
+  }
+
   private getCharacters() {
     this.characters$ = this.searchTerms.pipe(
       filter(term => term.length >= 3),
@@ -46,15 +61,21 @@ export class CharacterListComponent implements OnInit {
       distinctUntilChanged(),
       switchMap(term => {
         this.showProgress = true;
+        this.dismissWarning();
         return this.characterService.getCharacters(term, 0, this.CHARACTERS_LIMIT);
       }),
-      map(({ results: heroes, ...counters }) => {
-        this.totalCharactersCount = counters.total;
+      map(({ results: heroes, total }) => {
         this.showProgress = false;
+
+        // Show notification when total results are more than the pre-defined limit
+        if (total > this.CHARACTERS_LIMIT) {
+          this.showWarning();
+        }
+
         return heroes;
       }),
       catchError(() => {
-        this.totalCharactersCount = 0;
+        this.dismissWarning();
         this.showProgress = false;
         return EMPTY;
       })

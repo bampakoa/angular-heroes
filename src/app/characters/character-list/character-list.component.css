@@ -28,10 +28,3 @@ mat-drawer {
   background: transparent;
   height: 100%;
 }
-
-.warning-message {
-  margin: 0px 20px 40px 40px;
-  background-color: black;
-  color: white;
-  padding: 20px;
-}

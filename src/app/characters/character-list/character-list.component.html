@@ -24,9 +24,5 @@
         <app-character-card [character]="character" (selectedChange)="selectCharacter($event)"></app-character-card>
       </mat-grid-tile>
     </mat-grid-list>
-    <p *ngIf="totalCharactersCount > CHARACTERS_LIMIT" class="warning-message">
-      There are more results of your search that are not currently displayed.
-      Please try to refine your search criteria.
-    </p>
   </mat-drawer-content>
 </mat-drawer-container>

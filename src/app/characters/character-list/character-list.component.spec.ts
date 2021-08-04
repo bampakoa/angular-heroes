@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { of, throwError } from 'rxjs';
@@ -58,9 +59,11 @@ function search() {
 describe(CharacterListComponent.name, () => {
   let component: CharacterListComponent;
   let characterServiceSpy: jasmine.SpyObj<CharacterService>;
+  let snackbarSpy: jasmine.SpyObj<MatSnackBar>;
 
   beforeEach(() => {
     characterServiceSpy = jasmine.createSpyObj('CharacterService', ['getCharacters']);
+    snackbarSpy = jasmine.createSpyObj('MatSnackBar', ['open']);
 
     TestBed.configureTestingModule({
       imports: [
@@ -74,7 +77,8 @@ describe(CharacterListComponent.name, () => {
         ComicListStubComponent
       ],
       providers: [
-        { provide: CharacterService, useValue: characterServiceSpy }
+        { provide: CharacterService, useValue: characterServiceSpy },
+        { provide: MatSnackBar, useValue: snackbarSpy }
       ]
     });
     fixture = TestBed.createComponent(CharacterListComponent);
@@ -118,17 +122,11 @@ describe(CharacterListComponent.name, () => {
     expect(fixture.nativeElement.querySelector('mat-progress-bar')).not.toBeNull();
   });
 
-  it('should hide warning message', () => {
-    component.totalCharactersCount = component.CHARACTERS_LIMIT - 1;
+  it('should display warning message', fakeAsync(() => {
+    characterServiceSpy.getCharacters.and.returnValue(of({ ...fakeMarvelResponseData, total: component.CHARACTERS_LIMIT + 1 }));
+    search();
+    tick(300);
     fixture.detectChanges();
-    const warningMessage = fixture.debugElement.query(By.css('.warning-message'));
-    expect(warningMessage).toBeNull();
-  });
-
-  it('should display warning message', () => {
-    component.totalCharactersCount = component.CHARACTERS_LIMIT + 1;
-    fixture.detectChanges();
-    const warningMessage = fixture.debugElement.query(By.css('.warning-message'));
-    expect(warningMessage).not.toBeNull();
-  });
+    expect(snackbarSpy.open.calls.first().args[0]).toContain('There are more results');
+  }));
 });
