@@ -44,14 +44,12 @@ export class CharacterListComponent implements OnInit {
     this.matSnackBarRef = this.snackbar.open(
       'There are more results of your search that are not currently displayed. Please try to refine your search criteria.',
       'Dismiss',
-      { duration: 20000 },
+      { duration: 5000 }
     );
   }
 
   private dismissWarning() {
-    if (this.matSnackBarRef) {
-      this.matSnackBarRef.dismiss();
-    }
+    this.matSnackBarRef?.dismiss();
   }
 
   private getCharacters() {
