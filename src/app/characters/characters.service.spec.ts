@@ -8,9 +8,6 @@ import { CharacterService, MarvelResponse } from './characters.service';
 
 const fakeMarvelResponseData = {
   results: [{ name: 'Fake character' }] as Character[],
-  count: 1,
-  offset: 0,
-  limit: 20,
   total: 1,
 } as MarvelResponse['data'];
 

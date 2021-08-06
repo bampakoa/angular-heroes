@@ -38,9 +38,6 @@ const fakeMarvelResponseData = {
     },
     urls: [{ url: 'http://fakeurl/', type: 'fakeType' }]
   }] as Character[],
-  count: 1,
-  offset: 0,
-  limit: 20,
   total: 1,
 } as MarvelResponse['data'];
 

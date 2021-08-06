@@ -11,9 +11,6 @@ export interface MarvelResponse {
   attributionText: string;
   data: {
     results: Character[],
-    count: number,
-    limit: number,
-    offset: number,
     total: number,
   };
 }
