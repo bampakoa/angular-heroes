@@ -48,10 +48,6 @@ export class CharacterListComponent implements OnInit {
     );
   }
 
-  private dismissWarning() {
-    this.matSnackBarRef?.dismiss();
-  }
-
   private getCharacters() {
     this.characters$ = this.searchTerms.pipe(
       filter(term => term.length >= 3),
@@ -59,7 +55,7 @@ export class CharacterListComponent implements OnInit {
       distinctUntilChanged(),
       switchMap(term => {
         this.showProgress = true;
-        this.dismissWarning();
+        this.matSnackBarRef?.dismiss();
         return this.characterService.getCharacters(term, 0, this.CHARACTERS_LIMIT);
       }),
       map(({ results: heroes, total }) => {
@@ -73,7 +69,7 @@ export class CharacterListComponent implements OnInit {
         return heroes;
       }),
       catchError(() => {
-        this.dismissWarning();
+        this.matSnackBarRef?.dismiss();
         this.showProgress = false;
         return EMPTY;
       })
