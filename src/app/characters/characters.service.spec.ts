@@ -8,7 +8,7 @@ import { CharacterService, MarvelResponse } from './characters.service';
 
 const fakeMarvelResponseData = {
   results: [{ name: 'Fake character' }] as Character[],
-  total: 1,
+  total: 1
 } as MarvelResponse['data'];
 
 describe(CharacterService.name, () => {
