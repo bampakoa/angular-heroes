@@ -17,8 +17,8 @@ describe(CharacterService.name, () => {
   let contextServiceSpy: jasmine.SpyObj<ContextService>;
   const url = environment.apiUrl + 'characters';
 
-  const buildCharactersUrl = (term: string, offset = 0, limit = 20) => {
-    return url + `?nameStartsWith=${term}&offset=${offset}&limit=${limit}`;
+  const buildCharactersUrl = (term: string) => {
+    return url + `?nameStartsWith=${term}&limit=${environment.settings.charactersLimit}`;
   };
 
   beforeEach(() => {
@@ -47,18 +47,6 @@ describe(CharacterService.name, () => {
     req.flush({
       data: fakeMarvelResponseData
     });
-  });
-
-  it('should get characters with offset and limit', () => {
-    const offset = 10;
-    const limit = 40;
-    service.getCharacters('fakename', offset, limit).subscribe();
-    const req = httpTestingController.expectOne(buildCharactersUrl('fakename', offset, limit));
-    req.flush({
-      data: fakeMarvelResponseData
-    });
-    expect(req.request.params.get('offset')).toEqual(`${offset}`);
-    expect(req.request.params.get('limit')).toEqual(`${limit}`);
   });
 
   it('should set copyright', () => {

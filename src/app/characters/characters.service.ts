@@ -22,11 +22,10 @@ export class CharacterService {
 
   constructor(private http: HttpClient, private contextService: ContextService) {}
 
-  getCharacters(term: string, offset = 0, limit = 20): Observable<MarvelResponse['data']> {
+  getCharacters(term: string): Observable<MarvelResponse['data']> {
     const options = new HttpParams()
       .set('nameStartsWith', term)
-      .set('offset', `${Math.max(offset, 0)}`)
-      .set('limit', `${Math.max(limit, 1)}`);
+      .set('limit', `${environment.settings.charactersLimit}`);
 
     return this.http.get<MarvelResponse>(`${environment.apiUrl}characters`, { params: options }).pipe(
       map(response => {

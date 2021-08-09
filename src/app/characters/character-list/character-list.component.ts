@@ -3,6 +3,7 @@ import { MatDrawer } from '@angular/material/sidenav';
 import { MatSnackBar, MatSnackBarRef, TextOnlySnackBar } from '@angular/material/snack-bar';
 import { EMPTY, Observable, Subject } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, filter, map, switchMap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 import { Character } from '../../core/character.model';
 import { CharacterService } from '../characters.service';
@@ -14,7 +15,6 @@ import { CharacterService } from '../characters.service';
 })
 export class CharacterListComponent implements OnInit {
 
-  readonly CHARACTERS_LIMIT = 20;
   characters$: Observable<Character[]>;
   selectedCharacter: Character;
   showProgress = false;
@@ -56,13 +56,13 @@ export class CharacterListComponent implements OnInit {
       switchMap(term => {
         this.showProgress = true;
         this.matSnackBarRef?.dismiss();
-        return this.characterService.getCharacters(term, 0, this.CHARACTERS_LIMIT);
+        return this.characterService.getCharacters(term);
       }),
       map(({ results: heroes, total }) => {
         this.showProgress = false;
 
         // Show notification when total results are more than the pre-defined limit
-        if (total > this.CHARACTERS_LIMIT) {
+        if (total > environment.settings.charactersLimit) {
           this.showWarning();
         }
 

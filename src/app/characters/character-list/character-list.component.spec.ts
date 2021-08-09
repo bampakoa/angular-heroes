@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { of, throwError } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 import { AppMaterialModule } from '../../app-material.module';
 import { Character } from '../../core/character.model';
@@ -120,7 +121,10 @@ describe(CharacterListComponent.name, () => {
   });
 
   it('should display warning message', fakeAsync(() => {
-    characterServiceSpy.getCharacters.and.returnValue(of({ ...fakeMarvelResponseData, total: component.CHARACTERS_LIMIT + 1 }));
+    characterServiceSpy.getCharacters.and.returnValue(of({
+      ...fakeMarvelResponseData,
+      total: environment.settings.charactersLimit + 1
+    }));
     search();
     tick(300);
     fixture.detectChanges();
