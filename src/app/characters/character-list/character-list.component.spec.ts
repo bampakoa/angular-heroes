@@ -4,8 +4,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { of, throwError } from 'rxjs';
-import { environment } from 'src/environments/environment';
 
+import { environment } from '../../../environments/environment';
 import { AppMaterialModule } from '../../app-material.module';
 import { Character } from '../../core/character.model';
 import { CharacterService, MarvelResponse } from '../characters.service';

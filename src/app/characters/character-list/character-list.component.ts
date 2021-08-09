@@ -3,8 +3,8 @@ import { MatDrawer } from '@angular/material/sidenav';
 import { MatSnackBar, MatSnackBarRef, TextOnlySnackBar } from '@angular/material/snack-bar';
 import { EMPTY, Observable, Subject } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, filter, map, switchMap } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
 
+import { environment } from '../../../environments/environment';
 import { Character } from '../../core/character.model';
 import { CharacterService } from '../characters.service';
 
