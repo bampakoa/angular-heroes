@@ -4,12 +4,13 @@ import { TestBed } from '@angular/core/testing';
 import { environment } from '../../environments/environment';
 import { Character } from '../core/character.model';
 import { ContextService } from '../core/core.service';
-import { CharacterService, MarvelResponse } from './characters.service';
+import { MarvelResponseData } from '../core/marvel-response.model';
+import { CharacterService } from './characters.service';
 
 const fakeMarvelResponseData = {
   results: [{ name: 'Fake character' }] as Character[],
   total: 1
-} as MarvelResponse['data'];
+} as MarvelResponseData<Character>;
 
 describe(CharacterService.name, () => {
   let service: CharacterService;

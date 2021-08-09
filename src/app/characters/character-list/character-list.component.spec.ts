@@ -8,7 +8,8 @@ import { of, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { AppMaterialModule } from '../../app-material.module';
 import { Character } from '../../core/character.model';
-import { CharacterService, MarvelResponse } from '../characters.service';
+import { MarvelResponseData } from '../../core/marvel-response.model';
+import { CharacterService } from '../characters.service';
 import { CharacterListComponent } from './character-list.component';
 
 let fixture: ComponentFixture<CharacterListComponent>;
@@ -40,7 +41,7 @@ const fakeMarvelResponseData = {
     urls: [{ url: 'http://fakeurl/', type: 'fakeType' }]
   }] as Character[],
   total: 1
-} as MarvelResponse['data'];
+} as MarvelResponseData<Character>;
 
 function search() {
   const searchInput: HTMLInputElement = fixture.nativeElement.querySelector('input');
