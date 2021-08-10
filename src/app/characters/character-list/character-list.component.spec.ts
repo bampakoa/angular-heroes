@@ -1,11 +1,14 @@
 import { Component, Input } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { of, throwError } from 'rxjs';
 
+import { environment } from '../../../environments/environment';
 import { AppMaterialModule } from '../../app-material.module';
 import { Character } from '../../core/character.model';
+import { MarvelResponseData } from '../../core/marvel-response.model';
 import { CharacterService } from '../characters.service';
 import { CharacterListComponent } from './character-list.component';
 
@@ -26,16 +29,19 @@ class ComicListStubComponent {
   @Input() character;
 }
 
-const fakeCharacters = [{
-  id: 1,
-  name: 'Fake character',
-  description: 'My fake super hero',
-  thumbnail: {
-    path: 'Fake path',
-    extension: 'fake'
-  },
-  urls: [{ url: 'http://fakeurl/', type: 'fakeType' }]
-}] as Character[];
+const fakeMarvelResponseData: MarvelResponseData<Character> = {
+  results: [{
+    id: 1,
+    name: 'Fake character',
+    description: 'My fake super hero',
+    thumbnail: {
+      path: 'Fake path',
+      extension: 'fake'
+    },
+    urls: [{ url: 'http://fakeurl/', type: 'fakeType' }]
+  }] as Character[],
+  total: 1
+};
 
 function search() {
   const searchInput: HTMLInputElement = fixture.nativeElement.querySelector('input');
@@ -52,9 +58,11 @@ function search() {
 describe(CharacterListComponent.name, () => {
   let component: CharacterListComponent;
   let characterServiceSpy: jasmine.SpyObj<CharacterService>;
+  let snackbarSpy: jasmine.SpyObj<MatSnackBar>;
 
   beforeEach(() => {
     characterServiceSpy = jasmine.createSpyObj('CharacterService', ['getCharacters']);
+    snackbarSpy = jasmine.createSpyObj('MatSnackBar', ['open']);
 
     TestBed.configureTestingModule({
       imports: [
@@ -68,7 +76,8 @@ describe(CharacterListComponent.name, () => {
         ComicListStubComponent
       ],
       providers: [
-        { provide: CharacterService, useValue: characterServiceSpy }
+        { provide: CharacterService, useValue: characterServiceSpy },
+        { provide: MatSnackBar, useValue: snackbarSpy }
       ]
     });
     fixture = TestBed.createComponent(CharacterListComponent);
@@ -81,7 +90,7 @@ describe(CharacterListComponent.name, () => {
   });
 
   it('should return characters', fakeAsync(() => {
-    characterServiceSpy.getCharacters.and.returnValue(of(fakeCharacters));
+    characterServiceSpy.getCharacters.and.returnValue(of(fakeMarvelResponseData));
     search();
     tick(300);
     fixture.detectChanges();
@@ -99,11 +108,11 @@ describe(CharacterListComponent.name, () => {
   }));
 
   it('should select a character', async () => {
-    component.characters$ = of(fakeCharacters);
+    component.characters$ = of(fakeMarvelResponseData.results);
     fixture.detectChanges();
     const cardDisplay = fixture.debugElement.query(By.css('app-character-card'));
-    cardDisplay.triggerEventHandler('selectedChange', fakeCharacters[0]);
-    expect(component.selectedCharacter).toEqual(fakeCharacters[0]);
+    cardDisplay.triggerEventHandler('selectedChange', fakeMarvelResponseData.results[0]);
+    expect(component.selectedCharacter).toEqual(fakeMarvelResponseData.results[0]);
   });
 
   it('should display progress bar', () => {
@@ -111,4 +120,15 @@ describe(CharacterListComponent.name, () => {
     fixture.detectChanges();
     expect(fixture.nativeElement.querySelector('mat-progress-bar')).not.toBeNull();
   });
+
+  it('should display warning message', fakeAsync(() => {
+    characterServiceSpy.getCharacters.and.returnValue(of({
+      ...fakeMarvelResponseData,
+      total: environment.settings.charactersLimit + 1
+    }));
+    search();
+    tick(300);
+    fixture.detectChanges();
+    expect(snackbarSpy.open).toHaveBeenCalled();
+  }));
 });

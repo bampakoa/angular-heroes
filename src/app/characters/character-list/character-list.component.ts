@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
-import { EMPTY, Observable, of, Subject } from 'rxjs';
-import { catchError, debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs/operators';
+import { MatSnackBar, MatSnackBarRef, TextOnlySnackBar } from '@angular/material/snack-bar';
+import { EMPTY, Observable, Subject } from 'rxjs';
+import { catchError, debounceTime, distinctUntilChanged, filter, map, switchMap } from 'rxjs/operators';
 
+import { environment } from '../../../environments/environment';
 import { Character } from '../../core/character.model';
 import { CharacterService } from '../characters.service';
 
@@ -19,8 +21,9 @@ export class CharacterListComponent implements OnInit {
 
   @ViewChild(MatDrawer) private drawer: MatDrawer;
   private searchTerms = new Subject<string>();
+  private matSnackBarRef: MatSnackBarRef<TextOnlySnackBar>;
 
-  constructor(private characterService: CharacterService) {}
+  constructor(private snackbar: MatSnackBar, private characterService: CharacterService) {}
 
   ngOnInit() {
     this.getCharacters();
@@ -37,6 +40,14 @@ export class CharacterListComponent implements OnInit {
 
   trackByCharacters(_: number, character: Character) { return character.id; }
 
+  private showWarning() {
+    this.matSnackBarRef = this.snackbar.open(
+      'There are more results of your search that are not currently displayed. Please try to refine your search criteria.',
+      'Dismiss',
+      { duration: 5000 }
+    );
+  }
+
   private getCharacters() {
     this.characters$ = this.searchTerms.pipe(
       filter(term => term.length >= 3),
@@ -44,13 +55,21 @@ export class CharacterListComponent implements OnInit {
       distinctUntilChanged(),
       switchMap(term => {
         this.showProgress = true;
+        this.matSnackBarRef?.dismiss();
         return this.characterService.getCharacters(term);
       }),
-      switchMap(heroes => {
+      map(({ results: heroes, total }) => {
         this.showProgress = false;
-        return of(heroes);
+
+        // Show notification when total results are more than the pre-defined limit
+        if (total > environment.settings.charactersLimit) {
+          this.showWarning();
+        }
+
+        return heroes;
       }),
       catchError(() => {
+        this.matSnackBarRef?.dismiss();
         this.showProgress = false;
         return EMPTY;
       })
