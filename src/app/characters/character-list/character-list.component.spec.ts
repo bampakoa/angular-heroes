@@ -29,7 +29,7 @@ class ComicListStubComponent {
   @Input() character;
 }
 
-const fakeMarvelResponseData = {
+const fakeMarvelResponseData: MarvelResponseData<Character> = {
   results: [{
     id: 1,
     name: 'Fake character',
@@ -41,7 +41,7 @@ const fakeMarvelResponseData = {
     urls: [{ url: 'http://fakeurl/', type: 'fakeType' }]
   }] as Character[],
   total: 1
-} as MarvelResponseData<Character>;
+};
 
 function search() {
   const searchInput: HTMLInputElement = fixture.nativeElement.querySelector('input');
@@ -129,6 +129,6 @@ describe(CharacterListComponent.name, () => {
     search();
     tick(300);
     fixture.detectChanges();
-    expect(snackbarSpy.open.calls.first().args[0]).toContain('There are more results');
+    expect(snackbarSpy.open).toHaveBeenCalled();
   }));
 });

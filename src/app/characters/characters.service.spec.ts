@@ -7,10 +7,10 @@ import { ContextService } from '../core/core.service';
 import { MarvelResponseData } from '../core/marvel-response.model';
 import { CharacterService } from './characters.service';
 
-const fakeMarvelResponseData = {
+const fakeMarvelResponseData: MarvelResponseData<Character> = {
   results: [{ name: 'Fake character' }] as Character[],
   total: 1
-} as MarvelResponseData<Character>;
+};
 
 describe(CharacterService.name, () => {
   let service: CharacterService;
@@ -18,8 +18,8 @@ describe(CharacterService.name, () => {
   let contextServiceSpy: jasmine.SpyObj<ContextService>;
   const url = environment.apiUrl + 'characters';
 
-  const buildCharactersUrl = (term: string) => {
-    return url + `?nameStartsWith=${term}&limit=${environment.settings.charactersLimit}`;
+  const buildCharactersUrl = () => {
+    return url + `?nameStartsWith=fakename&limit=${environment.settings.charactersLimit}`;
   };
 
   beforeEach(() => {
@@ -43,7 +43,7 @@ describe(CharacterService.name, () => {
 
   it('should get characters', () => {
     service.getCharacters('fakename').subscribe(characters => expect(characters).toEqual(fakeMarvelResponseData));
-    const req = httpTestingController.expectOne(buildCharactersUrl('fakename'));
+    const req = httpTestingController.expectOne(buildCharactersUrl());
     expect(req.request.method).toEqual('GET');
     req.flush({
       data: fakeMarvelResponseData
@@ -52,7 +52,7 @@ describe(CharacterService.name, () => {
 
   it('should set copyright', () => {
     service.getCharacters('fakename').subscribe();
-    const req = httpTestingController.expectOne(buildCharactersUrl('fakename'));
+    const req = httpTestingController.expectOne(buildCharactersUrl());
     req.flush({
       attributionText: 'fakeAttribution',
       data: fakeMarvelResponseData
