@@ -17,6 +17,7 @@ Clone this repo to your desktop and run `npm install` to install all the depende
 Before you start, you must acquire a developer key from [Marvel Developer Portal](https://developer.marvel.com/). After you get one, 
 replace `apiKey` variable in `src/environments` files with the newly acquired **public** key.
 
+
 ```
 export const environment = {
   ...
@@ -24,5 +25,8 @@ export const environment = {
   apiKey: '<Your public key here>'
 };
 ```
+
+### Important note
+In the [Marvel Developer Portal](https://developer.marvel.com/) you should, also, set an authorized referrer. Just set it to *.
 
 Run `ng serve` to start the application. You will then be able to access it at http://localhost:4200
