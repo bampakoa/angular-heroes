@@ -5,10 +5,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatCardHarness } from '@angular/material/card/testing';
 import { By } from '@angular/platform-browser';
 
-import { AppMaterialModule } from '../../app-material.module';
 import { Character } from '../../core/character.model';
 import { ContextService } from '../../core/core.service';
 import { CharacterDetailComponent } from './character-detail.component';
+import { MaterialModule } from '../material.module';
 
 const fakeCharacter: Character = {
   id: 1,
@@ -40,7 +40,7 @@ describe(CharacterDetailComponent.name, () => {
     contextServiceSpy = jasmine.createSpyObj('ContextService', ['getImage']);
 
     TestBed.configureTestingModule({
-      imports: [AppMaterialModule],
+      imports: [MaterialModule],
       declarations: [
         CharacterDetailComponent,
         TestHostComponent

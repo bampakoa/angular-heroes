@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { environment } from '../../../environments/environment';
-import { AppMaterialModule } from '../../app-material.module';
 import { ContextService } from '../core.service';
 import { FooterComponent } from './footer.component';
+import { MaterialModule } from '../material.module';
 
 describe(FooterComponent.name, () => {
   let fixture: ComponentFixture<FooterComponent>;
@@ -15,7 +15,7 @@ describe(FooterComponent.name, () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [AppMaterialModule],
+      imports: [MaterialModule],
       declarations: [FooterComponent],
       providers: [
         { provide: ContextService, useValue: contextServiceStub }

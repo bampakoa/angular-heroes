@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { environment } from '../../../environments/environment';
-import { AppMaterialModule } from '../../app-material.module';
 import { HeaderComponent } from './header.component';
+import { MaterialModule } from '../material.module';
 
 describe(HeaderComponent.name, () => {
   let fixture: ComponentFixture<HeaderComponent>;
@@ -10,7 +10,7 @@ describe(HeaderComponent.name, () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [AppMaterialModule],
+      imports: [MaterialModule],
       declarations: [HeaderComponent]
     });
 

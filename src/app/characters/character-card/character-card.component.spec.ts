@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AppMaterialModule } from '../../app-material.module';
 import { Character } from '../../core/character.model';
 import { ContextService } from '../../core/core.service';
 import { CharacterCardComponent } from './character-card.component';
+import { MaterialModule } from '../material.module';
 
 @Component({
   template: '<app-character-card [character]="character" (selectedChange)="selected = $event"></app-character-card>'
@@ -30,7 +30,7 @@ describe(CharacterCardComponent.name, () => {
     contextServiceSpy.getImage.and.returnValue('http://fakeimage');
 
     TestBed.configureTestingModule({
-      imports: [AppMaterialModule],
+      imports: [MaterialModule],
       declarations: [
         CharacterCardComponent,
         TestHostComponent

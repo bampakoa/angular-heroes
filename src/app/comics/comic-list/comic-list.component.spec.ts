@@ -3,12 +3,12 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 
-import { AppMaterialModule } from '../../app-material.module';
 import { Character } from '../../core/character.model';
 import { ComicDetailComponent } from '../comic-detail/comic-detail.component';
 import { Comic } from '../comic.model';
 import { ComicService } from '../comics.service';
 import { ComicListComponent } from './comic-list.component';
+import { MaterialModule } from '../material.module';
 
 const fakeComics: Comic[] = [
   {
@@ -46,7 +46,7 @@ describe(ComicListComponent.name, () => {
     comicServiceSpy.getComics.and.returnValue(of(fakeComics));
 
     TestBed.configureTestingModule({
-      imports: [AppMaterialModule],
+      imports: [MaterialModule],
       declarations: [
         ComicDetailComponent,
         ComicListComponent,

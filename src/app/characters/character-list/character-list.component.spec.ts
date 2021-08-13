@@ -6,11 +6,11 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { of, throwError } from 'rxjs';
 
 import { environment } from '../../../environments/environment';
-import { AppMaterialModule } from '../../app-material.module';
 import { Character } from '../../core/character.model';
 import { MarvelResponseData } from '../../core/marvel-response.model';
 import { CharacterService } from '../characters.service';
 import { CharacterListComponent } from './character-list.component';
+import { MaterialModule } from '../material.module';
 
 let fixture: ComponentFixture<CharacterListComponent>;
 
@@ -66,7 +66,7 @@ describe(CharacterListComponent.name, () => {
 
     TestBed.configureTestingModule({
       imports: [
-        AppMaterialModule,
+        MaterialModule,
         NoopAnimationsModule
       ],
       declarations: [

@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { AppMaterialModule } from '../app-material.module';
 import { ComicDetailComponent } from './comic-detail/comic-detail.component';
 import { ComicListComponent } from './comic-list/comic-list.component';
+import { MaterialModule } from './material.module';
 
 @NgModule({
   imports: [
-    AppMaterialModule,
-    CommonModule
+    CommonModule,
+    MaterialModule,
   ],
   declarations: [
     ComicDetailComponent,
