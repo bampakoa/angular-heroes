@@ -50,9 +50,7 @@ function search() {
   const evt = document.createEvent('CustomEvent');
   evt.initCustomEvent('keyup', false, false, null);
 
-  const keyupEvent: any = evt;
-  keyupEvent.key = 'Fake';
-  searchInput.dispatchEvent(keyupEvent);
+  searchInput.dispatchEvent(evt);
 }
 
 describe(CharacterListComponent.name, () => {
