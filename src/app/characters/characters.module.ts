@@ -16,7 +16,7 @@ import { CharacterListComponent } from './character-list/character-list.componen
   declarations: [
     CharacterCardComponent,
     CharacterDetailComponent,
-    CharacterListComponent,
+    CharacterListComponent
   ]
 })
 export class CharacterModule {}

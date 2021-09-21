@@ -30,6 +30,6 @@ export class ContextService {
     }
     // return an ErrorObservable with a user-facing error message
     return throwError(error);
-  }
+  };
 
 }

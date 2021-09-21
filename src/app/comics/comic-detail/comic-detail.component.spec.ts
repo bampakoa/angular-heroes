@@ -50,6 +50,6 @@ describe(ComicDetailComponent.name, () => {
 
   it('should display image', () => {
     const imageDisplay: HTMLImageElement = fixture.nativeElement.querySelector('img');
-    expect(imageDisplay.src).toEqual('http://fakeimage/')
+    expect(imageDisplay.src).toEqual('http://fakeimage/');
   });
 });
