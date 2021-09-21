@@ -11,7 +11,7 @@ import { Thumbnail } from './thumbnail.model';
 })
 export class ContextService {
 
-  copyright: string;
+  copyright = '';
 
   constructor(private snackbar: MatSnackBar) {}
 

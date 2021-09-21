@@ -15,13 +15,13 @@ import { CharacterService } from '../characters.service';
 })
 export class CharacterListComponent implements OnInit {
 
-  characters$: Observable<Character[]>;
-  selectedCharacter: Character;
+  characters$: Observable<Character[]> = EMPTY;
+  selectedCharacter: Character | undefined;
   showProgress = false;
 
-  @ViewChild(MatDrawer) private drawer: MatDrawer;
+  @ViewChild(MatDrawer) private drawer: MatDrawer | undefined;
   private searchTerms = new Subject<string>();
-  private matSnackBarRef: MatSnackBarRef<TextOnlySnackBar>;
+  private matSnackBarRef: MatSnackBarRef<TextOnlySnackBar> | undefined;
 
   constructor(private snackbar: MatSnackBar, private characterService: CharacterService) {}
 
@@ -35,7 +35,7 @@ export class CharacterListComponent implements OnInit {
 
   selectCharacter(character: Character) {
     this.selectedCharacter = character;
-    this.drawer.toggle();
+    this.drawer?.toggle();
   }
 
   trackByCharacters(_: number, character: Character) { return character.id; }

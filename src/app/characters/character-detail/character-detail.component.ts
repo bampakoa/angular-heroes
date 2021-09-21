@@ -9,16 +9,20 @@ import { ContextService } from '../../core/core.service';
 })
 export class CharacterDetailComponent {
 
-  @Input() character: Character;
+  @Input() character: Character | undefined;
 
   constructor(private contextService: ContextService) {}
 
-  getAvatar(): string {
-    return this.contextService.getImage('standard_medium', this.character.thumbnail);
+  getAvatar(): string | undefined {
+    if (this.character) {
+      return this.contextService.getImage('standard_medium', this.character.thumbnail);
+    }
   }
 
-  getCharacterImage(): string {
-    return this.contextService.getImage('portrait_uncanny', this.character.thumbnail);
+  getCharacterImage(): string | undefined {
+    if (this.character) {
+      return this.contextService.getImage('portrait_uncanny', this.character.thumbnail);
+    }
   }
 
 }

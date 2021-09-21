@@ -1,6 +1,6 @@
-<img [src]="getCharacterImage()" alt="photo of {{character.name}}">
+<img [src]="getCharacterImage()" alt="photo of {{character?.name}}">
 <mat-grid-tile-header>
-  <h3 mat-line>{{character.name}}</h3>
+  <h3 mat-line>{{character?.name}}</h3>
   <button mat-icon-button (click)="showCharacter()">
     <mat-icon>info</mat-icon>
   </button>

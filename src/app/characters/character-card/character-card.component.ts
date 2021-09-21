@@ -9,13 +9,15 @@ import { ContextService } from '../../core/core.service';
 })
 export class CharacterCardComponent {
 
-  @Input() character: Character;
+  @Input() character: Character | undefined;
   @Output() selectedChange = new EventEmitter<Character>();
 
   constructor(private contextService: ContextService) {}
 
-  getCharacterImage(): string {
-    return this.contextService.getImage('landscape_incredible', this.character.thumbnail);
+  getCharacterImage(): string | undefined {
+    if (this.character) {
+      return this.contextService.getImage('landscape_incredible', this.character.thumbnail);
+    }
   }
 
   showCharacter() {
