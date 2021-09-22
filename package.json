@@ -1,6 +1,6 @@
 {
   "name": "angular-heroes",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "Angular Heroes",
   "authors": [
     "Aristeidis Bampakos"
@@ -18,7 +18,7 @@
     "@angular/common": "12.2.6",
     "@angular/compiler": "12.2.6",
     "@angular/core": "12.2.6",
-    "@angular/fire": "6.1.4",
+    "@angular/fire": "7.0.4",
     "@angular/flex-layout": "12.0.0-beta.35",
     "@angular/forms": "12.2.6",
     "@angular/material": "12.2.6",
@@ -26,10 +26,11 @@
     "@angular/platform-browser-dynamic": "12.2.6",
     "@angular/router": "12.2.6",
     "components-font-awesome": "5.9.0",
-    "firebase": "7.15.3",
+    "firebase": "^9.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.11.4"
+    "zone.js": "~0.11.4",
+    "rxfire": "^6.0.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~12.2.6",
@@ -47,7 +48,7 @@
     "@typescript-eslint/parser": "4.28.2",
     "eslint": "^7.26.0",
     "eslint-plugin-import": "^2.24.2",
-    "firebase-tools": "^8.4.3",
+    "firebase-tools": "^9.0.0",
     "fuzzy": "^0.1.3",
     "inquirer": "^6.2.2",
     "inquirer-autocomplete-prompt": "^1.0.1",
@@ -57,6 +58,9 @@
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
-    "typescript": "~4.3.5"
+    "typescript": "~4.3.5",
+    "@angular-devkit/architect": "^0.1200.0",
+    "open": "^7.0.3",
+    "jsonc-parser": "^3.0.0"
   }
 }
