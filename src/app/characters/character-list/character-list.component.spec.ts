@@ -16,17 +16,17 @@ let fixture: ComponentFixture<CharacterListComponent>;
 
 @Component({ selector: 'app-character-detail', template: '' })
 class CharacterDetailStubComponent {
-  @Input() character;
+  @Input() character: Character | undefined;
 }
 
 @Component({ selector: 'app-character-card', template: '' })
 class CharacterCardStubComponent {
-  @Input() character;
+  @Input() character: Character | undefined;
 }
 
 @Component({ selector: 'app-comic-list', template: '' })
 class ComicListStubComponent {
-  @Input() character;
+  @Input() character: Character | undefined;
 }
 
 const fakeMarvelResponseData: MarvelResponseData<Character> = {

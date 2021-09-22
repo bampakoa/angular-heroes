@@ -10,14 +10,14 @@ import { CharacterCardComponent } from './character-card.component';
   template: '<app-character-card [character]="character" (selectedChange)="selected = $event"></app-character-card>'
 })
 class TestHostComponent {
-  character: Partial<Character> = {
+  character = {
     name: 'Fake character',
     thumbnail: {
       path: 'Fake path',
       extension: 'fake'
     }
-  };
-  selected: Character;
+  } as Character;
+  selected: Character | undefined;
 }
 
 describe(CharacterCardComponent.name, () => {
