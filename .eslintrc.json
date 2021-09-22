@@ -42,7 +42,10 @@
             "alphabetize": {
               "order": "asc"
             },
-            "groups": ["builtin", "external"],
+            "groups": [
+              "builtin",
+              "external"
+            ],
             "newlines-between": "always"
           }
         ],
@@ -78,9 +81,9 @@
         ],
         "padded-blocks": [
           "error",
-         {
-           "classes": "always"
-         }
+          {
+            "classes": "always"
+          }
         ],
         "object-curly-spacing": [
           "error",
@@ -115,7 +118,9 @@
         "space-before-blocks": "error",
         "no-multi-spaces": [
           "error",
-          { "ignoreEOLComments": true }
+          {
+            "ignoreEOLComments": true
+          }
         ],
         "no-multiple-empty-lines": [
           "error",
@@ -141,7 +146,9 @@
           "always",
           {
             "block": {
-              "exceptions": ["*"]
+              "exceptions": [
+                "*"
+              ]
             }
           }
         ],
@@ -156,7 +163,9 @@
           2,
           {
             "SwitchCase": 1,
-            "ignoredNodes": ["CallExpression"]
+            "ignoredNodes": [
+              "CallExpression"
+            ]
           }
         ],
         "@typescript-eslint/type-annotation-spacing": "error",
