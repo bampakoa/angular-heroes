@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { environment } from '../../../environments/environment';
-import { AppMaterialModule } from '../../app-material.module';
 import { ContextService } from '../core.service';
 import { FooterComponent } from './footer.component';
 
@@ -15,7 +15,7 @@ describe(FooterComponent.name, () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [AppMaterialModule],
+      imports: [MatToolbarModule],
       declarations: [FooterComponent],
       providers: [
         { provide: ContextService, useValue: contextServiceStub }

@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 
-import { AppMaterialModule } from '../../app-material.module';
 import { Character } from '../../core/character.model';
 import { ComicDetailComponent } from '../comic-detail/comic-detail.component';
 import { Comic } from '../comic.model';
@@ -46,7 +47,10 @@ describe(ComicListComponent.name, () => {
     comicServiceSpy.getComics.and.returnValue(of(fakeComics));
 
     TestBed.configureTestingModule({
-      imports: [AppMaterialModule],
+      imports: [
+        MatGridListModule,
+        MatProgressSpinnerModule
+      ],
       declarations: [
         ComicDetailComponent,
         ComicListComponent,

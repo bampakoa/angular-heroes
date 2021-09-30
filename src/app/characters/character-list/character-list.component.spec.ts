@@ -1,12 +1,19 @@
 import { Component, Input } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatTabsModule } from '@angular/material/tabs';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { of, throwError } from 'rxjs';
 
 import { environment } from '../../../environments/environment';
-import { AppMaterialModule } from '../../app-material.module';
 import { Character } from '../../core/character.model';
 import { MarvelResponseData } from '../../core/marvel-response.model';
 import { CharacterService } from '../characters.service';
@@ -64,7 +71,14 @@ describe(CharacterListComponent.name, () => {
 
     TestBed.configureTestingModule({
       imports: [
-        AppMaterialModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatGridListModule,
+        MatIconModule,
+        MatInputModule,
+        MatProgressBarModule,
+        MatSidenavModule,
+        MatTabsModule,
         NoopAnimationsModule
       ],
       declarations: [

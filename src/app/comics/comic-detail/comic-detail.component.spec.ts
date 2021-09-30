@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AppMaterialModule } from '../../app-material.module';
 import { ContextService } from '../../core/core.service';
 import { Comic } from '../comic.model';
 import { ComicDetailComponent } from './comic-detail.component';
