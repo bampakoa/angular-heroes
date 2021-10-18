@@ -52,11 +52,7 @@ const fakeMarvelResponseData: MarvelResponseData<Character> = {
 function search() {
   const searchInput: HTMLInputElement = fixture.nativeElement.querySelector('input');
   searchInput.value = 'Fake character';
-
-  const evt = document.createEvent('CustomEvent');
-  evt.initCustomEvent('keyup', false, false, null);
-
-  searchInput.dispatchEvent(evt);
+  searchInput.dispatchEvent(new CustomEvent('keyup'));
 }
 
 describe(CharacterListComponent.name, () => {
