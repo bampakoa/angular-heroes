@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
 
-import { AppMaterialModule } from '../../app-material.module';
 import { Character } from '../../core/character.model';
 import { ContextService } from '../../core/core.service';
 import { CharacterCardComponent } from './character-card.component';
@@ -30,7 +31,10 @@ describe(CharacterCardComponent.name, () => {
     contextServiceSpy.getImage.and.returnValue('http://fakeimage');
 
     TestBed.configureTestingModule({
-      imports: [AppMaterialModule],
+      imports: [
+        MatGridListModule,
+        MatIconModule
+      ],
       declarations: [
         CharacterCardComponent,
         TestHostComponent

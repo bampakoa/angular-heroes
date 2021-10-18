@@ -2,10 +2,10 @@ import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatCardModule } from '@angular/material/card';
 import { MatCardHarness } from '@angular/material/card/testing';
 import { By } from '@angular/platform-browser';
 
-import { AppMaterialModule } from '../../app-material.module';
 import { Character } from '../../core/character.model';
 import { ContextService } from '../../core/core.service';
 import { CharacterDetailComponent } from './character-detail.component';
@@ -40,7 +40,7 @@ describe(CharacterDetailComponent.name, () => {
     contextServiceSpy = jasmine.createSpyObj('ContextService', ['getImage']);
 
     TestBed.configureTestingModule({
-      imports: [AppMaterialModule],
+      imports: [MatCardModule],
       declarations: [
         CharacterDetailComponent,
         TestHostComponent

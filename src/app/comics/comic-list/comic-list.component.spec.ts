@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 
-import { AppMaterialModule } from '../../app-material.module';
 import { Character } from '../../core/character.model';
-import { ComicDetailComponent } from '../comic-detail/comic-detail.component';
 import { Comic } from '../comic.model';
 import { ComicService } from '../comics.service';
 import { ComicListComponent } from './comic-list.component';
@@ -36,6 +36,11 @@ class TestHostComponent {
   character = { id: 1 } as Character;
 }
 
+@Component({ selector: 'app-comic-detail', template: '' })
+class ComicDetailStubComponent {
+  @Input() comic: Comic | undefined;
+}
+
 describe(ComicListComponent.name, () => {
   let component: ComicListComponent;
   let fixture: ComponentFixture<TestHostComponent>;
@@ -46,9 +51,12 @@ describe(ComicListComponent.name, () => {
     comicServiceSpy.getComics.and.returnValue(of(fakeComics));
 
     TestBed.configureTestingModule({
-      imports: [AppMaterialModule],
+      imports: [
+        MatGridListModule,
+        MatProgressSpinnerModule
+      ],
       declarations: [
-        ComicDetailComponent,
+        ComicDetailStubComponent,
         ComicListComponent,
         TestHostComponent
       ],
