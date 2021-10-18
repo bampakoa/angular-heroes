@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { environment } from '../../../environments/environment';
-import { AppMaterialModule } from '../../app-material.module';
 import { HeaderComponent } from './header.component';
 
 describe(HeaderComponent.name, () => {
@@ -10,7 +11,10 @@ describe(HeaderComponent.name, () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [AppMaterialModule],
+      imports: [
+        MatIconModule,
+        MatToolbarModule
+      ],
       declarations: [HeaderComponent]
     });
 
