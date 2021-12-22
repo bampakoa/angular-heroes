@@ -56,7 +56,13 @@ export class CharacterListComponent implements OnInit {
       switchMap(term => {
         this.showProgress = true;
         this.matSnackBarRef?.dismiss();
-        return this.characterService.getCharacters(term);
+
+        return this.characterService.getCharacters(term).pipe(
+          catchError(() => {
+            this.showProgress = false;
+            return EMPTY;
+          })
+        );
       }),
       map(({ results: heroes, total }) => {
         this.showProgress = false;
@@ -67,11 +73,6 @@ export class CharacterListComponent implements OnInit {
         }
 
         return heroes;
-      }),
-      catchError(() => {
-        this.matSnackBarRef?.dismiss();
-        this.showProgress = false;
-        return EMPTY;
       })
     );
   }
