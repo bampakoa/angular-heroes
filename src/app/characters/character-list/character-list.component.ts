@@ -40,12 +40,19 @@ export class CharacterListComponent implements OnInit {
 
   trackByCharacters(_: number, character: Character) { return character.id; }
 
-  private showWarning() {
-    this.matSnackBarRef = this.snackbar.open(
-      'There are more results of your search that are not currently displayed. Please try to refine your search criteria.',
-      'Dismiss',
-      { duration: 5000 }
-    );
+  private showWarning(reason: 'too-many-results' | 'no-results') {
+    let message = '';
+
+    switch (reason) {
+      case 'too-many-results':
+        message = 'There are more results of your search that are not currently displayed. Please try to refine your search criteria.';
+        break;
+      case 'no-results':
+        message = 'There are no results found. Please try to refine your search criteria.';
+        break;
+    }
+
+    this.matSnackBarRef = this.snackbar.open(message, 'Dismiss', { duration: 5000 });
   }
 
   private getCharacters() {
@@ -69,7 +76,12 @@ export class CharacterListComponent implements OnInit {
 
         // Show notification when total results are more than the pre-defined limit
         if (total > environment.settings.charactersLimit) {
-          this.showWarning();
+          this.showWarning('too-many-results');
+        }
+
+        // Show notification when there are no results
+        if (total === 0) {
+          this.showWarning('no-results');
         }
 
         return heroes;
