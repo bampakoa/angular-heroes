@@ -27,9 +27,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css",
-              "node_modules/components-font-awesome/css/brands.css",
-              "node_modules/components-font-awesome/css/fontawesome.css"
+              "src/styles.css"
             ],
             "scripts": []
           },

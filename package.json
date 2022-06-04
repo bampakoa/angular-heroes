@@ -25,7 +25,6 @@
     "@angular/platform-browser": "13.3.11",
     "@angular/platform-browser-dynamic": "13.3.11",
     "@angular/router": "13.3.11",
-    "components-font-awesome": "5.9.0",
     "firebase": "^9.0.0",
     "rxfire": "^6.0.0",
     "rxjs": "~7.5.0",
