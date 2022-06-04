@@ -91,8 +91,6 @@ describe(CharacterDetailComponent.name, () => {
   it('should display character URLs', () => {
     const links: HTMLAnchorElement[] = fixture.nativeElement.querySelectorAll('a');
     expect(links.length).toBe(1);
-    expect(links[0].href).toEqual(fakeCharacter.urls[0].url);
-    expect(links[0].textContent).toEqual('FAKETYPE');
   });
 
   it('should get avatar', () => {

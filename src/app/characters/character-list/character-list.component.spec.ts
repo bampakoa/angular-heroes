@@ -12,7 +12,6 @@ import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { of, throwError } from 'rxjs';
 
-import { environment } from '../../../environments/environment';
 import { Character } from '../../core/character.model';
 import { MarvelResponseData } from '../../core/marvel-response.model';
 import { CharacterService } from '../characters.service';
@@ -48,12 +47,6 @@ const fakeMarvelResponseData: MarvelResponseData<Character> = {
   }] as Character[],
   total: 1
 };
-
-function search() {
-  const searchInput: HTMLInputElement = fixture.nativeElement.querySelector('input');
-  searchInput.value = 'Fake character';
-  searchInput.dispatchEvent(new CustomEvent('keyup'));
-}
 
 describe(CharacterListComponent.name, () => {
   let component: CharacterListComponent;
@@ -95,24 +88,6 @@ describe(CharacterListComponent.name, () => {
     expect(component).toBeTruthy();
   });
 
-  it('should return characters', fakeAsync(() => {
-    characterServiceSpy.getCharacters.and.returnValue(of(fakeMarvelResponseData));
-    search();
-    tick(300);
-    fixture.detectChanges();
-    const cardDisplay: HTMLElement[] = fixture.nativeElement.querySelectorAll('app-character-card');
-    expect(cardDisplay.length).toBe(1);
-  }));
-
-  it('should not return characters', fakeAsync(() => {
-    characterServiceSpy.getCharacters.and.returnValue(throwError(() => ''));
-    search();
-    tick(300);
-    fixture.detectChanges();
-    const cardDisplay: HTMLElement[] = fixture.nativeElement.querySelectorAll('app-character-card');
-    expect(cardDisplay.length).toBe(0);
-  }));
-
   it('should select a character', async () => {
     component.characters$ = of(fakeMarvelResponseData.results);
     fixture.detectChanges();
@@ -127,14 +102,17 @@ describe(CharacterListComponent.name, () => {
     expect(fixture.nativeElement.querySelector('mat-progress-bar')).not.toBeNull();
   });
 
-  it('should display warning message', fakeAsync(() => {
-    characterServiceSpy.getCharacters.and.returnValue(of({
-      ...fakeMarvelResponseData,
-      total: environment.settings.charactersLimit + 1
-    }));
-    search();
-    tick(300);
+  it('should search', () => {
+    const spy = spyOn(component, 'search');
+    const searchInput: HTMLInputElement = fixture.nativeElement.querySelector('input');
+    searchInput.dispatchEvent(new CustomEvent('keyup'));
+    expect(spy.calls.any()).toBeTrue();
+  });
+
+  it('should display characters', () => {
+    component.characters$ = of(fakeMarvelResponseData.results);
     fixture.detectChanges();
-    expect(snackbarSpy.open).toHaveBeenCalled();
-  }));
+    const cardsDisplay = fixture.nativeElement.querySelectorAll('app-character-card');
+    expect(cardsDisplay.length).toBe(1);
+  });
 });
