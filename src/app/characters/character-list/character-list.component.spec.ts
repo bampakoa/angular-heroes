@@ -105,7 +105,7 @@ describe(CharacterListComponent.name, () => {
   }));
 
   it('should not return characters', fakeAsync(() => {
-    characterServiceSpy.getCharacters.and.returnValue(throwError(''));
+    characterServiceSpy.getCharacters.and.returnValue(throwError(() => ''));
     search();
     tick(300);
     fixture.detectChanges();

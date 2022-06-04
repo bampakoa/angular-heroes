@@ -29,7 +29,7 @@ export class ContextService {
       this.snackbar.open(environment.settings.appErrorPrefix + 'Something bad happened; please try again later.');
     }
     // return an ErrorObservable with a user-facing error message
-    return throwError(error);
+    return throwError(() => error);
   };
 
 }

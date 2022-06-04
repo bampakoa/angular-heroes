@@ -10,8 +10,7 @@
       ],
       "parserOptions": {
         "project": [
-          "tsconfig.json",
-          "e2e/tsconfig.json"
+          "tsconfig.json"
         ],
         "createDefaultProgram": true
       },
@@ -54,6 +53,7 @@
           {
             "default": [
               "public-decorated-field",
+              "public-decorated-method",
               "public-instance-field",
               "private-decorated-field",
               "private-instance-field",
@@ -135,7 +135,6 @@
           "consistent"
         ],
         "no-extra-semi": "error",
-        "dot-notation": "error",
         "comma-spacing": "error",
         "prefer-const": "error",
         "eqeqeq": "error",
@@ -169,7 +168,28 @@
           }
         ],
         "@typescript-eslint/type-annotation-spacing": "error",
-        "@babel/semi": "error"
+        "@babel/semi": "error",
+        "quotes": [
+          "error",
+          "single",
+          {
+            "allowTemplateLiterals": true
+          }
+        ],
+        "deprecation/deprecation": "error",
+        "array-bracket-spacing": "error",
+        "@typescript-eslint/member-delimiter-style": [
+          "error",
+          {
+            "overrides": {
+              "typeLiteral": {
+                "singleline": {
+                  "delimiter": "comma"
+                }
+              }
+            }
+          }
+        ]
       }
     },
     {
@@ -186,12 +206,14 @@
         "*.spec.ts"
       ],
       "rules": {
-        "padded-blocks": "off"
+        "padded-blocks": "off",
+        "no-empty-function": "off"
       }
     }
   ],
   "plugins": [
     "eslint-plugin-import",
-    "@babel"
+    "@babel",
+    "deprecation"
   ]
 }
