@@ -21,7 +21,7 @@ class TestHostComponent {
   selected: Character | undefined;
 }
 
-describe(CharacterCardComponent.name, () => {
+describe('CharacterCardComponent', () => {
   let component: TestHostComponent;
   let fixture: ComponentFixture<TestHostComponent>;
   let contextServiceSpy: jasmine.SpyObj<ContextService>;

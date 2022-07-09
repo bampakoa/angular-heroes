@@ -12,7 +12,7 @@ const fakeMarvelResponseData: MarvelResponseData<Character> = {
   total: 1
 };
 
-describe(CharacterService.name, () => {
+describe('CharacterService', () => {
   let service: CharacterService;
   let httpTestingController: HttpTestingController;
   let contextServiceSpy: jasmine.SpyObj<ContextService>;

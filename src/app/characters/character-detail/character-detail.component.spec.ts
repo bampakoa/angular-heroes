@@ -28,7 +28,7 @@ class TestHostComponent {
   character = fakeCharacter;
 }
 
-describe(CharacterDetailComponent.name, () => {
+describe('CharacterDetailComponent', () => {
   let component: CharacterDetailComponent;
   let fixture: ComponentFixture<TestHostComponent>;
   let loader: HarnessLoader;

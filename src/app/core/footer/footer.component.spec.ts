@@ -5,7 +5,7 @@ import { environment } from '../../../environments/environment';
 import { ContextService } from '../core.service';
 import { FooterComponent } from './footer.component';
 
-describe(FooterComponent.name, () => {
+describe('FooterComponent', () => {
   let fixture: ComponentFixture<FooterComponent>;
   let component: FooterComponent;
   const contextServiceStub: Partial<ContextService> = {

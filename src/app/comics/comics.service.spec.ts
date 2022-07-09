@@ -8,7 +8,7 @@ import { ComicService } from './comics.service';
 
 const fakeComics = [{ id: 1 }] as Comic[];
 
-describe(ComicService.name, () => {
+describe('ComicService', () => {
   let service: ComicService;
   let httpTestingController: HttpTestingController;
   let contextServiceSpy: jasmine.SpyObj<ContextService>;

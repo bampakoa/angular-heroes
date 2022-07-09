@@ -21,7 +21,7 @@ class TestHostComponent {
   comic = fakeComic;
 }
 
-describe(ComicDetailComponent.name, () => {
+describe('ComicDetailComponent', () => {
   let fixture: ComponentFixture<TestHostComponent>;
   let contextServiceSpy: jasmine.SpyObj<ContextService>;
 

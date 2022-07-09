@@ -41,7 +41,7 @@ class ComicDetailStubComponent {
   @Input() comic: Comic | undefined;
 }
 
-describe(ComicListComponent.name, () => {
+describe('ComicListComponent', () => {
   let component: ComicListComponent;
   let fixture: ComponentFixture<TestHostComponent>;
   let comicServiceSpy: jasmine.SpyObj<ComicService>;

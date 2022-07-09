@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
 import { ContextService } from './core.service';
 import { Thumbnail } from './thumbnail.model';
 
-describe(ContextService.name, () => {
+describe('ContextService', () => {
   let service: ContextService;
   let snackbarSpy: jasmine.SpyObj<MatSnackBar>;
 

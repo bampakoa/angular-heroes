@@ -5,7 +5,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { environment } from '../../../environments/environment';
 import { HeaderComponent } from './header.component';
 
-describe(HeaderComponent.name, () => {
+describe('HeaderComponent', () => {
   let fixture: ComponentFixture<HeaderComponent>;
   let component: HeaderComponent;
 

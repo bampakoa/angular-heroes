@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { environment } from '../environments/environment';
 import { AppErrorHandler } from './app-error-handler';
 
-describe(AppErrorHandler.name, () => {
+describe('AppErrorHandler', () => {
   let service: AppErrorHandler;
   let snackbarSpy: jasmine.SpyObj<MatSnackBar>;
   let consoleSpy: jasmine.Spy;

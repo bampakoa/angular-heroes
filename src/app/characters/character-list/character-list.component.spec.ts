@@ -48,7 +48,7 @@ const fakeMarvelResponseData: MarvelResponseData<Character> = {
   total: 1
 };
 
-describe(CharacterListComponent.name, () => {
+describe('CharacterListComponent', () => {
   let component: CharacterListComponent;
   let characterServiceSpy: jasmine.SpyObj<CharacterService>;
   let snackbarSpy: jasmine.SpyObj<MatSnackBar>;
