@@ -1,6 +1,5 @@
 import { ChangeDetectorRef, Component, Input, OnChanges } from '@angular/core';
-import { EMPTY, Observable } from 'rxjs';
-import { finalize, map } from 'rxjs/operators';
+import { EMPTY, finalize, map, Observable } from 'rxjs';
 
 import { Character } from '../../core/character.model';
 import { Comic } from '../comic.model';

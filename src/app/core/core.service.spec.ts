@@ -1,8 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { EMPTY } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, EMPTY } from 'rxjs';
 
 import { environment } from '../../environments/environment';
 import { ContextService } from './core.service';
