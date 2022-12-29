@@ -6,7 +6,7 @@ import { ContextService } from '../core.service';
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.css']
+  styles: ['mat-toolbar-row { justify-content: space-between; }']
 })
 export class FooterComponent {
 
