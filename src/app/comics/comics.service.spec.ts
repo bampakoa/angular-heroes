@@ -1,7 +1,7 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
-import { environment } from '../../environments/environment';
+import { appSettings, APP_CONFIG } from '../app.config';
 import { ContextService } from '../core/core.service';
 import { Comic } from './comic.model';
 import { ComicService } from './comics.service';
@@ -20,7 +20,8 @@ describe('ComicService', () => {
       imports: [HttpClientTestingModule],
       providers: [
         ComicService,
-        { provide: ContextService, useValue: contextServiceSpy }
+        { provide: ContextService, useValue: contextServiceSpy },
+        { provide: APP_CONFIG, useValue: appSettings }
       ]
     });
 
@@ -34,7 +35,7 @@ describe('ComicService', () => {
 
   it('should get comics', () => {
     service.getComics(1).subscribe(comics => expect(comics).toEqual(fakeComics));
-    const req = httpTestingController.expectOne(environment.apiUrl + 'characters/1/comics');
+    const req = httpTestingController.expectOne(appSettings.apiUrl + 'characters/1/comics');
     expect(req.request.method).toEqual('GET');
     req.flush({
       data: { results: fakeComics }

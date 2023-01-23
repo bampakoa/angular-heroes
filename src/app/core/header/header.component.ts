@@ -1,18 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 
-import { environment } from '../../../environments/environment';
+import { APP_CONFIG, AppConfig } from '../../app.config';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styles: ['h2 { flex: 1 1 auto; }']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
 
-  title: string;
+  title = '';
 
-  constructor() {
-    this.title = environment.settings.appTitle;
+  constructor(@Inject(APP_CONFIG) private config: AppConfig) {}
+
+  ngOnInit() {
+    this.title = this.config.title;
   }
 
 }

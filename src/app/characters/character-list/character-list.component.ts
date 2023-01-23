@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { MatSnackBar, MatSnackBarRef, TextOnlySnackBar } from '@angular/material/snack-bar';
 import { catchError, debounceTime, distinctUntilChanged, EMPTY, filter, map, Observable, Subject, switchMap } from 'rxjs';
 
-import { environment } from '../../../environments/environment';
+import { APP_CONFIG, AppConfig } from '../../app.config';
 import { Character } from '../../core/character.model';
 import { CharacterService } from '../characters.service';
 
@@ -22,7 +22,7 @@ export class CharacterListComponent implements OnInit {
   private searchTerms = new Subject<string>();
   private matSnackBarRef: MatSnackBarRef<TextOnlySnackBar> | undefined;
 
-  constructor(private snackbar: MatSnackBar, private characterService: CharacterService) {}
+  constructor(private snackbar: MatSnackBar, private characterService: CharacterService, @Inject(APP_CONFIG) private config: AppConfig) {}
 
   ngOnInit() {
     this.getCharacters();
@@ -74,7 +74,7 @@ export class CharacterListComponent implements OnInit {
         this.showProgress = false;
 
         // Show notification when total results are more than the pre-defined limit
-        if (total > environment.settings.charactersLimit) {
+        if (total > this.config.charactersLimit) {
           this.showWarning('too-many-results');
         }
 

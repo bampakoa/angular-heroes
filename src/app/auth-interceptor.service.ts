@@ -2,13 +2,12 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/c
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { environment } from '../environments/environment';
-
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const authReq = req.clone({ params: req.params.set('apikey', environment.apiKey) });
+    const apiKey = '<Your public key here>';
+    const authReq = req.clone({ params: req.params.set('apikey', apiKey) });
     return next.handle(authReq);
   }
 

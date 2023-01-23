@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { catchError, EMPTY } from 'rxjs';
 
-import { environment } from '../../environments/environment';
+import { appSettings, APP_CONFIG } from '../app.config';
 import { ContextService } from './core.service';
 import { Thumbnail } from './thumbnail.model';
 
@@ -17,7 +17,8 @@ describe('ContextService', () => {
     TestBed.configureTestingModule({
       providers: [
         ContextService,
-        { provide: MatSnackBar, useValue: snackbarSpy }
+        { provide: MatSnackBar, useValue: snackbarSpy },
+        { provide: APP_CONFIG, useValue: appSettings }
       ]
     });
 
@@ -48,7 +49,7 @@ describe('ContextService', () => {
       error: 'Fake error'
     } as HttpErrorResponse;
     service.handleError(error);
-    expect(snackbarSpy.open.calls.first().args[0]).toContain(environment.settings.appErrorPrefix);
+    expect(snackbarSpy.open.calls.first().args[0]).toContain(appSettings.errorPrefix);
   });
 
   it('should return an error', () => {

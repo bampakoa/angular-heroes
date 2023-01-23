@@ -1,11 +1,3 @@
 export const environment = {
-  production: true,
-  apiUrl: 'https://gateway.marvel.com/v1/public/',
-  apiKey: '<Your public key here>',
-  settings: {
-    appErrorPrefix: '[Angular Heroes Error] ',
-    appTitle: 'Angular Heroes',
-    version: '1.4.0',
-    charactersLimit: 20
-  }
+  production: true
 };

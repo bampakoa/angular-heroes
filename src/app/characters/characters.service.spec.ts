@@ -1,7 +1,7 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
-import { environment } from '../../environments/environment';
+import { appSettings, APP_CONFIG } from '../app.config';
 import { Character } from '../core/character.model';
 import { ContextService } from '../core/core.service';
 import { MarvelResponseData } from '../core/marvel-response.model';
@@ -16,10 +16,10 @@ describe('CharacterService', () => {
   let service: CharacterService;
   let httpTestingController: HttpTestingController;
   let contextServiceSpy: jasmine.SpyObj<ContextService>;
-  const url = environment.apiUrl + 'characters';
+  const url = appSettings.apiUrl + 'characters';
 
   const buildCharactersUrl = () => {
-    return url + `?nameStartsWith=fakename&limit=${environment.settings.charactersLimit}`;
+    return url + `?nameStartsWith=fakename&limit=${appSettings.charactersLimit}`;
   };
 
   beforeEach(() => {
@@ -29,7 +29,8 @@ describe('CharacterService', () => {
       imports: [HttpClientTestingModule],
       providers: [
         CharacterService,
-        { provide: ContextService, useValue: contextServiceSpy }
+        { provide: ContextService, useValue: contextServiceSpy },
+        { provide: APP_CONFIG, useValue: appSettings }
       ]
     });
 

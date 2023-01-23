@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppErrorHandler } from './app-error-handler';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { appSettings, APP_CONFIG } from './app.config';
 import { AuthInterceptor } from './auth-interceptor.service';
 import { CharacterModule } from './characters/characters.module';
 import { CoreModule } from './core/core.module';
@@ -29,7 +30,8 @@ import { CoreModule } from './core/core.module';
       multi: true
     },
     { provide: ErrorHandler, useClass: AppErrorHandler },
-    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 3000 } }
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 3000 } },
+    { provide: APP_CONFIG, useValue: appSettings }
   ],
   bootstrap: [AppComponent]
 })

@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 
-import { environment } from '../../../environments/environment';
+import { APP_CONFIG, AppConfig } from '../../app.config';
 import { ContextService } from '../core.service';
 
 @Component({
@@ -8,12 +8,14 @@ import { ContextService } from '../core.service';
   templateUrl: './footer.component.html',
   styles: ['mat-toolbar-row { justify-content: space-between; }']
 })
-export class FooterComponent {
+export class FooterComponent implements OnInit {
 
-  version: string;
+  version = '';
 
-  constructor(public contextService: ContextService) {
-    this.version = environment.settings.version;
+  constructor(public contextService: ContextService, @Inject(APP_CONFIG) private config: AppConfig) {}
+
+  ngOnInit() {
+    this.version = this.config.version;
   }
 
 }

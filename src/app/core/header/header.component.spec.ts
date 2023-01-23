@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
-import { environment } from '../../../environments/environment';
+import { appSettings, APP_CONFIG } from '../../app.config';
 import { HeaderComponent } from './header.component';
 
 describe('HeaderComponent', () => {
@@ -15,7 +15,10 @@ describe('HeaderComponent', () => {
         MatIconModule,
         MatToolbarModule
       ],
-      declarations: [HeaderComponent]
+      declarations: [HeaderComponent],
+      providers: [
+        { provide: APP_CONFIG, useValue: appSettings }
+      ]
     });
 
     fixture = TestBed.createComponent(HeaderComponent);
@@ -29,6 +32,6 @@ describe('HeaderComponent', () => {
 
   it('should display the title', () => {
     const titleDisplay: HTMLElement = fixture.nativeElement.querySelector('h2');
-    expect(titleDisplay.textContent).toEqual(environment.settings.appTitle);
+    expect(titleDisplay.textContent).toEqual(appSettings.title);
   });
 });

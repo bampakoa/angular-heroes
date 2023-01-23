@@ -1,9 +1,14 @@
+import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { AppComponent } from './app.component';
-import { CoreModule } from './core/core.module';
+
+@Component({ selector: 'app-header', template: '' })
+class HeaderStubComponent {}
+
+@Component({ selector: 'app-footer', template: '' })
+class FooterStubComponent {}
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
@@ -12,11 +17,13 @@ describe('AppComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        CoreModule,
-        MatSnackBarModule,
         RouterTestingModule
       ],
-      declarations: [AppComponent]
+      declarations: [
+        AppComponent,
+        HeaderStubComponent,
+        FooterStubComponent
+      ]
     });
 
     fixture = TestBed.createComponent(AppComponent);

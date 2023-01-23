@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
@@ -10,8 +10,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { of, throwError } from 'rxjs';
+import { of } from 'rxjs';
 
+import { appSettings, APP_CONFIG } from '../../app.config';
 import { Character } from '../../core/character.model';
 import { MarvelResponseData } from '../../core/marvel-response.model';
 import { CharacterService } from '../characters.service';
@@ -76,7 +77,8 @@ describe('CharacterListComponent', () => {
       ],
       providers: [
         { provide: CharacterService, useValue: characterServiceSpy },
-        { provide: MatSnackBar, useValue: snackbarSpy }
+        { provide: MatSnackBar, useValue: snackbarSpy },
+        { provide: APP_CONFIG, useValue: appSettings }
       ]
     });
     fixture = TestBed.createComponent(CharacterListComponent);

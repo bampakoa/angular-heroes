@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
-import { environment } from '../../../environments/environment';
+import { appSettings, APP_CONFIG } from '../../app.config';
 import { ContextService } from '../core.service';
 import { FooterComponent } from './footer.component';
 
@@ -18,7 +18,8 @@ describe('FooterComponent', () => {
       imports: [MatToolbarModule],
       declarations: [FooterComponent],
       providers: [
-        { provide: ContextService, useValue: contextServiceStub }
+        { provide: ContextService, useValue: contextServiceStub },
+        { provide: APP_CONFIG, useValue: appSettings }
       ]
     });
 
@@ -34,7 +35,7 @@ describe('FooterComponent', () => {
   });
 
   it('should display the version', () => {
-    expect(footerDisplay[0].textContent).toContain(environment.settings.version);
+    expect(footerDisplay[0].textContent).toContain(appSettings.version);
   });
 
   it('should display copyright info', () => {
