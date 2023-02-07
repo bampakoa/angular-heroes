@@ -12,7 +12,7 @@ export const appSettings: AppConfig = {
   apiUrl: 'https://gateway.marvel.com/v1/public/',
   errorPrefix: '[Angular Heroes Error] ',
   title: 'Angular Heroes',
-  version: '1.4.0',
+  version: '1.5.0',
   charactersLimit: 20
 };
 
