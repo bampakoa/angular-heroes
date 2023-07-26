@@ -5,20 +5,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppErrorHandler } from './app-error-handler';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { appSettings, APP_CONFIG } from './app.config';
 import { AuthInterceptor } from './auth-interceptor.service';
-import { CharacterModule } from './characters/characters.module';
+import { CharactersModule } from './characters/characters.module';
 import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
-    CharacterModule,
+    CharactersModule,
     CoreModule,
     HttpClientModule,
     MatSnackBarModule

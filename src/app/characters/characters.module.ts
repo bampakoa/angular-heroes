@@ -33,6 +33,7 @@ import { CharacterListComponent } from './character-list/character-list.componen
     CharacterCardComponent,
     CharacterDetailComponent,
     CharacterListComponent
-  ]
+  ],
+  exports: [CharacterListComponent]
 })
-export class CharacterModule {}
+export class CharactersModule {}
