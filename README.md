@@ -13,10 +13,6 @@ Clone this repo to your desktop and run `npm install` to install all the depende
 ## Usage
 
 Before you start, you must acquire a developer key from [Marvel Developer Portal](https://developer.marvel.com/). After you get one, 
-replace `apiKey` variable in `src\app\auth-interceptor.service.ts` file with the newly acquired **public** key.
-
-```
-const apiKey = '<Your public key here>';
-```
+replace the `apiKey` property of `AppConfig` in `src\app\app.config.ts` file with the newly acquired **public** key.
 
 Run `ng serve` to start the application. You will then be able to access it at http://localhost:4200
