@@ -1,3 +1,4 @@
+import { NgOptimizedImage } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -15,7 +16,8 @@ import { APP_CONFIG, AppConfig } from '../../app.config';
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
-    MatTooltipModule
+    MatTooltipModule,
+    NgOptimizedImage
   ]
 })
 export class HeaderComponent implements OnInit {
