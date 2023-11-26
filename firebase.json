@@ -2,7 +2,7 @@
   "hosting": [
     {
       "target": "angular-heroes",
-      "public": "dist/angular-heroes",
+      "public": "dist/angular-heroes/browser",
       "ignore": [
         "firebase.json",
         "**/.*",

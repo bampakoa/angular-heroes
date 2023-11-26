@@ -1,3 +1,4 @@
+import { NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
@@ -36,7 +37,8 @@ describe('ComicDetailComponent', () => {
       ],
       providers: [
         { provide: ContextService, useValue: contextServiceSpy }
-      ]
+      ],
+      imports: [NgOptimizedImage]
     });
     fixture = TestBed.createComponent(TestHostComponent);
     fixture.detectChanges();

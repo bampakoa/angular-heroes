@@ -1,5 +1,6 @@
 import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
+import { NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatCardModule } from '@angular/material/card';
@@ -38,9 +39,13 @@ describe('CharacterDetailComponent', () => {
 
   beforeEach(async () => {
     contextServiceSpy = jasmine.createSpyObj('ContextService', ['getImage']);
+    contextServiceSpy.getImage.and.returnValue('http://fakeimage/');
 
     TestBed.configureTestingModule({
-      imports: [MatCardModule],
+      imports: [
+        MatCardModule,
+        NgOptimizedImage
+      ],
       declarations: [
         CharacterDetailComponent,
         TestHostComponent
@@ -78,9 +83,9 @@ describe('CharacterDetailComponent', () => {
   });
 
   it('should display image', () => {
-    spyOn(component, 'getCharacterImage').and.returnValue('http://fakeimage/');
+    spyOn(component, 'getCharacterImage').and.returnValue('http://fakecharacterimage/');
     fixture.detectChanges();
-    expect(imageDisplay[1].src).toEqual('http://fakeimage/');
+    expect(imageDisplay[1].src).toEqual('http://fakecharacterimage/');
   });
 
   it('should display description', () => {

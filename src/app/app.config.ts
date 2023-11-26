@@ -5,7 +5,6 @@ export interface AppConfig {
   apiKey: string;
   errorPrefix: string;
   title: string;
-  version: string;
   charactersLimit: number;
 }
 
@@ -14,7 +13,6 @@ export const appSettings: AppConfig = {
   apiKey: '<Your public key here>',
   errorPrefix: '[Angular Heroes Error] ',
   title: 'Angular Heroes',
-  version: '1.5.0',
   charactersLimit: 20
 };
 

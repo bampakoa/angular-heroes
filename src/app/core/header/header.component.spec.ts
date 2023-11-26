@@ -15,7 +15,6 @@ describe('HeaderComponent', () => {
         MatIconModule,
         MatToolbarModule
       ],
-      declarations: [HeaderComponent],
       providers: [
         { provide: APP_CONFIG, useValue: appSettings }
       ]
