@@ -1,8 +1,12 @@
 <mat-grid-list cols="1" rowHeight="300">
-  <mat-grid-tile *ngIf="showProgress">
-    <mat-progress-spinner mode="indeterminate" diameter="96"></mat-progress-spinner>
-  </mat-grid-tile>
-  <mat-grid-tile *ngFor="let comic of comics$ | async; trackBy:trackByComics">
-    <app-comic-detail [comic]="comic"></app-comic-detail>
-  </mat-grid-tile>
+  @if (showProgress) {
+    <mat-grid-tile>
+      <mat-progress-spinner mode="indeterminate" diameter="96"></mat-progress-spinner>
+    </mat-grid-tile>
+  }
+  @for (comic of comics$ | async; track comic.id) {
+    <mat-grid-tile>
+      <app-comic-detail [comic]="comic"></app-comic-detail>
+    </mat-grid-tile>
+  }
 </mat-grid-list>

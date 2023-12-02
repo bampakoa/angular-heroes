@@ -10,7 +10,7 @@ import { APP_CONFIG, AppConfig } from '../../app.config';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styles: 'h2 { flex: 1 1 auto; }',
+  styleUrl: './header.component.css',
   standalone: true,
   imports: [
     MatToolbarModule,
