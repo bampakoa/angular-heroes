@@ -10,5 +10,7 @@ import { ContextService } from '../core.service';
   imports: [MatToolbarModule]
 })
 export class FooterComponent {
+
   constructor(public contextService: ContextService) {}
+
 }
