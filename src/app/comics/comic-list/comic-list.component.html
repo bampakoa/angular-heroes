@@ -1,12 +1,12 @@
 <mat-grid-list cols="1" rowHeight="300">
   @if (showProgress) {
     <mat-grid-tile>
-      <mat-progress-spinner mode="indeterminate" diameter="96"></mat-progress-spinner>
+      <mat-progress-spinner mode="indeterminate" diameter="96" />
     </mat-grid-tile>
   }
   @for (comic of comics$ | async; track comic.id) {
     <mat-grid-tile>
-      <app-comic-detail [comic]="comic"></app-comic-detail>
+      <app-comic-detail [comic]="comic" />
     </mat-grid-tile>
   }
 </mat-grid-list>

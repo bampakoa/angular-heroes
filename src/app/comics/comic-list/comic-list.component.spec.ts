@@ -30,7 +30,7 @@ const fakeComics: Comic[] = [
 ];
 
 @Component({
-  template: '<app-comic-list [character]="character"></app-comic-list>'
+  template: '<app-comic-list [character]="character" />'
 })
 class TestHostComponent {
   character = { id: 1 } as Character;
