@@ -75,7 +75,7 @@ describe('ComicListComponent', () => {
   });
 
   it('should display progress spinner', () => {
-    component.showProgress = true;
+    component.showProgress.set(true);
     fixture.detectChanges();
     expect(fixture.nativeElement.querySelector('mat-progress-spinner')).not.toBeNull();
   });
