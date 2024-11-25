@@ -79,12 +79,6 @@
             ]
           }
         ],
-        "padded-blocks": [
-          "error",
-          {
-            "classes": "always"
-          }
-        ],
         "object-curly-spacing": [
           "error",
           "always"
@@ -206,7 +200,6 @@
         "*.spec.ts"
       ],
       "rules": {
-        "padded-blocks": "off",
         "no-empty-function": "off"
       }
     }
