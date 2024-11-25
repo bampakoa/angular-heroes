@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 
 import { Character } from '../../core/character.model';
 import { ContextService } from '../../core/core.service';
@@ -8,11 +8,10 @@ import { ContextService } from '../../core/core.service';
   templateUrl: './character-card.component.html'
 })
 export class CharacterCardComponent {
+  private contextService = inject(ContextService);
 
   @Input() character: Character | undefined;
   @Output() selectedChange = new EventEmitter<Character>();
-
-  constructor(private contextService: ContextService) {}
 
   getCharacterImage() {
     if (!this.character) { return; }
@@ -22,5 +21,4 @@ export class CharacterCardComponent {
   showCharacter() {
     this.selectedChange.emit(this.character);
   }
-
 }

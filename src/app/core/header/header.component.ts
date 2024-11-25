@@ -1,11 +1,11 @@
 import { NgOptimizedImage } from '@angular/common';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { APP_CONFIG, AppConfig } from '../../app.config';
+import { APP_CONFIG } from '../../app.config';
 
 @Component({
   selector: 'app-header',
@@ -20,14 +20,6 @@ import { APP_CONFIG, AppConfig } from '../../app.config';
     NgOptimizedImage
   ]
 })
-export class HeaderComponent implements OnInit {
-
-  title = '';
-
-  constructor(@Inject(APP_CONFIG) private config: AppConfig) {}
-
-  ngOnInit() {
-    this.title = this.config.title;
-  }
-
+export class HeaderComponent {
+  title = inject(APP_CONFIG).title;
 }

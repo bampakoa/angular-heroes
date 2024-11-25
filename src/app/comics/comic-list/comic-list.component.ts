@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, signal } from '@angular/core';
+import { Component, Input, OnChanges, signal, inject } from '@angular/core';
 import { EMPTY, finalize, map, Observable } from 'rxjs';
 
 import { Character } from '../../core/character.model';
@@ -10,12 +10,11 @@ import { ComicService } from '../comics.service';
   templateUrl: './comic-list.component.html'
 })
 export class ComicListComponent implements OnChanges {
+  private comicService = inject(ComicService);
 
   @Input() character: Character | undefined;
   comics$: Observable<Comic[]> = EMPTY;
   showProgress = signal(false);
-
-  constructor(private comicService: ComicService) {}
 
   ngOnChanges() {
     this.showProgress.set(true);
@@ -27,5 +26,4 @@ export class ComicListComponent implements OnChanges {
       );
     }
   }
-
 }

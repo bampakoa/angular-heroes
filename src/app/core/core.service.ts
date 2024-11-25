@@ -1,19 +1,19 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { throwError } from 'rxjs';
 
-import { APP_CONFIG, AppConfig } from '../app.config';
+import { APP_CONFIG } from '../app.config';
 import { Thumbnail } from './thumbnail.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContextService {
+  private snackbar = inject(MatSnackBar);
+  private config = inject(APP_CONFIG);
 
   copyright = '';
-
-  constructor(private snackbar: MatSnackBar, @Inject(APP_CONFIG) private config: AppConfig) {}
 
   getImage(variant: string, thumbnail: Thumbnail) {
     return `${thumbnail.path}/${variant}.${thumbnail.extension}`;
@@ -31,5 +31,4 @@ export class ContextService {
     // return an ErrorObservable with a user-facing error message
     return throwError(() => error);
   };
-
 }

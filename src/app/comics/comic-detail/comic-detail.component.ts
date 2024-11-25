@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 
 import { ContextService } from '../../core/core.service';
 import { Comic } from '../comic.model';
@@ -12,14 +12,12 @@ import { Comic } from '../comic.model';
   `
 })
 export class ComicDetailComponent {
+  private contextService = inject(ContextService);
 
   @Input() comic: Comic | undefined;
-
-  constructor(private contextService: ContextService) {}
 
   getComicImage() {
     if (!this.comic) { return; }
     return this.contextService.getImage('portrait_fantastic', this.comic.thumbnail);
   }
-
 }

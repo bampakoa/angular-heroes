@@ -1,16 +1,15 @@
-import { ErrorHandler, Inject, Injectable, Injector } from '@angular/core';
+import { ErrorHandler, Injectable, Injector, inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { AppConfig, APP_CONFIG } from './app.config';
+import { APP_CONFIG } from './app.config';
 
 @Injectable()
 export class AppErrorHandler implements ErrorHandler {
-
-  constructor(private injector: Injector, @Inject(APP_CONFIG) private config: AppConfig) {}
+  private injector = inject(Injector);
+  private config = inject(APP_CONFIG);
 
   handleError(error: Error) {
     this.injector.get(MatSnackBar).open(this.config.errorPrefix + error.message);
     console.log(error);
   }
-
 }

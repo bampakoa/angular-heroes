@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 
 import { Character } from '../../core/character.model';
 import { ContextService } from '../../core/core.service';
@@ -8,10 +8,9 @@ import { ContextService } from '../../core/core.service';
   templateUrl: './character-detail.component.html'
 })
 export class CharacterDetailComponent {
+  private contextService = inject(ContextService);
 
   @Input() character: Character | undefined;
-
-  constructor(private contextService: ContextService) {}
 
   getAvatar() {
     if (!this.character) { return; }
@@ -22,5 +21,4 @@ export class CharacterDetailComponent {
     if (!this.character) { return; }
     return this.contextService.getImage('portrait_uncanny', this.character.thumbnail);
   }
-
 }

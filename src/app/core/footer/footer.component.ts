@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { ContextService } from '../core.service';
@@ -10,5 +10,5 @@ import { ContextService } from '../core.service';
   imports: [MatToolbarModule]
 })
 export class FooterComponent {
-  constructor(public contextService: ContextService) {}
+  contextService = inject(ContextService);
 }

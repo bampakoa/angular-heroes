@@ -48,21 +48,6 @@
             "newlines-between": "always"
           }
         ],
-        "@typescript-eslint/member-ordering": [
-          "error",
-          {
-            "default": [
-              "public-decorated-field",
-              "public-decorated-method",
-              "public-instance-field",
-              "private-decorated-field",
-              "private-instance-field",
-              "public-constructor",
-              "public-instance-method",
-              "private-instance-method"
-            ]
-          }
-        ],
         "max-len": [
           "error",
           {

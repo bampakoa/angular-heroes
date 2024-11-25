@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import {
   MatSnackBar,
@@ -7,7 +7,7 @@ import {
 } from '@angular/material/snack-bar';
 import { catchError, debounceTime, distinctUntilChanged, EMPTY, filter, map, Observable, Subject, switchMap } from 'rxjs';
 
-import { AppConfig, APP_CONFIG } from '../../app.config';
+import { APP_CONFIG } from '../../app.config';
 import { Character } from '../../core/character.model';
 import { CharacterService } from '../characters.service';
 
@@ -17,6 +17,9 @@ import { CharacterService } from '../characters.service';
   styleUrl: './character-list.component.css'
 })
 export class CharacterListComponent implements OnInit {
+  private snackbar = inject(MatSnackBar);
+  private characterService = inject(CharacterService);
+  private config = inject(APP_CONFIG);
 
   characters$: Observable<Character[]> = EMPTY;
   selectedCharacter: Character | undefined;
@@ -25,8 +28,6 @@ export class CharacterListComponent implements OnInit {
   @ViewChild(MatDrawer) private drawer: MatDrawer | undefined;
   private searchTerms = new Subject<string>();
   private matSnackBarRef: MatSnackBarRef<TextOnlySnackBar> | undefined;
-
-  constructor(private snackbar: MatSnackBar, private characterService: CharacterService, @Inject(APP_CONFIG) private config: AppConfig) {}
 
   ngOnInit() {
     this.getCharacters();
@@ -89,5 +90,4 @@ export class CharacterListComponent implements OnInit {
       })
     );
   }
-
 }

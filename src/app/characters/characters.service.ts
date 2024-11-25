@@ -1,8 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { catchError, map } from 'rxjs';
 
-import { APP_CONFIG, AppConfig } from '../app.config';
+import { APP_CONFIG } from '../app.config';
 import { Character } from '../core/character.model';
 import { ContextService } from '../core/core.service';
 import { MarvelResponse } from '../core/marvel-response.model';
@@ -11,8 +11,9 @@ import { MarvelResponse } from '../core/marvel-response.model';
   providedIn: 'root'
 })
 export class CharacterService {
-
-  constructor(private http: HttpClient, private contextService: ContextService, @Inject(APP_CONFIG) private config: AppConfig) {}
+  private http = inject(HttpClient);
+  private contextService = inject(ContextService);
+  private config = inject(APP_CONFIG);
 
   getCharacters(term: string) {
     const options = new HttpParams()
@@ -29,5 +30,4 @@ export class CharacterService {
       catchError(this.contextService.handleError)
     );
   }
-
 }
