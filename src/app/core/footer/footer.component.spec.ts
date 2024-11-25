@@ -16,7 +16,6 @@ describe('FooterComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [MatToolbarModule],
-      declarations: [FooterComponent],
       providers: [
         { provide: ContextService, useValue: contextServiceStub },
         { provide: APP_CONFIG, useValue: appSettings }

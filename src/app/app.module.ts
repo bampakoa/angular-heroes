@@ -10,7 +10,8 @@ import { AppComponent } from './app.component';
 import { appSettings, APP_CONFIG } from './app.config';
 import { AuthInterceptor } from './auth-interceptor.service';
 import { CharacterModule } from './characters/characters.module';
-import { CoreModule } from './core/core.module';
+import { FooterComponent } from './core/footer/footer.component';
+import { HeaderComponent } from './core/header/header.component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,7 +20,8 @@ import { CoreModule } from './core/core.module';
     BrowserAnimationsModule,
     BrowserModule,
     CharacterModule,
-    CoreModule,
+    FooterComponent,
+    HeaderComponent,
     HttpClientModule,
     MatSnackBarModule
   ],
