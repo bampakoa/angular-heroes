@@ -1,5 +1,6 @@
 import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
+import { NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatCardModule } from '@angular/material/card';
@@ -38,9 +39,10 @@ describe('CharacterDetailComponent', () => {
 
   beforeEach(async () => {
     contextServiceSpy = jasmine.createSpyObj('ContextService', ['getImage']);
+    contextServiceSpy.getImage.and.returnValue('http://fakeimage');
 
     TestBed.configureTestingModule({
-      imports: [MatCardModule],
+      imports: [MatCardModule, NgOptimizedImage],
       declarations: [
         CharacterDetailComponent,
         TestHostComponent
@@ -59,14 +61,11 @@ describe('CharacterDetailComponent', () => {
   });
 
   it('should display mat-card component', () => {
-    const matCardDisplay: HTMLImageElement = fixture.nativeElement.querySelector('mat-card');
     expect(fixture.nativeElement.querySelector('mat-card')).not.toBeNull();
   });
 
   it('should display avatar', () => {
-    spyOn(component, 'getAvatar').and.returnValue('http://fakeavatar/');
-    fixture.detectChanges();
-    expect(imageDisplay[0].src).toEqual('http://fakeavatar/');
+    expect(imageDisplay[0].src).toEqual('http://fakeimage/');
   });
 
   it('should display name', async () => {
@@ -78,8 +77,6 @@ describe('CharacterDetailComponent', () => {
   });
 
   it('should display image', () => {
-    spyOn(component, 'getCharacterImage').and.returnValue('http://fakeimage/');
-    fixture.detectChanges();
     expect(imageDisplay[1].src).toEqual('http://fakeimage/');
   });
 

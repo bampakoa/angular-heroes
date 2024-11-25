@@ -1,3 +1,4 @@
+import { NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -33,7 +34,8 @@ describe('CharacterCardComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         MatGridListModule,
-        MatIconModule
+        MatIconModule,
+        NgOptimizedImage
       ],
       declarations: [
         CharacterCardComponent,
