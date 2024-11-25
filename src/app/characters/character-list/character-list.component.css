@@ -7,8 +7,8 @@ mat-grid-tile {
 }
 
 mat-form-field {
-  margin: 55px 25px 25px 65px;
-  width: 200px;
+  margin: 55px 42px;
+  width: 315px;
 }
 
 mat-drawer {
@@ -19,9 +19,9 @@ mat-drawer {
 .search {
   background-image: url('/assets/search-bar.png');
   background-repeat: no-repeat;
-  background-size: 320px 57px;
-  background-position-x: 20px;
-  background-position-y: 45px;
+  background-size: 320px 60px;
+  background-position-x: 40px;
+  background-position-y: 53px;
 }
 
 .mat-drawer-container {

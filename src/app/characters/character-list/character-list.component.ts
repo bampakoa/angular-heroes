@@ -1,9 +1,13 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
-import { MatSnackBar, MatSnackBarRef, TextOnlySnackBar } from '@angular/material/snack-bar';
+import {
+  MatSnackBar,
+  MatSnackBarRef,
+  TextOnlySnackBar
+} from '@angular/material/snack-bar';
 import { catchError, debounceTime, distinctUntilChanged, EMPTY, filter, map, Observable, Subject, switchMap } from 'rxjs';
 
-import { APP_CONFIG, AppConfig } from '../../app.config';
+import { AppConfig, APP_CONFIG } from '../../app.config';
 import { Character } from '../../core/character.model';
 import { CharacterService } from '../characters.service';
 
