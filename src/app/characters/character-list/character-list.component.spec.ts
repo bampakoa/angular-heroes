@@ -12,7 +12,6 @@ import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { of } from 'rxjs';
 
-import { appSettings, APP_CONFIG } from '../../app.config';
 import { Character } from '../../core/character.model';
 import { MarvelResponseData } from '../../core/marvel-response.model';
 import { CharacterService } from '../characters.service';
@@ -77,8 +76,7 @@ describe('CharacterListComponent', () => {
       ],
       providers: [
         { provide: CharacterService, useValue: characterServiceSpy },
-        { provide: MatSnackBar, useValue: snackbarSpy },
-        { provide: APP_CONFIG, useValue: appSettings }
+        { provide: MatSnackBar, useValue: snackbarSpy }
       ]
     });
     fixture = TestBed.createComponent(CharacterListComponent);

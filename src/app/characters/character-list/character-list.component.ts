@@ -7,7 +7,7 @@ import {
 } from '@angular/material/snack-bar';
 import { catchError, debounceTime, distinctUntilChanged, EMPTY, filter, map, Observable, Subject, switchMap } from 'rxjs';
 
-import { APP_CONFIG } from '../../app.config';
+import { environment } from '../../../environments/environment';
 import { Character } from '../../core/character.model';
 import { CharacterService } from '../characters.service';
 
@@ -19,7 +19,6 @@ import { CharacterService } from '../characters.service';
 export class CharacterListComponent implements OnInit {
   private snackbar = inject(MatSnackBar);
   private characterService = inject(CharacterService);
-  private config = inject(APP_CONFIG);
 
   characters$: Observable<Character[]> = EMPTY;
   selectedCharacter: Character | undefined;
@@ -77,7 +76,7 @@ export class CharacterListComponent implements OnInit {
         this.showProgress = false;
 
         // Show notification when total results are more than the pre-defined limit
-        if (total > this.config.charactersLimit) {
+        if (total > environment.charactersLimit) {
           this.showWarning('too-many-results');
         }
 

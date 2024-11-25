@@ -5,8 +5,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { APP_CONFIG } from '../../app.config';
-
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -20,6 +18,4 @@ import { APP_CONFIG } from '../../app.config';
     NgOptimizedImage
   ]
 })
-export class HeaderComponent {
-  title = inject(APP_CONFIG).title;
-}
+export class HeaderComponent {}

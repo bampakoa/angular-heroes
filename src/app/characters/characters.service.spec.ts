@@ -2,8 +2,8 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
-import { appSettings, APP_CONFIG } from '../app.config';
 import { CharacterService } from './characters.service';
+import { environment } from '../../environments/environment';
 import { Character } from '../core/character.model';
 import { ContextService } from '../core/core.service';
 import { MarvelResponseData } from '../core/marvel-response.model';
@@ -17,11 +17,7 @@ describe('CharacterService', () => {
   let service: CharacterService;
   let httpTestingController: HttpTestingController;
   let contextServiceSpy: jasmine.SpyObj<ContextService>;
-  const url = appSettings.apiUrl + 'characters';
-
-  const buildCharactersUrl = () => {
-    return url + `?nameStartsWith=fakename&limit=${appSettings.charactersLimit}`;
-  };
+  const url = `${environment.apiUrl}characters?nameStartsWith=fakename&limit=${environment.charactersLimit}`;
 
   beforeEach(() => {
     contextServiceSpy = jasmine.createSpyObj('ContextService', ['handleError']);
@@ -30,7 +26,6 @@ describe('CharacterService', () => {
       providers: [
         CharacterService,
         { provide: ContextService, useValue: contextServiceSpy },
-        { provide: APP_CONFIG, useValue: appSettings },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting()
       ]
@@ -46,7 +41,7 @@ describe('CharacterService', () => {
 
   it('should get characters', () => {
     service.getCharacters('fakename').subscribe(characters => expect(characters).toEqual(fakeMarvelResponseData));
-    const req = httpTestingController.expectOne(buildCharactersUrl());
+    const req = httpTestingController.expectOne(url);
     expect(req.request.method).toEqual('GET');
     req.flush({
       data: fakeMarvelResponseData
@@ -55,7 +50,7 @@ describe('CharacterService', () => {
 
   it('should set copyright', () => {
     service.getCharacters('fakename').subscribe();
-    const req = httpTestingController.expectOne(buildCharactersUrl());
+    const req = httpTestingController.expectOne(url);
     req.flush({
       attributionText: 'fakeAttribution',
       data: fakeMarvelResponseData

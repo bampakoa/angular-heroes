@@ -3,7 +3,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { HeaderComponent } from './header.component';
-import { appSettings, APP_CONFIG } from '../../app.config';
 
 describe('HeaderComponent', () => {
   let fixture: ComponentFixture<HeaderComponent>;
@@ -14,9 +13,6 @@ describe('HeaderComponent', () => {
       imports: [
         MatIconModule,
         MatToolbarModule
-      ],
-      providers: [
-        { provide: APP_CONFIG, useValue: appSettings }
       ]
     });
 
@@ -27,10 +23,5 @@ describe('HeaderComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should display the title', () => {
-    const titleDisplay: HTMLElement = fixture.nativeElement.querySelector('h2');
-    expect(titleDisplay.textContent).toEqual(appSettings.title);
   });
 });

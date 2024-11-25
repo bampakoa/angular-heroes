@@ -2,9 +2,9 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
-import { appSettings, APP_CONFIG } from '../app.config';
 import { Comic } from './comic.model';
 import { ComicService } from './comics.service';
+import { environment } from '../../environments/environment';
 import { ContextService } from '../core/core.service';
 
 const fakeComics = [{ id: 1 }] as Comic[];
@@ -21,7 +21,6 @@ describe('ComicService', () => {
       providers: [
         ComicService,
         { provide: ContextService, useValue: contextServiceSpy },
-        { provide: APP_CONFIG, useValue: appSettings },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting()
       ]
@@ -37,7 +36,7 @@ describe('ComicService', () => {
 
   it('should get comics', () => {
     service.getComics(1).subscribe(comics => expect(comics).toEqual(fakeComics));
-    const req = httpTestingController.expectOne(appSettings.apiUrl + 'characters/1/comics');
+    const req = httpTestingController.expectOne(environment.apiUrl + 'characters/1/comics');
     expect(req.request.method).toEqual('GET');
     req.flush({
       data: { results: fakeComics }

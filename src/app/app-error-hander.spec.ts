@@ -2,7 +2,6 @@ import { TestBed } from '@angular/core/testing';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { AppErrorHandler } from './app-error-handler';
-import { appSettings, APP_CONFIG } from './app.config';
 
 describe('AppErrorHandler', () => {
   let service: AppErrorHandler;
@@ -16,8 +15,7 @@ describe('AppErrorHandler', () => {
     TestBed.configureTestingModule({
       providers: [
         AppErrorHandler,
-        { provide: MatSnackBar, useValue: snackbarSpy },
-        { provide: APP_CONFIG, useValue: appSettings }
+        { provide: MatSnackBar, useValue: snackbarSpy }
       ]
     });
 
@@ -31,7 +29,7 @@ describe('AppErrorHandler', () => {
   it('should handle an error', () => {
     const error = { message: 'Fake error' } as Error;
     service.handleError(error);
-    expect(snackbarSpy.open).toHaveBeenCalledWith(appSettings.errorPrefix + 'Fake error');
+    expect(snackbarSpy.open).toHaveBeenCalledWith('Fake error');
     expect(consoleSpy).toHaveBeenCalledWith(error);
   });
 });

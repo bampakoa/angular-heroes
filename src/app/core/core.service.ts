@@ -3,7 +3,6 @@ import { Injectable, inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { throwError } from 'rxjs';
 
-import { APP_CONFIG } from '../app.config';
 import { Thumbnail } from './thumbnail.model';
 
 @Injectable({
@@ -11,7 +10,6 @@ import { Thumbnail } from './thumbnail.model';
 })
 export class ContextService {
   private snackbar = inject(MatSnackBar);
-  private config = inject(APP_CONFIG);
 
   copyright = '';
 
@@ -26,7 +24,7 @@ export class ContextService {
     } else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong,
-      this.snackbar.open(this.config.errorPrefix + 'Something bad happened; please try again later.');
+      this.snackbar.open('Something bad happened! Please try again later.');
     }
     // return an ErrorObservable with a user-facing error message
     return throwError(() => error);
