@@ -9,7 +9,7 @@ import { Character } from '../../core/character.model';
 import { ContextService } from '../../core/core.service';
 
 @Component({
-  template: '<app-character-card [character]="character" (selectedChange)="selected = $event"></app-character-card>'
+  template: '<app-character-card [character]="character" (selectedChange)="selected = $event" />'
 })
 class TestHostComponent {
   character = {

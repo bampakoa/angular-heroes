@@ -23,7 +23,7 @@ const fakeCharacter: Character = {
 };
 
 @Component({
-  template: '<app-character-detail [character]="character"></app-character-detail>'
+  template: '<app-character-detail [character]="character" />'
 })
 class TestHostComponent {
   character = fakeCharacter;

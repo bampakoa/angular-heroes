@@ -2,18 +2,18 @@
   <mat-drawer mode="over" position="end">
     <mat-tab-group>
       <mat-tab label="Details">
-        <app-character-detail [character]="selectedCharacter"></app-character-detail>
+        <app-character-detail [character]="selectedCharacter" />
       </mat-tab>
       <mat-tab label="Comics">
         @if (selectedCharacter) {
-          <app-comic-list [character]="selectedCharacter"></app-comic-list>
+          <app-comic-list [character]="selectedCharacter" />
         }
       </mat-tab>
     </mat-tab-group>
   </mat-drawer>
   <mat-drawer-content>
     @if (showProgress) {
-      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      <mat-progress-bar mode="indeterminate" />
     }
     <div class="search">
       <mat-form-field>
@@ -28,7 +28,7 @@
     <mat-grid-list cols="4" rowHeight="250">
       @for (character of characters$ | async; track character.id) {
         <mat-grid-tile>
-          <app-character-card [character]="character" (selectedChange)="selectCharacter($event)"></app-character-card>
+          <app-character-card [character]="character" (selectedChange)="selectCharacter($event)" />
         </mat-grid-tile>
       }
     </mat-grid-list>

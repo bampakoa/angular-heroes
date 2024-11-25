@@ -16,7 +16,7 @@ const fakeComic: Partial<Comic> = {
 };
 
 @Component({
-  template: '<app-comic-detail [comic]="comic"></app-comic-detail>'
+  template: '<app-comic-detail [comic]="comic" />'
 })
 class TestHostComponent {
   comic = fakeComic;
