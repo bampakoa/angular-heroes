@@ -214,6 +214,7 @@
   "plugins": [
     "eslint-plugin-import",
     "@babel",
-    "deprecation"
+    "deprecation",
+    "@typescript-eslint"
   ]
 }
