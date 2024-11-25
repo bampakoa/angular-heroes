@@ -4,9 +4,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 
+import { CharacterCardComponent } from './character-card.component';
 import { Character } from '../../core/character.model';
 import { ContextService } from '../../core/core.service';
-import { CharacterCardComponent } from './character-card.component';
 
 @Component({
   template: '<app-character-card [character]="character" (selectedChange)="selected = $event"></app-character-card>'

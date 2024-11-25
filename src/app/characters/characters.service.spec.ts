@@ -1,11 +1,12 @@
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
 import { appSettings, APP_CONFIG } from '../app.config';
+import { CharacterService } from './characters.service';
 import { Character } from '../core/character.model';
 import { ContextService } from '../core/core.service';
 import { MarvelResponseData } from '../core/marvel-response.model';
-import { CharacterService } from './characters.service';
 
 const fakeMarvelResponseData: MarvelResponseData<Character> = {
   results: [{ name: 'Fake character' }] as Character[],
@@ -26,11 +27,12 @@ describe('CharacterService', () => {
     contextServiceSpy = jasmine.createSpyObj('ContextService', ['handleError']);
 
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
       providers: [
         CharacterService,
         { provide: ContextService, useValue: contextServiceSpy },
-        { provide: APP_CONFIG, useValue: appSettings }
+        { provide: APP_CONFIG, useValue: appSettings },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
       ]
     });
 

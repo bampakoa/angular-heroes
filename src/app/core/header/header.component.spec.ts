@@ -2,8 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
-import { appSettings, APP_CONFIG } from '../../app.config';
 import { HeaderComponent } from './header.component';
+import { appSettings, APP_CONFIG } from '../../app.config';
 
 describe('HeaderComponent', () => {
   let fixture: ComponentFixture<HeaderComponent>;

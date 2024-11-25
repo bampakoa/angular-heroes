@@ -1,10 +1,11 @@
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
 import { appSettings, APP_CONFIG } from '../app.config';
-import { ContextService } from '../core/core.service';
 import { Comic } from './comic.model';
 import { ComicService } from './comics.service';
+import { ContextService } from '../core/core.service';
 
 const fakeComics = [{ id: 1 }] as Comic[];
 
@@ -17,11 +18,12 @@ describe('ComicService', () => {
     contextServiceSpy = jasmine.createSpyObj('ContextService', ['handleError']);
 
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
       providers: [
         ComicService,
         { provide: ContextService, useValue: contextServiceSpy },
-        { provide: APP_CONFIG, useValue: appSettings }
+        { provide: APP_CONFIG, useValue: appSettings },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
       ]
     });
 

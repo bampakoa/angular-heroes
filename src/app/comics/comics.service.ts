@@ -3,9 +3,9 @@ import { Inject, Injectable } from '@angular/core';
 import { catchError, map, Observable } from 'rxjs';
 
 import { APP_CONFIG, AppConfig } from '../app.config';
+import { Comic } from './comic.model';
 import { ContextService } from '../core/core.service';
 import { MarvelResponse } from '../core/marvel-response.model';
-import { Comic } from './comic.model';
 
 @Injectable({
   providedIn: 'root'

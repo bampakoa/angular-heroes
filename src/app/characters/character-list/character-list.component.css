@@ -17,7 +17,7 @@ mat-drawer {
 }
 
 .search {
-  background-image: url('/assets/search-bar.png');
+  background-image: url('../../../../public/search-bar.png');
   background-repeat: no-repeat;
   background-size: 320px 60px;
   background-position-x: 40px;

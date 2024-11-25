@@ -1,4 +1,4 @@
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { BrowserModule } from '@angular/platform-browser';
@@ -22,7 +22,6 @@ import { HeaderComponent } from './core/header/header.component';
     CharacterModule,
     FooterComponent,
     HeaderComponent,
-    HttpClientModule,
     MatSnackBarModule
   ],
   providers: [
@@ -33,7 +32,8 @@ import { HeaderComponent } from './core/header/header.component';
     },
     { provide: ErrorHandler, useClass: AppErrorHandler },
     { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 3000 } },
-    { provide: APP_CONFIG, useValue: appSettings }
+    { provide: APP_CONFIG, useValue: appSettings },
+    provideHttpClient(withInterceptorsFromDi())
   ],
   bootstrap: [AppComponent]
 })

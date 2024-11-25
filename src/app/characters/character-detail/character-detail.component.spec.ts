@@ -7,9 +7,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatCardHarness } from '@angular/material/card/testing';
 import { By } from '@angular/platform-browser';
 
+import { CharacterDetailComponent } from './character-detail.component';
 import { Character } from '../../core/character.model';
 import { ContextService } from '../../core/core.service';
-import { CharacterDetailComponent } from './character-detail.component';
 
 const fakeCharacter: Character = {
   id: 1,
