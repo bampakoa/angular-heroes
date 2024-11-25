@@ -13,16 +13,14 @@ export class CharacterDetailComponent {
 
   constructor(private contextService: ContextService) {}
 
-  getAvatar(): string | undefined {
-    if (this.character) {
-      return this.contextService.getImage('standard_medium', this.character.thumbnail);
-    }
+  getAvatar() {
+    if (!this.character) { return; }
+    return this.contextService.getImage('standard_medium', this.character.thumbnail);
   }
 
-  getCharacterImage(): string | undefined {
-    if (this.character) {
-      return this.contextService.getImage('portrait_uncanny', this.character.thumbnail);
-    }
+  getCharacterImage() {
+    if (!this.character) { return; }
+    return this.contextService.getImage('portrait_uncanny', this.character.thumbnail);
   }
 
 }

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { catchError, map, Observable } from 'rxjs';
+import { catchError, map } from 'rxjs';
 
 import { APP_CONFIG, AppConfig } from '../app.config';
 import { Comic } from './comic.model';
@@ -14,7 +14,7 @@ export class ComicService {
 
   constructor(private http: HttpClient, private contextService: ContextService, @Inject(APP_CONFIG) private config: AppConfig) {}
 
-  getComics(characterId: number): Observable<Comic[]> {
+  getComics(characterId: number) {
     return this.http.get<MarvelResponse<Comic>>(`${this.config.apiUrl}characters/${characterId}/comics`).pipe(
       map(response => response.data.results),
       catchError(this.contextService.handleError)

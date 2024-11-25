@@ -15,7 +15,7 @@ export class ContextService {
 
   constructor(private snackbar: MatSnackBar, @Inject(APP_CONFIG) private config: AppConfig) {}
 
-  getImage(variant: string, thumbnail: Thumbnail): string {
+  getImage(variant: string, thumbnail: Thumbnail) {
     return `${thumbnail.path}/${variant}.${thumbnail.extension}`;
   }
 

@@ -14,10 +14,9 @@ export class CharacterCardComponent {
 
   constructor(private contextService: ContextService) {}
 
-  getCharacterImage(): string | undefined {
-    if (this.character) {
-      return this.contextService.getImage('landscape_incredible', this.character.thumbnail);
-    }
+  getCharacterImage() {
+    if (!this.character) { return; }
+    return this.contextService.getImage('landscape_incredible', this.character.thumbnail);
   }
 
   showCharacter() {
