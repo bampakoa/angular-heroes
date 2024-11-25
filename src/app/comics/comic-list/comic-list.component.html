@@ -1,5 +1,5 @@
 <mat-grid-list cols="1" rowHeight="300">
-  @if (showProgress) {
+  @if (showProgress()) {
     <mat-grid-tile>
       <mat-progress-spinner mode="indeterminate" diameter="96" />
     </mat-grid-tile>
