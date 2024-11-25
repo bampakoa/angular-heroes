@@ -41,8 +41,6 @@ export class CharacterListComponent implements OnInit {
     this.drawer?.toggle();
   }
 
-  trackByCharacters(_: number, character: Character) { return character.id; }
-
   private showWarning(reason: 'too-many-results' | 'no-results') {
     let message = '';
 

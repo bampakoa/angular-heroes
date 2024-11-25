@@ -31,6 +31,4 @@ export class ComicListComponent implements OnChanges {
     }
   }
 
-  trackByComics(_: number, comic: Comic) { return comic.id; }
-
 }
