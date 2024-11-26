@@ -25,7 +25,7 @@ import { CharacterService } from '../characters.service';
 @Component({
   selector: 'app-character-list',
   templateUrl: './character-list.component.html',
-  styleUrl: './character-list.component.css',
+  styleUrl: './character-list.component.scss',
   imports: [
     MatDrawerContainer,
     MatDrawer,

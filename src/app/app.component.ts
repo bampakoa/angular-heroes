@@ -7,7 +7,7 @@ import { HeaderComponent } from './core/header/header.component';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  styleUrl: './app.component.scss',
   imports: [HeaderComponent, RouterOutlet, FooterComponent]
 })
 export class AppComponent {}
