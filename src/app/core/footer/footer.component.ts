@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
 
 import { ContextService } from '../core.service';
 
@@ -7,7 +7,7 @@ import { ContextService } from '../core.service';
   selector: 'app-footer',
   templateUrl: './footer.component.html',
   standalone: true,
-  imports: [MatToolbarModule]
+  imports: [MatToolbar, MatToolbarRow]
 })
 export class FooterComponent {
   contextService = inject(ContextService);

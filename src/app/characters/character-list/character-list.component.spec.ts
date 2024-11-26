@@ -1,15 +1,7 @@
-import { Component, Input } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatTabsModule } from '@angular/material/tabs';
 import { By } from '@angular/platform-browser';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { of } from 'rxjs';
 
 import { Character } from '../../core/character.model';
@@ -18,22 +10,6 @@ import { CharacterService } from '../characters.service';
 import { CharacterListComponent } from './character-list.component';
 
 let fixture: ComponentFixture<CharacterListComponent>;
-
-@Component({ selector: 'app-character-detail', template: '' })
-class CharacterDetailStubComponent {
-  @Input() character: Character | undefined;
-}
-
-@Component({ selector: 'app-character-card', template: '' })
-class CharacterCardStubComponent {
-  @Input() character: Character | undefined;
-}
-
-@Component({ selector: 'app-comic-list', template: '' })
-class ComicListStubComponent {
-  @Input() character: Character | undefined;
-}
-
 const fakeMarvelResponseData: MarvelResponseData<Character> = {
   results: [{
     id: 1,
@@ -58,25 +34,11 @@ describe('CharacterListComponent', () => {
     snackbarSpy = jasmine.createSpyObj('MatSnackBar', ['open']);
 
     TestBed.configureTestingModule({
-      imports: [
-        MatFormFieldModule,
-        MatGridListModule,
-        MatIconModule,
-        MatInputModule,
-        MatProgressBarModule,
-        MatSidenavModule,
-        MatTabsModule,
-        NoopAnimationsModule
-      ],
-      declarations: [
-        CharacterCardStubComponent,
-        CharacterDetailStubComponent,
-        CharacterListComponent,
-        ComicListStubComponent
-      ],
+      imports: [CharacterListComponent],
       providers: [
         { provide: CharacterService, useValue: characterServiceSpy },
-        { provide: MatSnackBar, useValue: snackbarSpy }
+        { provide: MatSnackBar, useValue: snackbarSpy },
+        provideNoopAnimations()
       ]
     });
     fixture = TestBed.createComponent(CharacterListComponent);

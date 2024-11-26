@@ -1,20 +1,51 @@
+import { AsyncPipe } from '@angular/common';
 import { Component, OnInit, ViewChild, inject } from '@angular/core';
-import { MatDrawer } from '@angular/material/sidenav';
+import { MatIconButton } from '@angular/material/button';
+import { MatFormField, MatSuffix } from '@angular/material/form-field';
+import { MatGridList, MatGridTile } from '@angular/material/grid-list';
+import { MatIcon } from '@angular/material/icon';
+import { MatInput } from '@angular/material/input';
+import { MatProgressBar } from '@angular/material/progress-bar';
+import { MatDrawer, MatDrawerContainer, MatDrawerContent } from '@angular/material/sidenav';
 import {
   MatSnackBar,
   MatSnackBarRef,
   TextOnlySnackBar
 } from '@angular/material/snack-bar';
+import { MatTabGroup, MatTab } from '@angular/material/tabs';
 import { catchError, debounceTime, distinctUntilChanged, EMPTY, filter, map, Observable, Subject, switchMap } from 'rxjs';
 
 import { environment } from '../../../environments/environment';
+import { ComicListComponent } from '../../comics/comic-list/comic-list.component';
 import { Character } from '../../core/character.model';
+import { CharacterCardComponent } from '../character-card/character-card.component';
+import { CharacterDetailComponent } from '../character-detail/character-detail.component';
 import { CharacterService } from '../characters.service';
 
 @Component({
   selector: 'app-character-list',
   templateUrl: './character-list.component.html',
-  styleUrl: './character-list.component.css'
+  styleUrl: './character-list.component.css',
+  standalone: true,
+  imports: [
+    MatDrawerContainer,
+    MatDrawer,
+    MatTabGroup,
+    MatTab,
+    CharacterDetailComponent,
+    ComicListComponent,
+    MatDrawerContent,
+    MatProgressBar,
+    MatFormField,
+    MatInput,
+    MatIconButton,
+    MatSuffix,
+    MatIcon,
+    MatGridList,
+    MatGridTile,
+    CharacterCardComponent,
+    AsyncPipe
+  ]
 })
 export class CharacterListComponent implements OnInit {
   private snackbar = inject(MatSnackBar);

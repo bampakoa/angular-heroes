@@ -1,9 +1,9 @@
 import { NgOptimizedImage } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatIcon } from '@angular/material/icon';
+import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
+import { MatTooltip } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-header',
@@ -11,10 +11,11 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   styleUrl: './header.component.css',
   standalone: true,
   imports: [
-    MatToolbarModule,
-    MatIconModule,
+    MatToolbar,
+    MatToolbarRow,
     MatButtonModule,
-    MatTooltipModule,
+    MatIcon,
+    MatTooltip,
     NgOptimizedImage
   ]
 })

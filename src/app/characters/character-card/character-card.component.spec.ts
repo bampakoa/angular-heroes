@@ -1,15 +1,14 @@
-import { NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatIconModule } from '@angular/material/icon';
 
 import { CharacterCardComponent } from './character-card.component';
 import { Character } from '../../core/character.model';
 import { ContextService } from '../../core/core.service';
 
 @Component({
-  template: '<app-character-card [character]="character" (selectedChange)="selected = $event" />'
+  template: '<app-character-card [character]="character" (selectedChange)="selected = $event" />',
+  standalone: true,
+  imports: [CharacterCardComponent]
 })
 class TestHostComponent {
   character = {
@@ -32,15 +31,7 @@ describe('CharacterCardComponent', () => {
     contextServiceSpy.getImage.and.returnValue('http://fakeimage');
 
     TestBed.configureTestingModule({
-      imports: [
-        MatGridListModule,
-        MatIconModule,
-        NgOptimizedImage
-      ],
-      declarations: [
-        CharacterCardComponent,
-        TestHostComponent
-      ],
+      imports: [TestHostComponent],
       providers: [
         { provide: ContextService, useValue: contextServiceSpy }
       ]

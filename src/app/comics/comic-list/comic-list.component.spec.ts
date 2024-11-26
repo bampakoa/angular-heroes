@@ -1,7 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 
@@ -30,15 +28,12 @@ const fakeComics: Comic[] = [
 ];
 
 @Component({
-  template: '<app-comic-list [character]="character" />'
+  template: '<app-comic-list [character]="character" />',
+  standalone: true,
+  imports: [ComicListComponent]
 })
 class TestHostComponent {
   character = { id: 1 } as Character;
-}
-
-@Component({ selector: 'app-comic-detail', template: '' })
-class ComicDetailStubComponent {
-  @Input() comic: Comic | undefined;
 }
 
 describe('ComicListComponent', () => {
@@ -51,15 +46,7 @@ describe('ComicListComponent', () => {
     comicServiceSpy.getComics.and.returnValue(of(fakeComics));
 
     TestBed.configureTestingModule({
-      imports: [
-        MatGridListModule,
-        MatProgressSpinnerModule
-      ],
-      declarations: [
-        ComicDetailStubComponent,
-        ComicListComponent,
-        TestHostComponent
-      ],
+      imports: [TestHostComponent],
       providers: [
         { provide: ComicService, useValue: comicServiceSpy }
       ]

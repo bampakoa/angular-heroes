@@ -1,4 +1,3 @@
-import { NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
@@ -16,7 +15,9 @@ const fakeComic: Partial<Comic> = {
 };
 
 @Component({
-  template: '<app-comic-detail [comic]="comic" />'
+  template: '<app-comic-detail [comic]="comic" />',
+  standalone: true,
+  imports: [ComicDetailComponent]
 })
 class TestHostComponent {
   comic = fakeComic;
@@ -31,14 +32,10 @@ describe('ComicDetailComponent', () => {
     contextServiceSpy.getImage.and.returnValue('http://fakeimage/');
 
     TestBed.configureTestingModule({
-      declarations: [
-        ComicDetailComponent,
-        TestHostComponent
-      ],
+      imports: [TestHostComponent],
       providers: [
         { provide: ContextService, useValue: contextServiceSpy }
-      ],
-      imports: [NgOptimizedImage]
+      ]
     });
     fixture = TestBed.createComponent(TestHostComponent);
     fixture.detectChanges();

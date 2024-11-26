@@ -1,9 +1,7 @@
 import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
-import { NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatCardModule } from '@angular/material/card';
 import { MatCardHarness } from '@angular/material/card/testing';
 import { By } from '@angular/platform-browser';
 
@@ -23,7 +21,9 @@ const fakeCharacter: Character = {
 };
 
 @Component({
-  template: '<app-character-detail [character]="character" />'
+  template: '<app-character-detail [character]="character" />',
+  standalone: true,
+  imports: [CharacterDetailComponent]
 })
 class TestHostComponent {
   character = fakeCharacter;
@@ -42,11 +42,7 @@ describe('CharacterDetailComponent', () => {
     contextServiceSpy.getImage.and.returnValue('http://fakeimage');
 
     TestBed.configureTestingModule({
-      imports: [MatCardModule, NgOptimizedImage],
-      declarations: [
-        CharacterDetailComponent,
-        TestHostComponent
-      ],
+      imports: [TestHostComponent],
       providers: [
         { provide: ContextService, useValue: contextServiceSpy }
       ]
