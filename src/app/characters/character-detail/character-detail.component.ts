@@ -1,5 +1,5 @@
 import { NgOptimizedImage, UpperCasePipe } from '@angular/common';
-import { Component, Input, inject } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { MatAnchor } from '@angular/material/button';
 import {
   MatCard,
@@ -35,15 +35,17 @@ import { ContextService } from '../../core/core.service';
 export class CharacterDetailComponent {
   private contextService = inject(ContextService);
 
-  @Input() character: Character | undefined;
+  readonly character = input<Character>();
 
   getAvatar() {
-    if (!this.character) { return; }
-    return this.contextService.getImage('standard_medium', this.character.thumbnail);
+    const character = this.character();
+    if (!character) { return; }
+    return this.contextService.getImage('standard_medium', character.thumbnail);
   }
 
   getCharacterImage() {
-    if (!this.character) { return; }
-    return this.contextService.getImage('portrait_uncanny', this.character.thumbnail);
+    const character = this.character();
+    if (!character) { return; }
+    return this.contextService.getImage('portrait_uncanny', character.thumbnail);
   }
 }

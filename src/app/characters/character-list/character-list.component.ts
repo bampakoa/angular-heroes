@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, OnInit, ViewChild, inject } from '@angular/core';
+import { Component, OnInit, inject, viewChild } from '@angular/core';
 import { MatIconButton } from '@angular/material/button';
 import { MatFormField, MatSuffix } from '@angular/material/form-field';
 import { MatGridList, MatGridTile } from '@angular/material/grid-list';
@@ -54,7 +54,7 @@ export class CharacterListComponent implements OnInit {
   selectedCharacter: Character | undefined;
   showProgress = false;
 
-  @ViewChild(MatDrawer) private drawer: MatDrawer | undefined;
+  readonly drawer = viewChild(MatDrawer);
   private searchTerms = new Subject<string>();
   private matSnackBarRef: MatSnackBarRef<TextOnlySnackBar> | undefined;
 
@@ -68,7 +68,7 @@ export class CharacterListComponent implements OnInit {
 
   selectCharacter(character: Character) {
     this.selectedCharacter = character;
-    this.drawer?.toggle();
+    this.drawer()?.toggle();
   }
 
   private showWarning(reason: 'too-many-results' | 'no-results') {

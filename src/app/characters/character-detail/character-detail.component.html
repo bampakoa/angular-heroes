@@ -1,16 +1,16 @@
-@if (character) {
+@if (character()) {
   <mat-card appearance="outlined">
     <mat-card-header>
       <img mat-card-avatar [ngSrc]="getAvatar()!" width="100" height="100" />
-      <mat-card-title>{{character.name}}</mat-card-title>
-      <mat-card-subtitle>{{character.id}}</mat-card-subtitle>
+      <mat-card-title>{{character()?.name}}</mat-card-title>
+      <mat-card-subtitle>{{character()?.id}}</mat-card-subtitle>
     </mat-card-header>
     <img mat-card-image [ngSrc]="getCharacterImage()!" width="300" height="450" />
     <mat-card-content>
-      <p>{{character.description}}</p>
+      <p>{{character()?.description}}</p>
     </mat-card-content>
     <mat-card-actions>
-      @for (url of character.urls; track url) {
+      @for (url of character()?.urls; track url) {
         <a mat-button target="_blank" [href]="url.url">{{url.type | uppercase}}</a>
       }
     </mat-card-actions>

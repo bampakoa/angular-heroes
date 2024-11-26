@@ -1,5 +1,5 @@
 import { NgOptimizedImage } from '@angular/common';
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { MatIconButton } from '@angular/material/button';
 import { MatLine } from '@angular/material/core';
 import { MatGridTileText, MatGridTileHeaderCssMatStyler } from '@angular/material/grid-list';
@@ -16,15 +16,16 @@ import { ContextService } from '../../core/core.service';
 export class CharacterCardComponent {
   private contextService = inject(ContextService);
 
-  @Input() character: Character | undefined;
-  @Output() selectedChange = new EventEmitter<Character>();
+  readonly character = input<Character>();
+  readonly selectedChange = output<Character>();
 
   getCharacterImage() {
-    if (!this.character) { return; }
-    return this.contextService.getImage('landscape_incredible', this.character.thumbnail);
+    const character = this.character();
+    if (!character) { return; }
+    return this.contextService.getImage('landscape_incredible', character.thumbnail);
   }
 
   showCharacter() {
-    this.selectedChange.emit(this.character);
+    this.selectedChange.emit(this.character()!);
   }
 }

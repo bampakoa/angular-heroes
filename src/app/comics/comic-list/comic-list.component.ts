@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, Input, OnChanges, signal, inject } from '@angular/core';
+import { Component, OnChanges, signal, inject, input } from '@angular/core';
 import { MatGridList, MatGridTile } from '@angular/material/grid-list';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { EMPTY, finalize, map, Observable } from 'rxjs';
@@ -17,15 +17,16 @@ import { ComicService } from '../comics.service';
 export class ComicListComponent implements OnChanges {
   private comicService = inject(ComicService);
 
-  @Input() character: Character | undefined;
+  readonly character = input<Character>();
   comics$: Observable<Comic[]> = EMPTY;
   showProgress = signal(false);
 
   ngOnChanges() {
     this.showProgress.set(true);
 
-    if (this.character) {
-      this.comics$ = this.comicService.getComics(this.character.id).pipe(
+    const character = this.character();
+    if (character) {
+      this.comics$ = this.comicService.getComics(character.id).pipe(
         map(comics => comics.filter(c => c.digitalId > 0)),
         finalize(() => this.showProgress.set(false))
       );
