@@ -26,7 +26,6 @@ import { CharacterService } from '../characters.service';
   selector: 'app-character-list',
   templateUrl: './character-list.component.html',
   styleUrl: './character-list.component.css',
-  standalone: true,
   imports: [
     MatDrawerContainer,
     MatDrawer,

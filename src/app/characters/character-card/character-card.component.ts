@@ -11,7 +11,6 @@ import { ContextService } from '../../core/core.service';
 @Component({
   selector: 'app-character-card',
   templateUrl: './character-card.component.html',
-  standalone: true,
   imports: [NgOptimizedImage, MatGridTileText, MatGridTileHeaderCssMatStyler, MatLine, MatIconButton, MatIcon]
 })
 export class CharacterCardComponent {

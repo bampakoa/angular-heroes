@@ -6,7 +6,6 @@ import { ContextService } from '../core.service';
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
-  standalone: true,
   imports: [MatToolbar, MatToolbarRow]
 })
 export class FooterComponent {

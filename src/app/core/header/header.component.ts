@@ -9,7 +9,6 @@ import { MatTooltip } from '@angular/material/tooltip';
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
-  standalone: true,
   imports: [
     MatToolbar,
     MatToolbarRow,

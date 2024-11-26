@@ -11,7 +11,6 @@ import { Comic } from '../comic.model';
       <img [ngSrc]="getComicImage()!" width="168" height="252" />
     </a>
   `,
-  standalone: true,
   imports: [NgOptimizedImage]
 })
 export class ComicDetailComponent {

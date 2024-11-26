@@ -16,7 +16,6 @@ const fakeComic: Partial<Comic> = {
 
 @Component({
   template: '<app-comic-detail [comic]="comic" />',
-  standalone: true,
   imports: [ComicDetailComponent]
 })
 class TestHostComponent {

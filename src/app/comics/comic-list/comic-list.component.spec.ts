@@ -29,7 +29,6 @@ const fakeComics: Comic[] = [
 
 @Component({
   template: '<app-comic-list [character]="character" />',
-  standalone: true,
   imports: [ComicListComponent]
 })
 class TestHostComponent {

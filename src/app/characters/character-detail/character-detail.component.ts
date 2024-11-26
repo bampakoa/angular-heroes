@@ -18,7 +18,6 @@ import { ContextService } from '../../core/core.service';
 @Component({
   selector: 'app-character-detail',
   templateUrl: './character-detail.component.html',
-  standalone: true,
   imports: [
     MatCard,
     MatCardHeader,

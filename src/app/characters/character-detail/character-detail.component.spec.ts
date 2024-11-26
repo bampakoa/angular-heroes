@@ -22,7 +22,6 @@ const fakeCharacter: Character = {
 
 @Component({
   template: '<app-character-detail [character]="character" />',
-  standalone: true,
   imports: [CharacterDetailComponent]
 })
 class TestHostComponent {

@@ -12,7 +12,6 @@ import { ComicService } from '../comics.service';
 @Component({
   selector: 'app-comic-list',
   templateUrl: './comic-list.component.html',
-  standalone: true,
   imports: [MatGridList, MatGridTile, MatProgressSpinner, ComicDetailComponent, AsyncPipe]
 })
 export class ComicListComponent implements OnChanges {

@@ -7,7 +7,6 @@ import { ContextService } from '../../core/core.service';
 
 @Component({
   template: '<app-character-card [character]="character" (selectedChange)="selected = $event" />',
-  standalone: true,
   imports: [CharacterCardComponent]
 })
 class TestHostComponent {
