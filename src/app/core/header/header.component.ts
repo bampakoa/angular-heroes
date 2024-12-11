@@ -1,6 +1,6 @@
 import { NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
+import { MatIconAnchor } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatToolbar, MatToolbarRow } from '@angular/material/toolbar';
 import { MatTooltip } from '@angular/material/tooltip';
@@ -12,7 +12,7 @@ import { MatTooltip } from '@angular/material/tooltip';
   imports: [
     MatToolbar,
     MatToolbarRow,
-    MatButtonModule,
+    MatIconAnchor,
     MatIcon,
     MatTooltip,
     NgOptimizedImage
