@@ -1,6 +1,6 @@
 <mat-drawer-container>
-  <mat-drawer mode="over" position="end">
-    <mat-tab-group>
+  <mat-drawer mode="over" position="end" (openedChange)="tabGroup.selectedIndex = 0">
+    <mat-tab-group #tabGroup>
       <mat-tab label="Details">
         <app-character-detail [character]="selectedCharacter" />
       </mat-tab>
