@@ -1,10 +1,14 @@
 import { Routes } from '@angular/router';
 
-import { CharacterListComponent } from './characters/character-list/character-list.component';
+import { characterResolver } from './characters/character.resolver';
+import { SidebarComponent } from './core/sidebar/sidebar.component';
 
 export const routes: Routes = [
   {
-    path: '',
-    component: CharacterListComponent
+    path: ':id',
+    component: SidebarComponent,
+    resolve: {
+      character: characterResolver
+    }
   }
 ];

@@ -7,12 +7,13 @@ import { provideRouter } from '@angular/router';
 import { AppErrorHandler } from './app-error-handler';
 import { routes } from './app.routes';
 import { authInterceptor } from './auth-interceptor.service';
+import { loadingInterceptor } from './core/loading.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideHttpClient(withInterceptors([authInterceptor])),
+    provideHttpClient(withInterceptors([loadingInterceptor, authInterceptor])),
     provideAnimations(),
     { provide: ErrorHandler, useClass: AppErrorHandler },
     { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 3000 } }

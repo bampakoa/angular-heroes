@@ -1,25 +1,20 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, OnInit, inject, viewChild } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MatIconButton } from '@angular/material/button';
 import { MatFormField, MatSuffix } from '@angular/material/form-field';
 import { MatGridList, MatGridTile } from '@angular/material/grid-list';
 import { MatIcon } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
-import { MatProgressBar } from '@angular/material/progress-bar';
-import { MatDrawer, MatDrawerContainer, MatDrawerContent } from '@angular/material/sidenav';
 import {
   MatSnackBar,
   MatSnackBarRef,
   TextOnlySnackBar
 } from '@angular/material/snack-bar';
-import { MatTabGroup, MatTab } from '@angular/material/tabs';
 import { catchError, debounceTime, distinctUntilChanged, EMPTY, filter, map, Observable, Subject, switchMap } from 'rxjs';
 
 import { environment } from '../../../environments/environment';
-import { ComicListComponent } from '../../comics/comic-list/comic-list.component';
 import { Character } from '../../core/character.model';
 import { CharacterCardComponent } from '../character-card/character-card.component';
-import { CharacterDetailComponent } from '../character-detail/character-detail.component';
 import { CharacterService } from '../characters.service';
 
 @Component({
@@ -27,14 +22,6 @@ import { CharacterService } from '../characters.service';
   templateUrl: './character-list.component.html',
   styleUrl: './character-list.component.scss',
   imports: [
-    MatDrawerContainer,
-    MatDrawer,
-    MatTabGroup,
-    MatTab,
-    CharacterDetailComponent,
-    ComicListComponent,
-    MatDrawerContent,
-    MatProgressBar,
     MatFormField,
     MatInput,
     MatIconButton,
@@ -49,14 +36,10 @@ import { CharacterService } from '../characters.service';
 export class CharacterListComponent implements OnInit {
   private snackbar = inject(MatSnackBar);
   private characterService = inject(CharacterService);
-
-  characters$: Observable<Character[]> = EMPTY;
-  selectedCharacter: Character | undefined;
-  showProgress = false;
-
-  readonly drawer = viewChild(MatDrawer);
   private searchTerms = new Subject<string>();
   private matSnackBarRef: MatSnackBarRef<TextOnlySnackBar> | undefined;
+
+  characters$: Observable<Character[]> = EMPTY;
 
   ngOnInit() {
     this.getCharacters();
@@ -64,11 +47,6 @@ export class CharacterListComponent implements OnInit {
 
   search(name: string) {
     this.searchTerms.next(name);
-  }
-
-  selectCharacter(character: Character) {
-    this.selectedCharacter = character;
-    this.drawer()?.toggle();
   }
 
   private showWarning(reason: 'too-many-results' | 'no-results') {
@@ -92,19 +70,13 @@ export class CharacterListComponent implements OnInit {
       debounceTime(300),
       distinctUntilChanged(),
       switchMap(term => {
-        this.showProgress = true;
         this.matSnackBarRef?.dismiss();
 
-        return this.characterService.getCharacters(term).pipe(
-          catchError(() => {
-            this.showProgress = false;
-            return EMPTY;
-          })
+        return this.characterService.getAll(term).pipe(
+          catchError(() => EMPTY)
         );
       }),
       map(({ results: heroes, total }) => {
-        this.showProgress = false;
-
         // Show notification when total results are more than the pre-defined limit
         if (total > environment.charactersLimit) {
           this.showWarning('too-many-results');

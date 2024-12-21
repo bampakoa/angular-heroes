@@ -6,26 +6,15 @@ import { MatCardHarness } from '@angular/material/card/testing';
 import { By } from '@angular/platform-browser';
 
 import { CharacterDetailComponent } from './character-detail.component';
-import { Character } from '../../core/character.model';
+import { character } from '../../../testing/mock-data';
 import { ContextService } from '../../core/core.service';
-
-const fakeCharacter: Character = {
-  id: 1,
-  name: 'Fake character',
-  description: 'My fake super hero',
-  thumbnail: {
-    path: 'Fake path',
-    extension: 'fake'
-  },
-  urls: [{ url: 'http://fakeurl/', type: 'fakeType' }]
-};
 
 @Component({
   template: '<app-character-detail [character]="character" />',
   imports: [CharacterDetailComponent]
 })
 class TestHostComponent {
-  character = fakeCharacter;
+  character = character;
 }
 
 describe('CharacterDetailComponent', () => {
@@ -64,11 +53,11 @@ describe('CharacterDetailComponent', () => {
   });
 
   it('should display name', async () => {
-    expect(await cardDisplay.getTitleText()).toBe(fakeCharacter.name);
+    expect(await cardDisplay.getTitleText()).toBe(character.name);
   });
 
   it('should display id', async () => {
-    expect(await cardDisplay.getSubtitleText()).toBe(fakeCharacter.id.toString());
+    expect(await cardDisplay.getSubtitleText()).toBe(character.id.toString());
   });
 
   it('should display image', () => {
@@ -77,7 +66,7 @@ describe('CharacterDetailComponent', () => {
 
   it('should display description', () => {
     const descrDisplay: HTMLElement = fixture.nativeElement.querySelector('p');
-    expect(descrDisplay.textContent).toContain(fakeCharacter.description);
+    expect(descrDisplay.textContent).toContain(character.description);
   });
 
   it('should display character URLs', () => {
@@ -87,11 +76,11 @@ describe('CharacterDetailComponent', () => {
 
   it('should get avatar', () => {
     component.getAvatar();
-    expect(contextServiceSpy.getImage).toHaveBeenCalledWith('standard_medium', fakeCharacter.thumbnail);
+    expect(contextServiceSpy.getImage).toHaveBeenCalledWith('standard_medium', character.thumbnail);
   });
 
   it('should get image', () => {
     component.getAvatar();
-    expect(contextServiceSpy.getImage).toHaveBeenCalledWith('portrait_uncanny', fakeCharacter.thumbnail);
+    expect(contextServiceSpy.getImage).toHaveBeenCalledWith('portrait_uncanny', character.thumbnail);
   });
 });

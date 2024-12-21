@@ -14,7 +14,7 @@ export class ComicService {
   private http = inject(HttpClient);
   private contextService = inject(ContextService);
 
-  getComics(characterId: number) {
+  getAll(characterId: number) {
     return this.http.get<MarvelResponse<Comic>>(`${environment.apiUrl}characters/${characterId}/comics`).pipe(
       map(response => response.data.results),
       catchError(this.contextService.handleError)

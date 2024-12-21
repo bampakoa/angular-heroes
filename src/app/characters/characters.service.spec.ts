@@ -1,15 +1,16 @@
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
 import { CharacterService } from './characters.service';
 import { environment } from '../../environments/environment';
+import { character } from '../../testing/mock-data';
 import { Character } from '../core/character.model';
 import { ContextService } from '../core/core.service';
 import { MarvelResponseData } from '../core/marvel-response.model';
 
 const fakeMarvelResponseData: MarvelResponseData<Character> = {
-  results: [{ name: 'Fake character' }] as Character[],
+  results: [character],
   total: 1
 };
 
@@ -26,7 +27,7 @@ describe('CharacterService', () => {
       providers: [
         CharacterService,
         { provide: ContextService, useValue: contextServiceSpy },
-        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClient(),
         provideHttpClientTesting()
       ]
     });
@@ -40,22 +41,27 @@ describe('CharacterService', () => {
   });
 
   it('should get characters', () => {
-    service.getCharacters('fakename').subscribe(characters => expect(characters).toEqual(fakeMarvelResponseData));
+    service.getAll('fakename').subscribe(characters => expect(characters).toEqual(fakeMarvelResponseData));
     const req = httpTestingController.expectOne(url);
     expect(req.request.method).toEqual('GET');
-    req.flush({
-      data: fakeMarvelResponseData
-    });
+    req.flush({ data: fakeMarvelResponseData });
   });
 
   it('should set copyright', () => {
-    service.getCharacters('fakename').subscribe();
+    service.getAll('fakename').subscribe();
     const req = httpTestingController.expectOne(url);
     req.flush({
       attributionText: 'fakeAttribution',
       data: fakeMarvelResponseData
     });
     expect(contextServiceSpy.copyright).toEqual('fakeAttribution');
+  });
+
+  it('should get character', () => {
+    service.getSingle(1).subscribe(data => expect(data).toEqual(character));
+    const req = httpTestingController.expectOne(environment.apiUrl + 'characters/1');
+    expect(req.request.method).toEqual('GET');
+    req.flush({ data: fakeMarvelResponseData });
   });
 
   afterEach(() => httpTestingController.verify());

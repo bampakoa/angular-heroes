@@ -1,7 +1,17 @@
 <div class="container">
   <app-header />
   <div class="content">
-    <router-outlet />
+    @if (showProgress()) {
+      <mat-progress-bar mode="indeterminate" />
+    }
+    <mat-drawer-container>
+      <mat-drawer mode="over" position="end">
+        <router-outlet />
+      </mat-drawer>
+      <mat-drawer-content>
+        <app-character-list />
+      </mat-drawer-content>
+    </mat-drawer-container>
   </div>
   <app-footer />
 </div>

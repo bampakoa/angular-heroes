@@ -1,23 +1,17 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 
 import { CharacterCardComponent } from './character-card.component';
-import { Character } from '../../core/character.model';
+import { character } from '../../../testing/mock-data';
 import { ContextService } from '../../core/core.service';
 
 @Component({
-  template: '<app-character-card [character]="character" (selectedChange)="selected = $event" />',
+  template: '<app-character-card [character]="character" />',
   imports: [CharacterCardComponent]
 })
 class TestHostComponent {
-  character = {
-    name: 'Fake character',
-    thumbnail: {
-      path: 'Fake path',
-      extension: 'fake'
-    }
-  } as Character;
-  selected: Character | undefined;
+  character = character;
 }
 
 describe('CharacterCardComponent', () => {
@@ -32,6 +26,7 @@ describe('CharacterCardComponent', () => {
     TestBed.configureTestingModule({
       imports: [TestHostComponent],
       providers: [
+        provideRouter([]),
         { provide: ContextService, useValue: contextServiceSpy }
       ]
     });
@@ -50,11 +45,5 @@ describe('CharacterCardComponent', () => {
   it('should display character name', () => {
     const nameDisplay: HTMLElement = fixture.nativeElement.querySelector('h3');
     expect(nameDisplay.textContent).toEqual(component.character.name);
-  });
-
-  it('should select a character', () => {
-    const selectButton: HTMLButtonElement = fixture.nativeElement.querySelector('button');
-    selectButton.click();
-    expect(component.selected).toEqual(component.character as Character);
   });
 });

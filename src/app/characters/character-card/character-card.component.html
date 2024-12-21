@@ -1,7 +1,7 @@
 <img [ngSrc]="getCharacterImage()!" width="464" height="261" alt="photo of {{character()?.name}}" />
 <mat-grid-tile-header>
   <h3 mat-line>{{character()?.name}}</h3>
-  <button mat-icon-button (click)="showCharacter()">
+  <a mat-icon-button [routerLink]="['/', character()?.id]">
     <mat-icon>info</mat-icon>
-  </button>
+  </a>
 </mat-grid-tile-header>

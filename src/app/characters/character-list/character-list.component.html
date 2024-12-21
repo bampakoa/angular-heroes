@@ -1,36 +1,17 @@
-<mat-drawer-container>
-  <mat-drawer mode="over" position="end" (openedChange)="tabGroup.selectedIndex = 0">
-    <mat-tab-group #tabGroup>
-      <mat-tab label="Details">
-        <app-character-detail [character]="selectedCharacter" />
-      </mat-tab>
-      <mat-tab label="Comics">
-        @if (selectedCharacter) {
-          <app-comic-list [character]="selectedCharacter" />
-        }
-      </mat-tab>
-    </mat-tab-group>
-  </mat-drawer>
-  <mat-drawer-content>
-    @if (showProgress) {
-      <mat-progress-bar mode="indeterminate" />
+<div class="search">
+  <mat-form-field>
+    <input matInput placeholder="Search by name" #searchBox (keyup)="search(searchBox.value)" />
+    @if (searchBox?.value) {
+      <button matSuffix mat-icon-button aria-label="Clear" (click)="searchBox.value = ''">
+        <mat-icon>close</mat-icon>
+      </button>
     }
-    <div class="search">
-      <mat-form-field>
-        <input matInput placeholder="Search by name" #searchBox (keyup)="search(searchBox.value)" />
-        @if (searchBox?.value) {
-          <button matSuffix mat-icon-button aria-label="Clear" (click)="searchBox.value = ''">
-            <mat-icon>close</mat-icon>
-          </button>
-        }
-      </mat-form-field>
-    </div>
-    <mat-grid-list cols="4" rowHeight="250">
-      @for (character of characters$ | async; track character.id) {
-        <mat-grid-tile>
-          <app-character-card [character]="character" (selectedChange)="selectCharacter($event)" />
-        </mat-grid-tile>
-      }
-    </mat-grid-list>
-  </mat-drawer-content>
-</mat-drawer-container>
+  </mat-form-field>
+</div>
+<mat-grid-list cols="4" rowHeight="250">
+  @for (character of characters$ | async; track character.id) {
+    <mat-grid-tile>
+      <app-character-card [character]="character" />
+    </mat-grid-tile>
+  }
+</mat-grid-list>

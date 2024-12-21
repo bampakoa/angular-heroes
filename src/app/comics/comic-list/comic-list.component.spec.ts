@@ -41,8 +41,8 @@ describe('ComicListComponent', () => {
   let comicServiceSpy: jasmine.SpyObj<ComicService>;
 
   beforeEach(() => {
-    comicServiceSpy = jasmine.createSpyObj('ComicService', ['getComics']);
-    comicServiceSpy.getComics.and.returnValue(of(fakeComics));
+    comicServiceSpy = jasmine.createSpyObj('ComicService', ['getAll']);
+    comicServiceSpy.getAll.and.returnValue(of(fakeComics));
 
     TestBed.configureTestingModule({
       imports: [TestHostComponent],
@@ -58,11 +58,5 @@ describe('ComicListComponent', () => {
   it('should display comics', () => {
     const comicDetailDisplay: HTMLElement[] = fixture.nativeElement.querySelectorAll('app-comic-detail');
     expect(comicDetailDisplay.length).toBe(1);
-  });
-
-  it('should display progress spinner', () => {
-    component.showProgress.set(true);
-    fixture.detectChanges();
-    expect(fixture.nativeElement.querySelector('mat-progress-spinner')).not.toBeNull();
   });
 });

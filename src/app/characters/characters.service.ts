@@ -14,7 +14,7 @@ export class CharacterService {
   private http = inject(HttpClient);
   private contextService = inject(ContextService);
 
-  getCharacters(term: string) {
+  getAll(term: string) {
     const options = new HttpParams()
       .set('nameStartsWith', term)
       .set('limit', environment.charactersLimit);
@@ -27,6 +27,12 @@ export class CharacterService {
         return response.data;
       }),
       catchError(this.contextService.handleError)
+    );
+  }
+
+  getSingle(id: number) {
+    return this.http.get<MarvelResponse<Character>>(`${environment.apiUrl}characters/${id}`).pipe(
+      map(response => response.data.results[0])
     );
   }
 }

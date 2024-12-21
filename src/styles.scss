@@ -24,3 +24,7 @@ app-character-list {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+a[mat-icon-button] {
+  padding-top: 5px !important;
+}

@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { throwError } from 'rxjs';
 
@@ -12,6 +12,7 @@ export class ContextService {
   private snackbar = inject(MatSnackBar);
 
   copyright = '';
+  showProgress = signal(false);
 
   getImage(variant: string, thumbnail: Thumbnail) {
     return `${thumbnail.path}/${variant}.${thumbnail.extension}`;

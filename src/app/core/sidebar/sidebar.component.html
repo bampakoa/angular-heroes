@@ -1,0 +1,10 @@
+<mat-tab-group #tabGroup>
+  <mat-tab label="Details">
+    <app-character-detail [character]="character" />
+  </mat-tab>
+  <mat-tab label="Comics">
+    @defer (when tabGroup.selectedIndex === 1) {
+      <app-comic-list [character]="character" />
+    }
+  </mat-tab>
+</mat-tab-group>

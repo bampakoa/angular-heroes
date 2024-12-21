@@ -35,7 +35,7 @@ describe('ComicService', () => {
   });
 
   it('should get comics', () => {
-    service.getComics(1).subscribe(comics => expect(comics).toEqual(fakeComics));
+    service.getAll(1).subscribe(comics => expect(comics).toEqual(fakeComics));
     const req = httpTestingController.expectOne(environment.apiUrl + 'characters/1/comics');
     expect(req.request.method).toEqual('GET');
     req.flush({
