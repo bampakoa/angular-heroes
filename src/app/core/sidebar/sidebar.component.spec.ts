@@ -40,7 +40,6 @@ describe('SidebarComponent', () => {
         provideNoopAnimations()
       ]
     })
-      .compileComponents();
   });
 
   it('should navigate', async () => {

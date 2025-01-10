@@ -6,7 +6,7 @@ import { provideRouter } from '@angular/router';
 
 import { AppErrorHandler } from './app-error-handler';
 import { routes } from './app.routes';
-import { authInterceptor } from './auth-interceptor.service';
+import { authInterceptor } from './auth.interceptor';
 import { loadingInterceptor } from './core/loading.interceptor';
 
 export const appConfig: ApplicationConfig = {

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { provideRouter } from '@angular/router';
+import { By } from '@angular/platform-browser';
+import { provideRouter, RouterLink } from '@angular/router';
 
 import { CharacterCardComponent } from './character-card.component';
 import { character } from '../../../testing/mock-data';
@@ -45,5 +46,11 @@ describe('CharacterCardComponent', () => {
   it('should display character name', () => {
     const nameDisplay: HTMLElement = fixture.nativeElement.querySelector('h3');
     expect(nameDisplay.textContent).toEqual(component.character.name);
+  });
+
+  it('should have a RouterLink', () => {
+    const linkDe = fixture.debugElement.query(By.directive(RouterLink));
+    const routerLink = linkDe.injector.get(RouterLink);
+    expect(routerLink.href).toBe('/1');
   });
 });
