@@ -1,3 +1,4 @@
+import { provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ContextService } from '../core.service';
@@ -10,17 +11,18 @@ describe('FooterComponent', () => {
     copyright: 'Fake copyright'
   };
 
-  beforeEach(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [FooterComponent],
       providers: [
+        provideExperimentalZonelessChangeDetection(),
         { provide: ContextService, useValue: contextServiceStub }
       ]
     });
 
     fixture = TestBed.createComponent(FooterComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    await fixture.whenStable();
   });
 
   it('should create', () => {

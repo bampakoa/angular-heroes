@@ -1,18 +1,12 @@
 import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
 import { CharacterService } from './characters.service';
 import { environment } from '../../environments/environment';
-import { character } from '../../testing/mock-data';
-import { Character } from '../core/character.model';
+import { character, fakeMarvelResponseData } from '../../testing/mock-data';
 import { ContextService } from '../core/core.service';
-import { MarvelResponseData } from '../core/marvel-response.model';
-
-const fakeMarvelResponseData: MarvelResponseData<Character> = {
-  results: [character],
-  total: 1
-};
 
 describe('CharacterService', () => {
   let service: CharacterService;
@@ -27,6 +21,7 @@ describe('CharacterService', () => {
       providers: [
         CharacterService,
         { provide: ContextService, useValue: contextServiceSpy },
+        provideExperimentalZonelessChangeDetection(),
         provideHttpClient(),
         provideHttpClientTesting()
       ]

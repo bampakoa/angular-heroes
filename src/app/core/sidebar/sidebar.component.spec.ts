@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { MatDrawer } from '@angular/material/sidenav';
 import { By } from '@angular/platform-browser';
@@ -24,6 +24,7 @@ describe('SidebarComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       providers: [
+        provideExperimentalZonelessChangeDetection(),
         provideRouter([{
           path: '',
           component: TestHostComponent,

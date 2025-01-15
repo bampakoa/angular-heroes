@@ -1,5 +1,6 @@
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
 import { Comic } from './comic.model';
@@ -21,6 +22,7 @@ describe('ComicService', () => {
       providers: [
         ComicService,
         { provide: ContextService, useValue: contextServiceSpy },
+        provideExperimentalZonelessChangeDetection(),
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting()
       ]

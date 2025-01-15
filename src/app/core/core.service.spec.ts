@@ -1,4 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
+import { provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { catchError, EMPTY } from 'rxjs';
@@ -15,6 +16,7 @@ describe('ContextService', () => {
 
     TestBed.configureTestingModule({
       providers: [
+        provideExperimentalZonelessChangeDetection(),
         ContextService,
         { provide: MatSnackBar, useValue: snackbarSpy }
       ]

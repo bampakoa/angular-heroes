@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
@@ -40,19 +40,20 @@ describe('ComicListComponent', () => {
   let fixture: ComponentFixture<TestHostComponent>;
   let comicServiceSpy: jasmine.SpyObj<ComicService>;
 
-  beforeEach(() => {
+  beforeEach(async () => {
     comicServiceSpy = jasmine.createSpyObj('ComicService', ['getAll']);
     comicServiceSpy.getAll.and.returnValue(of(fakeComics));
 
     TestBed.configureTestingModule({
       imports: [TestHostComponent],
       providers: [
+        provideExperimentalZonelessChangeDetection(),
         { provide: ComicService, useValue: comicServiceSpy }
       ]
     });
     fixture = TestBed.createComponent(TestHostComponent);
     component = fixture.debugElement.query(By.directive(ComicListComponent)).componentInstance;
-    fixture.detectChanges();
+    await fixture.whenStable();
   });
 
   it('should display comics', () => {

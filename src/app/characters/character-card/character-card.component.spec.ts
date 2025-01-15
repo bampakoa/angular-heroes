@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { provideRouter, RouterLink } from '@angular/router';
@@ -27,6 +27,7 @@ describe('CharacterCardComponent', () => {
     TestBed.configureTestingModule({
       imports: [TestHostComponent],
       providers: [
+        provideExperimentalZonelessChangeDetection(),
         provideRouter([]),
         { provide: ContextService, useValue: contextServiceSpy }
       ]

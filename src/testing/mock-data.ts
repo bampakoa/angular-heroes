@@ -1,3 +1,6 @@
+import { Character } from '../app/core/character.model';
+import { MarvelResponseData } from '../app/core/marvel-response.model';
+
 export const character = {
   id: 1,
   name: '',
@@ -12,4 +15,9 @@ export const character = {
       type: 'png'
     }
   ]
+};
+
+export const fakeMarvelResponseData: MarvelResponseData<Character> = {
+  results: [character],
+  total: 1
 };
