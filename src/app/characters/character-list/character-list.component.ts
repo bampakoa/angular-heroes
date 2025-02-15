@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatIconButton } from '@angular/material/button';
 import { MatFormField, MatSuffix } from '@angular/material/form-field';
 import { MatGridList, MatGridTile } from '@angular/material/grid-list';
@@ -10,10 +10,9 @@ import {
   MatSnackBarRef,
   TextOnlySnackBar
 } from '@angular/material/snack-bar';
-import { catchError, debounceTime, distinctUntilChanged, EMPTY, filter, map, Observable, Subject, switchMap } from 'rxjs';
+import { catchError, debounceTime, distinctUntilChanged, EMPTY, filter, map, Subject, switchMap } from 'rxjs';
 
 import { environment } from '../../../environments/environment';
-import { Character } from '../../core/character.model';
 import { CharacterCardComponent } from '../character-card/character-card.component';
 import { CharacterService } from '../characters.service';
 
@@ -33,17 +32,37 @@ import { CharacterService } from '../characters.service';
     AsyncPipe
   ]
 })
-export class CharacterListComponent implements OnInit {
+export class CharacterListComponent {
   private snackbar = inject(MatSnackBar);
   private characterService = inject(CharacterService);
   private searchTerms = new Subject<string>();
   private matSnackBarRef: MatSnackBarRef<TextOnlySnackBar> | undefined;
 
-  characters$: Observable<Character[]> = EMPTY;
+  characters$ = this.searchTerms.pipe(
+    filter(term => term.length >= 3),
+    debounceTime(300),
+    distinctUntilChanged(),
+    switchMap(term => {
+      this.matSnackBarRef?.dismiss();
 
-  ngOnInit() {
-    this.getCharacters();
-  }
+      return this.characterService.getAll(term).pipe(
+        catchError(() => EMPTY)
+      );
+    }),
+    map(({ results: heroes, total }) => {
+      // Show notification when total results are more than the pre-defined limit
+      if (total > environment.charactersLimit) {
+        this.showWarning('too-many-results');
+      }
+
+      // Show notification when there are no results
+      if (total === 0) {
+        this.showWarning('no-results');
+      }
+
+      return heroes;
+    })
+  );
 
   search(name: string) {
     this.searchTerms.next(name);
@@ -62,33 +81,5 @@ export class CharacterListComponent implements OnInit {
     }
 
     this.matSnackBarRef = this.snackbar.open(message, 'Dismiss', { duration: 5000 });
-  }
-
-  private getCharacters() {
-    this.characters$ = this.searchTerms.pipe(
-      filter(term => term.length >= 3),
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap(term => {
-        this.matSnackBarRef?.dismiss();
-
-        return this.characterService.getAll(term).pipe(
-          catchError(() => EMPTY)
-        );
-      }),
-      map(({ results: heroes, total }) => {
-        // Show notification when total results are more than the pre-defined limit
-        if (total > environment.charactersLimit) {
-          this.showWarning('too-many-results');
-        }
-
-        // Show notification when there are no results
-        if (total === 0) {
-          this.showWarning('no-results');
-        }
-
-        return heroes;
-      })
-    );
   }
 }
