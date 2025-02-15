@@ -8,7 +8,7 @@ import { Comic } from '../comic.model';
   selector: 'app-comic-detail',
   template: `
     <a href="https://read.marvel.com/#/book/{{comic()?.digitalId}}" target="_blank">
-      <img [ngSrc]="getComicImage()!" width="168" height="252" />
+      <img [ngSrc]="getComicImage()!" width="168" height="252">
     </a>
   `,
   imports: [NgOptimizedImage]
