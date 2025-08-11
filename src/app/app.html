@@ -1,9 +1,9 @@
 <div class="container">
   <app-header />
+  @if (showProgress()) {
+    <mat-progress-bar mode="indeterminate" />
+  }
   <div class="content">
-    @if (showProgress()) {
-      <mat-progress-bar mode="indeterminate" />
-    }
     <mat-drawer-container>
       <mat-drawer mode="over" position="end">
         <router-outlet />
