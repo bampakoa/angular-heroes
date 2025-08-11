@@ -1,4 +1,4 @@
-import { Component, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { Component, provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ContextService } from '../../core/core.service';
@@ -33,7 +33,7 @@ describe('ComicDetailComponent', () => {
     TestBed.configureTestingModule({
       imports: [TestHostComponent],
       providers: [
-        provideExperimentalZonelessChangeDetection(),
+        provideZonelessChangeDetection(),
         { provide: ContextService, useValue: contextServiceSpy }
       ]
     });

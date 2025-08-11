@@ -23,11 +23,11 @@ export class SidebarComponent implements OnInit {
   private drawer = inject(MatDrawer);
   
   character: Character | undefined;
-  readonly tab = viewChild(MatTabGroup);
+  readonly tab = viewChild.required(MatTabGroup);
 
   ngOnInit() {
     this.route.data.subscribe(data => {
-      this.tab()!.selectedIndex = 0;
+      this.tab().selectedIndex = 0;
       this.drawer.toggle();
       this.character = data['character'];
     });

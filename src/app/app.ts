@@ -10,8 +10,8 @@ import { HeaderComponent } from './core/header/header.component';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+  templateUrl: './app.html',
+  styleUrl: './app.scss',
   imports: [
     HeaderComponent,
     FooterComponent,
@@ -23,6 +23,6 @@ import { HeaderComponent } from './core/header/header.component';
     MatProgressBar
   ]
 })
-export class AppComponent {
+export class App {
   showProgress = inject(ContextService).showProgress;
 }

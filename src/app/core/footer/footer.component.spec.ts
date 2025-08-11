@@ -1,4 +1,4 @@
-import { provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ContextService } from '../core.service';
@@ -15,7 +15,7 @@ describe('FooterComponent', () => {
     TestBed.configureTestingModule({
       imports: [FooterComponent],
       providers: [
-        provideExperimentalZonelessChangeDetection(),
+        provideZonelessChangeDetection(),
         { provide: ContextService, useValue: contextServiceStub }
       ]
     });
@@ -31,6 +31,6 @@ describe('FooterComponent', () => {
 
   it('should display copyright info', () => {
     const footerDisplay: HTMLElement = fixture.nativeElement.querySelector('small');
-    expect(footerDisplay.textContent).toContain(contextServiceStub.copyright);
+    expect(footerDisplay.textContent).toContain(contextServiceStub.copyright!);
   });
 });

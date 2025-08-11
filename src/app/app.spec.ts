@@ -1,29 +1,29 @@
 import { provideHttpClient } from '@angular/common/http';
-import { provideExperimentalZonelessChangeDetection, signal } from '@angular/core';
+import { provideZonelessChangeDetection, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
 
-import { AppComponent } from './app.component';
+import { App } from './app';
 import { ContextService } from './core/core.service';
 
-describe('AppComponent', () => {
-  let fixture: ComponentFixture<AppComponent>;
-  let component: AppComponent;
+describe('App', () => {
+  let fixture: ComponentFixture<App>;
+  let component: App;
   const contextServiceStub: Partial<ContextService> = {
     showProgress: signal(true)
   };
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      imports: [AppComponent],
+      imports: [App],
       providers: [
-        provideExperimentalZonelessChangeDetection(),
+        provideZonelessChangeDetection(),
         provideNoopAnimations(),
         provideHttpClient(),
         { provide: ContextService, useValue: contextServiceStub }
       ]
     });
-    fixture = TestBed.createComponent(AppComponent);
+    fixture = TestBed.createComponent(App);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
