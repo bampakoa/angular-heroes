@@ -1,0 +1,4 @@
+@let thumbnail = comic().thumbnail;
+<a href="https://read.marvel.com/#/book/{{comic().digitalId}}" target="_blank">
+  <img [ngSrc]="`${thumbnail.path}/portrait_fantastic.${thumbnail.extension}`" width="168" height="252">
+</a>

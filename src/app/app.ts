@@ -3,26 +3,26 @@ import { MatProgressBar } from '@angular/material/progress-bar';
 import { MatDrawer, MatDrawerContainer, MatDrawerContent } from '@angular/material/sidenav';
 import { RouterOutlet } from '@angular/router';
 
-import { CharacterListComponent } from './characters/character-list/character-list.component';
-import { ContextService } from './core/core.service';
-import { FooterComponent } from './core/footer/footer.component';
-import { HeaderComponent } from './core/header/header.component';
+import { CharacterList } from './characters/character-list/character-list';
+import { LoadingIndicator } from './loading-indicator';
+import { Footer } from './layout/footer/footer';
+import { Header } from './layout/header/header';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrl: './app.scss',
   imports: [
-    HeaderComponent,
-    FooterComponent,
+    Header,
+    Footer,
     MatDrawerContainer,
     MatDrawer,
     MatDrawerContent,
-    CharacterListComponent,
+    CharacterList,
     RouterOutlet,
     MatProgressBar
   ]
 })
 export class App {
-  showProgress = inject(ContextService).showProgress;
+  showProgress = inject(LoadingIndicator).showProgress;
 }

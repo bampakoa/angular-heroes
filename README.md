@@ -13,7 +13,7 @@ Clone this repo to your desktop and run `npm install` to install all the depende
 ## Usage
 
 Before you start, you must acquire a developer key from [Marvel Developer Portal](https://developer.marvel.com/). After you get one, 
-replace `apiKey` variable in `src\app\auth-interceptor.service.ts` file with the newly acquired **public** key.
+replace `apiKey` variable in `src\app\auth-interceptor.ts` file with the newly acquired **public** key.
 
 ```
 const apiKey = '<Your public key here>';

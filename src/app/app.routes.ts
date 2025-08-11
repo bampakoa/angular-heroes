@@ -1,14 +1,15 @@
-import { Routes } from '@angular/router';
+import { inject } from '@angular/core';
+import { ActivatedRouteSnapshot, Routes } from '@angular/router';
 
-import { characterResolver } from './characters/character.resolver';
-import { SidebarComponent } from './core/sidebar/sidebar.component';
+import { Characters } from './characters/characters';
+import { Sidebar } from './layout/sidebar/sidebar';
 
 export const routes: Routes = [
   {
     path: ':id',
-    component: SidebarComponent,
+    component: Sidebar,
     resolve: {
-      character: characterResolver
+      character: (route: ActivatedRouteSnapshot) => inject(Characters).getSingle(+route.paramMap.get('id')!)
     }
   }
 ];
