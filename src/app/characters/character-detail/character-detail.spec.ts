@@ -26,6 +26,10 @@ describe('CharacterDetail', () => {
     cardDisplay = await loader.getHarness(MatCardHarness);
   });
 
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
   it('should display the name', async () => {
     expect(await cardDisplay.getTitleText()).toBe(character.name);
   });

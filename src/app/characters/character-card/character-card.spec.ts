@@ -24,8 +24,12 @@ describe('CharacterCard', () => {
     fixture.detectChanges();
   });
 
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
   it('should display the name', () => {
     const nameDisplay: HTMLElement = fixture.nativeElement.querySelector('h3');
-    expect(nameDisplay.textContent).toEqual(component.character().name);
+    expect(nameDisplay.textContent).toEqual(character.name);
   });
 });
